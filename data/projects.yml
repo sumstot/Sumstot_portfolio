@@ -1,5 +1,5 @@
-- name: Longest Word Game
-  description: Decent description of the app
+- name: Etch-A-Sketch
+  description: An etch-a-sketch I made using vanilla JS using dom manipulaiton.
   image: projects/placeholder.png
   url: https://www.google.com
 
@@ -9,11 +9,21 @@
   url: https://www.google.com
 
 - name: Fluffy Friend Finder
-  description: An AirBnB clone that connects pet owners with people who would like to rent a pet for the weekend! I was responsible for the backend dealing with the database and setting up our controllers and routes.
+  description: An AirBnB clone that connects pet owners with people who would like to rent a pet for the weekend! I was responsible for the backend dealing with the database and setting up our controllers and routes. Made with Ruby on Rails and JS
   image: projects/placeholder.png
   url: https://www.google.com
 
 - name: Ozei
   description: Decent description of the app
-  image: projects/placeholder.png
+  image: projects/Ozei.png
   url: https://www.google.com
+
+- name: Gif Searcher
+  description: made a simple gif searcher using react and calling the GIPHY api
+  image:
+  url:
+
+- name: Snake!
+  description: Eat the color blocks to get longer while avoiding your tail! Made in Python using Python Turtle
+  image:
+  url:
