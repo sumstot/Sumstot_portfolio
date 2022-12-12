@@ -1,0 +1,19 @@
+- name: Longest Word Game
+  description: Decent description of the app
+  image: projects/placeholder.png
+  url: https://www.google.com
+
+- name: Movie Watchlist
+  description: This is a full stack movie watchlist made with Ruby on Rails and Javascript. Create you own list of movies that you like!
+  image: projects/placeholder.png
+  url: https://www.google.com
+
+- name: Fluffy Friend Finder
+  description: An AirBnB clone that connects pet owners with people who would like to rent a pet for the weekend! I was responsible for the backend dealing with the database and setting up our controllers and routes.
+  image: projects/placeholder.png
+  url: https://www.google.com
+
+- name: Ozei
+  description: Decent description of the app
+  image: projects/placeholder.png
+  url: https://www.google.com
