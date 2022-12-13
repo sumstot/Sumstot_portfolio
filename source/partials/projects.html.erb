@@ -5,16 +5,20 @@
         <h2> Projects</h2>
         <div class="cards">
           <% data.projects.each do |project| %>
-            <div class="card-product">
-              <%= image_tag project.image, alt: "project image" %>
-              <div class="card-product-infos w-100">
-                <div class="d-flex justify-content-between align-items-center">
-                  <h2><%= project.name %></h2>
-                  <% link_to project.url, class: 'external-link', target: '_blank' do %>
-                    <i class="fas fa-external-link-alt"></i>
-                  <% end %>
+            <div data-aos="fade-right">
+              <div class="card-product">
+                <%= image_tag project.image, alt: "project image" %>
+                <div class="card-product-infos w-100">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <h2><%= project.name %></h2>
+                    <% link_to project.url, class: 'external-link', target: '_blank' do %>
+                      <i class="fas fa-external-link-alt"></i>
+                    <% end %>
+                  </div>
+                  <p>Role: <%= project.role %></p>
+                  <p>Stacks: <%= project.stacks %></p>
+                  <p><%= project.description %></p>
                 </div>
-                <p><%= project.description %></p>
               </div>
             </div>
           <% end %>
@@ -23,3 +27,6 @@
     </div>
   </div>
 </div>
+<script>
+  AOS.init();
+</script>

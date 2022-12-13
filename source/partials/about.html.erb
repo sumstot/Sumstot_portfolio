@@ -2,9 +2,39 @@
   <div class="col-12">
     <div class="container">
       <div id="about">
-        <h2>About</h2>
-        <p>I'm ....</p>
+        <h2 id="aboutme">About Me: <span id="app"></span></h2>
+        <p>Currently based in Osaka, originally from San Diego, California. I'm interested in web development using Ruby on Rails, messing around in Javascript, and doing some side projects in Python. I also love snowboarding and eating ramen. I have been to more than 200 different ramen shops throughout Japan! Below are some of the projects I am proud of. Thanks for visiting!</p>
       </div>
     </div>
   </div>
 </div>
+<script src="https://unpkg.com/typewriter-effect@2.3.1/dist/core.js"></script>
+<script>
+var app = document.getElementById('app');
+
+var typewriter = new Typewriter(app, {
+    loop: true
+});
+
+typewriter.typeString('Osaka')
+    .pauseFor(1500)
+    .deleteAll()
+    .typeString('San Diego')
+    .pauseFor(1500)
+    .deleteAll()
+    .typeString('Fullstack Developer')
+    .deleteAll()
+    .typeString('Ramen')
+    .pauseFor(1500)
+    .deleteAll()
+    .typeString('Fear of mukade')
+    .pauseFor(1500)
+    .deleteAll()
+    .typeString('Loves dogs')
+    .pauseFor(1500)
+    .deleteAll()
+    .typeString('Plant Dad')
+    .pauseFor(1500)
+    .deleteAll()
+    .start();
+</script>

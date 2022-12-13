@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "aos": "^2.3.4",
+    "typed.js": "^2.0.12",
+    "typewriter-effect": "^2.19.0",
+    "type": "module"
+  }
+}

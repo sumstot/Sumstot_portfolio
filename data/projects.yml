@@ -1,29 +1,49 @@
-- name: Etch-A-Sketch
-  description: An etch-a-sketch I made using vanilla JS using dom manipulaiton.
-  image: projects/placeholder.png
-  url: https://www.google.com
 
 - name: Movie Watchlist
   description: This is a full stack movie watchlist made with Ruby on Rails and Javascript. Create you own list of movies that you like!
+  role: Individual Project
   image: projects/placeholder.png
+  stacks: Ruby on Rails, Javascript, HTML, CSS, PostgreSQL
   url: https://www.google.com
 
 - name: Fluffy Friend Finder
   description: An AirBnB clone that connects pet owners with people who would like to rent a pet for the weekend! I was responsible for the backend dealing with the database and setting up our controllers and routes. Made with Ruby on Rails and JS
+  role: Backend Developer
   image: projects/placeholder.png
-  url: https://www.google.com
+  stacks: Ruby on Rails, Javascript, HTML, CSS, PostgreSQL
+  url: https://fluffy-friends-forever.herokuapp.com/
 
 - name: Ozei
   description: Decent description of the app
+  role: Project Manager
   image: projects/Ozei.png
-  url: https://www.google.com
+  stacks: Ruby on Rails, Javascript, HTML, CSS, PostgreSQL
+  url: https://www.ozei.fun
 
 - name: Gif Searcher
-  description: made a simple gif searcher using react and calling the GIPHY api
-  image:
-  url:
+  description: made a simple gif searcher using JS React and calling the GIPHY api.
+  role: Individual Project
+  image: projects/giphy-search.png
+  stacks: React, HTML, CSS
+  url: https://github.com/sumstot/React_Giphy_App
+
+- name: Pong
+  description: A pong game made in python using turtle. Two players can simultaneously play at the same time.
+  role: Individual Project
+  image: projects/pong.png
+  stacks: Python
+  url: https://github.com/sumstot/python_pong
 
 - name: Snake!
   description: Eat the color blocks to get longer while avoiding your tail! Made in Python using Python Turtle
-  image:
-  url:
+  role: Individual Project
+  image: projects/Python_snake.png
+  stacks: Python
+  url: https://github.com/sumstot/python_snake_game
+
+- name: Etch-A-Sketch
+  description: An etch-a-sketch I made using vanilla JS using dom manipulaiton.
+  role: Individual Project
+  image: projects/placeholder.png
+  stacks: Javascript, HTML, CSS
+  url: https://github.com/sumstot/js-etch-a-sketch
