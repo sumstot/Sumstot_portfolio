@@ -1,10 +1,4 @@
 
-- name: Movie Watchlist
-  description: This is a full stack movie watchlist made with Ruby on Rails and Javascript. Create you own list of movies that you like!
-  role: Individual Project
-  image: projects/placeholder.png
-  stacks: Ruby on Rails, Javascript, HTML, CSS, PostgreSQL
-  url: https://movielist-excellent-adventure.herokuapp.com/
 
 - name: Fluffy Friend Finder
   description: An AirBnB clone that connects pet owners with people who would like to rent a pet for the weekend! I was responsible for the backend dealing with the database and setting up our controllers and routes. Made with Ruby on Rails and JS
@@ -27,6 +21,13 @@
   stacks: React, HTML, CSS
   url: https://github.com/sumstot/React_Giphy_App
 
+- name: Movie Watchlist
+  description: This is a full stack movie watchlist made with Ruby on Rails and Javascript. Create you own list of movies that you like!
+  role: Individual Project
+  image: projects/movielist.png
+  stacks: Ruby on Rails, Javascript, HTML, CSS, PostgreSQL
+  url: https://github.com/sumstot/rails-watch-list
+
 - name: Pong
   description: A pong game made in python using turtle. Two players can simultaneously play at the same time.
   role: Individual Project
@@ -44,6 +45,6 @@
 - name: Etch-A-Sketch
   description: An etch-a-sketch I made using vanilla JS using dom manipulaiton.
   role: Individual Project
-  image: projects/placeholder.png
+  image: projects/etchasketch.png
   stacks: Javascript, HTML, CSS
   url: https://github.com/sumstot/js-etch-a-sketch
