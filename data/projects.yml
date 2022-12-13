@@ -4,7 +4,7 @@
   role: Individual Project
   image: projects/placeholder.png
   stacks: Ruby on Rails, Javascript, HTML, CSS, PostgreSQL
-  url: https://www.google.com
+  url: https://movielist-excellent-adventure.herokuapp.com/
 
 - name: Fluffy Friend Finder
   description: An AirBnB clone that connects pet owners with people who would like to rent a pet for the weekend! I was responsible for the backend dealing with the database and setting up our controllers and routes. Made with Ruby on Rails and JS
@@ -14,14 +14,14 @@
   url: https://fluffy-friends-forever.herokuapp.com/
 
 - name: Ozei
-  description: Decent description of the app
+  description: My team's final project for our bootcamp. Ozei is a fullstack mobile facing application that connects large groups of people with reservations at restaurants instantaneously! Users can search for real restaurants in Tokyo (provided by the Hot Pepper API) and send requests for a reservation. Owners of restaurants can use the app to either approve or deny reservations as well. As project manager, I was responsible for setting up the APIs (Hotpepper and Mapbox), assisting with backend, and doing some workin Javascript on the front end.
   role: Project Manager
   image: projects/Ozei.png
   stacks: Ruby on Rails, Javascript, HTML, CSS, PostgreSQL
   url: https://www.ozei.fun
 
 - name: Gif Searcher
-  description: made a simple gif searcher using JS React and calling the GIPHY api.
+  description: Created a simple gif searcher using JS React and utilizing the Giphy search api.
   role: Individual Project
   image: projects/giphy-search.png
   stacks: React, HTML, CSS
@@ -35,7 +35,7 @@
   url: https://github.com/sumstot/python_pong
 
 - name: Snake!
-  description: Eat the color blocks to get longer while avoiding your tail! Made in Python using Python Turtle
+  description: Eat the color blocks to get longer while avoiding your tail! Made in Python using Python Turtle using OOP.
   role: Individual Project
   image: projects/Python_snake.png
   stacks: Python
