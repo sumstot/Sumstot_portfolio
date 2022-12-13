@@ -9,7 +9,7 @@
 - name: Fluffy Friend Finder
   description: An AirBnB clone that connects pet owners with people who would like to rent a pet for the weekend! I was responsible for the backend dealing with the database and setting up our controllers and routes. Made with Ruby on Rails and JS
   role: Backend Developer
-  image: projects/placeholder.png
+  image: projects/fff.png
   stacks: Ruby on Rails, Javascript, HTML, CSS, PostgreSQL
   url: https://fluffy-friends-forever.herokuapp.com/
 
