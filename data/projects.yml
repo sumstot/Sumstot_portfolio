@@ -1,7 +1,7 @@
 
 
 - name: Fluffy Friend Finder
-  description: An AirBnB clone that connects pet owners with people who would like to rent a pet for the weekend! I was responsible for the backend dealing with the database and setting up our controllers and routes. Made with Ruby on Rails and JS
+  description: An AirBnB clone that connects pet owners with people who would like to rent a pet for the weekend! I was responsible for the backend dealing with the database and setting up our controllers and routes. I also assisted in making sure that both owners and users pages were connected and working Made with Ruby on Rails and JS.
   role: Backend Developer
   image: projects/fff.png
   stacks: Ruby on Rails, Javascript, HTML, CSS, PostgreSQL
@@ -15,14 +15,14 @@
   url: https://www.ozei.fun
 
 - name: Gif Searcher
-  description: Created a simple gif searcher using JS React and utilizing the Giphy search api.
+  description: Created a simple gif searcher using JS React and utilizing the Giphy search api. You can search for your favorite gifs and click on them to put it in the center of the screen to save it.
   role: Individual Project
   image: projects/giphy-search.png
   stacks: React, HTML, CSS
   url: https://github.com/sumstot/React_Giphy_App
 
 - name: Movie Watchlist
-  description: This is a full stack movie watchlist made with Ruby on Rails and Javascript. Create you own list of movies that you like!
+  description: This is a full stack movie watchlist made with Ruby on Rails and Javascript. Create you own list of movies that you like! Currently working on adding a movie list API to increase the amount of movies that users can search for. This app is in production on my heroku page as well.
   role: Individual Project
   image: projects/movielist.png
   stacks: Ruby on Rails, Javascript, HTML, CSS, PostgreSQL
@@ -36,14 +36,14 @@
   url: https://github.com/sumstot/python_pong
 
 - name: Snake!
-  description: Eat the color blocks to get longer while avoiding your tail! Made in Python using Python Turtle using OOP.
+  description: Eat the color blocks to get longer while avoiding your tail! Made in Python using Python Turtle using OOP. There is also a high score function built in where the high score will be written to a CSV file in the project so users are able to keep track of their high score.
   role: Individual Project
   image: projects/Python_snake.png
   stacks: Python
   url: https://github.com/sumstot/python_snake_game
 
 - name: Etch-A-Sketch
-  description: An etch-a-sketch I made using vanilla JS using dom manipulaiton.
+  description: An etch-a-sketch I made using vanilla JS using dom manipulation. You can use the slider to adjust the size of the grid and reset using the buttons on the etch a sketch.
   role: Individual Project
   image: projects/etchasketch.png
   stacks: Javascript, HTML, CSS
