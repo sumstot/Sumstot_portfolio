@@ -1,4 +1,18 @@
 
+- name: Ozei
+  description: My team's final project for our bootcamp. Ozei is a fullstack mobile facing application that connects large groups of people with reservations at restaurants instantaneously! Users can search for real restaurants in Tokyo (provided by the Hot Pepper API) and send requests for a reservation. Owners of restaurants can use the app to either approve or deny reservations as well. As project manager, I was responsible for setting up the APIs (Hotpepper and Mapbox), assisting with backend, and doing some workin Javascript on the front end.
+  role: Project Manager
+  image: projects/Ozei.png
+  stacks: Ruby on Rails, Javascript, HTML, CSS, PostgreSQL
+  url: https://www.ozei.fun
+
+- name: Live Chat App
+  description: A slack clone I made using Rails ActionCable and AJAX. Users can send messages in chatrooms and create their own. ActionCable and AJAX are used so that messages automatically update for all parties instantly in the chatrooms. A direct messaging feature is currently under development.
+  role: Individual Project
+  image: projects/live-chat.png
+  stacks: Ruby on Rails, Javascript, HTML, CSS, PostgreSQL, Deployed on Heroku
+  url: https://live-chat-app.herokuapp.com/
+
 
 - name: Fluffy Friend Finder
   description: An AirBnB clone that connects pet owners with people who would like to rent a pet for the weekend! I was responsible for the backend dealing with the database and setting up our controllers and routes. I also assisted in making sure that both owners and users pages were connected and working Made with Ruby on Rails and JS.
@@ -6,13 +20,6 @@
   image: projects/fff.png
   stacks: Ruby on Rails, Javascript, HTML, CSS, PostgreSQL
   url: https://fluffy-friends-forever.herokuapp.com/
-
-- name: Ozei
-  description: My team's final project for our bootcamp. Ozei is a fullstack mobile facing application that connects large groups of people with reservations at restaurants instantaneously! Users can search for real restaurants in Tokyo (provided by the Hot Pepper API) and send requests for a reservation. Owners of restaurants can use the app to either approve or deny reservations as well. As project manager, I was responsible for setting up the APIs (Hotpepper and Mapbox), assisting with backend, and doing some workin Javascript on the front end.
-  role: Project Manager
-  image: projects/Ozei.png
-  stacks: Ruby on Rails, Javascript, HTML, CSS, PostgreSQL
-  url: https://www.ozei.fun
 
 - name: Gif Searcher
   description: Created a simple gif searcher using JS React and utilizing the Giphy search api. You can search for your favorite gifs and click on them to put it in the center of the screen to save it.
