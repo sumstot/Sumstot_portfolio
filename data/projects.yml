@@ -13,6 +13,12 @@
   stacks: Ruby on Rails, Javascript, HTML, CSS, PostgreSQL, Deployed on Heroku
   url: https://live-chat-app.herokuapp.com/
 
+- name: Crypto Calculator
+  description: A crypto currency portfolio calculator I made using React and Rails with API calls from Coinmarketcap. This calculator allows you to to calculate live crypto value from the top 200 crypto currencies listed on the coinmarketcap exchange. Enter the amount of crypto you own and it will appear in your portfolio on the right side.
+  role: Individual Project
+  image: projects/crypto.png
+  stacks: React, Ruby on Rails, HTML, CSS, PostgreSQL, Deployed on Heroku
+  url: https://coinmarketcap-crypto-app.herokuapp.com/
 
 - name: Fluffy Friend Finder
   description: An AirBnB clone that connects pet owners with people who would like to rent a pet for the weekend! I was responsible for the backend dealing with the database and setting up our controllers and routes. I also assisted in making sure that both owners and users pages were connected and working Made with Ruby on Rails and JS.
