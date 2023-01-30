@@ -20,19 +20,19 @@
   stacks: React, Ruby on Rails, HTML, CSS, PostgreSQL, Deployed on Heroku
   url: https://coinmarketcap-crypto-app.herokuapp.com/
 
-- name: Fluffy Friend Finder
-  description: An AirBnB clone that connects pet owners with people who would like to rent a pet for the weekend! I was responsible for the backend dealing with the database and setting up our controllers and routes. I also assisted in making sure that both owners and users pages were connected and working Made with Ruby on Rails and JS.
-  role: Backend Developer
-  image: projects/fff.png
-  stacks: Ruby on Rails, Javascript, HTML, CSS, PostgreSQL
-  url: https://fluffy-friends-forever.herokuapp.com/
-
 - name: Gif Searcher
   description: Created a simple gif searcher using JS React and utilizing the Giphy search api. You can search for your favorite gifs and click on them to put it in the center of the screen to save it.
   role: Individual Project
   image: projects/giphy-search.png
   stacks: React, HTML, CSS
   url: https://github.com/sumstot/React_Giphy_App
+  
+- name: Fluffy Friend Finder
+  description: An AirBnB clone that connects pet owners with people who would like to rent a pet for the weekend! I was responsible for the backend dealing with the database and setting up our controllers and routes. I also assisted in making sure that both owners and users pages were connected and working Made with Ruby on Rails and JS.
+  role: Backend Developer
+  image: projects/fff.png
+  stacks: Ruby on Rails, Javascript, HTML, CSS, PostgreSQL
+  url: https://fluffy-friends-forever.herokuapp.com/
 
 - name: Movie Watchlist
   description: This is a full stack movie watchlist made with Ruby on Rails and Javascript. Create you own list of movies that you like! Currently working on adding a movie list API to increase the amount of movies that users can search for. This app is in production on my heroku page as well.
