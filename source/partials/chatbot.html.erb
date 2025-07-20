@@ -1,0 +1,48 @@
+<div data-controller="chatbot"
+     data-chatbot-api-url-value="https://portfolio-ai-chatbot-1.onrender.com"
+     data-action="click@document->chatbot#handleOutsideClick">
+
+  <button class="chatbot-toggle"
+          data-chatbot-target="toggleButton"
+          data-action="click->chatbot#toggle">💬</button>
+
+  <!-- Chat container -->
+  <div class="chatbot-container"
+       id="chatbot"
+       data-chatbot-target="container"
+       data-action="click->chatbot#preventClose">
+
+    <div class="chatbot-header">
+      Ask me about Soren!
+      <button data-action="click->chatbot#close"
+              data-chatbot-target="closeButton"
+              style="float: right; background: none; border: none; color: white; font-size: 18px; cursor: pointer;">×</button>
+    </div>
+
+    <div class="chatbot-messages"
+         id="messages"
+         data-chatbot-target="messages">
+      <div class="message bot-message">
+        Hi! I'm Soren's AI assistant. Ask me anything about his projects, skills, or that amazing ramen journey! 🍜
+      </div>
+    </div>
+
+    <!-- Typing indicator (hidden by default) -->
+    <div class="typing-indicator"
+         data-chatbot-target="typingIndicator"
+         style="display: none;">
+      Typing...
+    </div>
+
+    <div class="chatbot-input">
+      <input type="text"
+             id="messageInput"
+             data-chatbot-target="messageInput"
+             data-action="keydown->chatbot#handleKeydown"
+             placeholder="Ask about Soren's projects..."
+             maxlength="500">
+      <button data-chatbot-target="sendButton"
+              data-action="click->chatbot#sendMessage">Send</button>
+    </div>
+  </div>
+</div>

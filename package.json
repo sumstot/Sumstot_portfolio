@@ -1,6 +1,12 @@
 {
+  "scripts": {
+    "dev": "esbuild source/javascripts/application.js --bundle --outdir=.tmp/dist/javascripts --watch --sourcemap",
+    "build": "esbuild source/javascripts/application.js --bundle --outdir=.tmp/dist/javascripts --minify"
+  },
   "dependencies": {
+    "@hotwired/stimulus": "^3.2.2",
     "aos": "^2.3.4",
+    "esbuild": "^0.25.8",
     "typewriter-effect": "^2.19.0"
   }
 }

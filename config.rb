@@ -5,6 +5,22 @@ activate :autoprefixer do |prefix|
   prefix.browsers = "last 2 versions"
 end
 
+activate :external_pipeline,
+  name: :esbuild,
+  command: build? ?
+    "npm run build" :
+    "npm run dev",
+  source: ".tmp/dist",
+  latency: 1
+
+# Make sure assets are properly handled
+set :js_dir, "javascripts"
+
+
+configure :build do
+
+end
+
 # Layouts
 # https://middlemanapp.com/basics/layouts/
 
