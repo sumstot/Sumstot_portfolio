@@ -108,10 +108,12 @@ PLATFORMS
   x86_64-darwin-22
 
 DEPENDENCIES
-  middleman (~> 4.2)
-  middleman-autoprefixer (~> 3.0)
-  tzinfo-data
-  wdm (~> 0.1)
+  i18n
+  middleman
+  middleman-autoprefixer
+
+RUBY VERSION
+   ruby 3.4.5p51
 
 BUNDLED WITH
-   2.3.26
+   2.7.0
