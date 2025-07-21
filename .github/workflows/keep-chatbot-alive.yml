@@ -1,0 +1,41 @@
+name: Keep Chatbot Alive
+
+on:
+  schedule:
+    - cron: '*/10 6-23 * * *'
+  workflow_dispatch:
+jobs:
+  keep-chatbot-alive:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Ping Sinatra API
+        run: |
+          echo "Pinging API to keep it alive..."
+
+          API_URL="${{ secrets.SINATRA_API_URL }}"
+
+          response=$(curl -s -o /dev/null -w "%{http_code}" "$API_URL/health" || echo "000")
+
+          if [ "$response" = "200" ]; then
+            echo "✅ API is alive and responding (HTTP $response)"
+          elif [ "$response" = "000" ]; then
+            echo "⚠️ API might be cold starting (no response)"
+
+            # Wait a bit and try again for cold starts
+            echo "Waiting 30 seconds for cold start..."
+            sleep 30
+
+            response2=$(curl -s -o /dev/null -w "%{http_code}" "$API_URL/health" || echo "000")
+
+            if [ "$response2" = "200" ]; then
+              echo "✅ API warmed up successfully (HTTP $response2)"
+            else
+              echo "❌ API failed to respond after warm-up attempt (HTTP $response2)"
+              exit 1
+            fi
+          else
+            echo "⚠️ API responded with unexpected status (HTTP $response)"
+          fi
+
+          echo "Keep-alive ping completed at $(date)"
