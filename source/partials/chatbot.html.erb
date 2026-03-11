@@ -2,47 +2,57 @@
      data-chatbot-api-url-value="https://portfolio-ai-chatbot-1.onrender.com"
      data-action="click@document->chatbot#handleOutsideClick">
 
-  <button class="chatbot-toggle"
-          data-chatbot-target="toggleButton"
-          data-action="click->chatbot#toggle">💬</button>
-
-  <!-- Chat container -->
-  <div class="chatbot-container"
-       id="chatbot"
-       data-chatbot-target="container"
+  <!-- Chat panel -->
+  <div class="chat-panel"
+       data-chatbot-target="panel"
        data-action="click->chatbot#preventClose">
 
-    <div class="chatbot-header">
-      Ask me about Soren!
+    <!-- Header -->
+    <div class="flex items-center justify-between px-4 py-3 shrink-0"
+         style="border-bottom: 1px solid var(--border);">
+      <div class="flex items-center gap-2">
+        <span class="status-dot"></span>
+        <span class="text-sm font-medium" style="color: var(--fg);">Ask me about Soren</span>
+      </div>
       <button data-action="click->chatbot#close"
-              data-chatbot-target="closeButton"
-              style="float: right; background: none; border: none; color: white; font-size: 18px; cursor: pointer;">×</button>
+              class="text-lg leading-none transition-colors"
+              style="color: var(--muted);">×</button>
     </div>
 
-    <div class="chatbot-messages"
-         id="messages"
-         data-chatbot-target="messages">
-      <div class="message bot-message">
+    <!-- Messages -->
+    <div class="chat-messages" data-chatbot-target="messages">
+      <div class="msg-bot">
         Hi! I'm Soren's AI assistant. Ask me anything about his projects, skills, or that amazing ramen journey! 🍜
       </div>
     </div>
 
-    <!-- Typing indicator (hidden by default) -->
-    <div class="typing-indicator"
-         data-chatbot-target="typingIndicator"
-         style="display: none;">
-      Typing...
+    <!-- Typing dots -->
+    <div class="px-4 py-2 shrink-0 hidden" data-chatbot-target="typingDots">
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
     </div>
 
-    <div class="chatbot-input">
+    <!-- Input row -->
+    <div class="flex gap-2 p-3 shrink-0" style="border-top: 1px solid var(--border);">
       <input type="text"
-             id="messageInput"
-             data-chatbot-target="messageInput"
+             data-chatbot-target="input"
              data-action="keydown->chatbot#handleKeydown"
-             placeholder="Ask about Soren's projects..."
-             maxlength="500">
-      <button data-chatbot-target="sendButton"
-              data-action="click->chatbot#sendMessage">Send</button>
+             placeholder="Ask about Soren..."
+             maxlength="500"
+             class="flex-1 rounded-full px-4 py-2 text-sm outline-none transition-colors"
+             style="background: var(--bg); border: 1px solid var(--border); color: var(--fg);">
+      <button data-chatbot-target="send"
+              data-action="click->chatbot#sendMessage"
+              class="btn-em px-4 py-2 text-xs">Send</button>
     </div>
+
   </div>
+
+  <!-- Floating toggle button -->
+  <button data-chatbot-target="toggleBtn"
+          data-action="click->chatbot#toggle"
+          class="fixed bottom-6 right-6 w-14 h-14 rounded-full flex items-center justify-center text-2xl z-50 shadow-lg transition-transform hover:scale-110"
+          style="background: var(--em);">💬</button>
+
 </div>

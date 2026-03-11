@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth" data-controller="theme">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Soren's Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'system-ui', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+    <link href="/stylesheets/site.css" rel="stylesheet" />
+    <script src="/javascripts/application.js"></script>
+  </head>
+  <body data-controller="page clock">
+
+    <nav data-page-target="nav"
+         class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 transition-all duration-300"
+         style="background: var(--bg); border-bottom: 1px solid transparent;">
+      <a href="#" class="font-semibold text-lg tracking-tight" style="color: var(--fg);">
+        soren<span style="color: var(--em);">.</span>
+      </a>
+      <div class="flex items-center gap-6">
+        <a href="#about"    class="nav-link hidden md:block">About</a>
+        <a href="#ramen"    class="nav-link hidden md:block">Ramen</a>
+        <a href="#projects" class="nav-link hidden md:block">Projects</a>
+        <a href="#contact"  class="nav-link hidden md:block">Contact</a>
+        <span class="hidden sm:flex items-center gap-1.5 text-xs font-mono" style="color: var(--muted);">
+          <span class="status-dot" style="width:6px;height:6px;"></span>
+          <span data-clock-target="display">—:—:— JST</span>
+        </span>
+        <button data-action="click->theme#toggle"
+                data-theme-target="toggleBtn"
+                class="flex items-center gap-1.5 text-sm px-3 py-1.5 rounded-full border transition-colors"
+                style="border-color: var(--border); color: var(--fg);">
+          <svg data-theme-target="sunIcon"
+               xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
+            <path d="M10 2a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 0110 2zM10 15a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 0110 15zM10 7a3 3 0 100 6 3 3 0 000-6zM15.657 5.404a.75.75 0 10-1.06-1.06l-1.061 1.06a.75.75 0 001.06 1.06l1.06-1.06zM6.464 14.596a.75.75 0 10-1.06-1.06l-1.06 1.06a.75.75 0 001.06 1.06l1.06-1.06zM18 10a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0118 10zM5 10a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 015 10zM14.596 15.657a.75.75 0 001.06-1.06l-1.06-1.061a.75.75 0 10-1.06 1.06l1.06 1.06zM5.404 6.464a.75.75 0 001.06-1.06L5.404 4.343a.75.75 0 00-1.06 1.06l1.06 1.061z"/>
+          </svg>
+          <svg data-theme-target="moonIcon"
+               xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 hidden">
+            <path fill-rule="evenodd" d="M7.455 2.004a.75.75 0 01.26.77 7 7 0 009.958 7.967.75.75 0 011.067.853A8.5 8.5 0 116.647 1.921a.75.75 0 01.808.083z" clip-rule="evenodd"/>
+          </svg>
+          <span data-theme-target="label" class="hidden sm:inline">Light</span>
+        </button>
+      </div>
+    </nav>
+
+    <main class="pt-16">
+      <section id="about" class="py-20 px-8 md:px-16 max-w-7xl mx-auto">
+  <p class="sec-label reveal">About</p>
+  <h2 class="font-bold mb-10 reveal" style="font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1.1; color: var(--fg);">
+    Rails artisan,<br>ramen ranger.
+  </h2>
+
+  <!--
+    Grid layout (3 cols):
+    Row 1: Bio (col 1, row-span 2) | Location (col 2) | Ramen count (col 3)
+    Row 2: [Bio cont.]             | Core Stack (col 2-3, col-span 2)
+    Row 3: 8+ years (col 1)        | SD→Osaka (col 2)
+  -->
+  <div class="grid gap-4 reveal"
+       style="grid-template-columns: repeat(3, 1fr); grid-template-rows: auto auto auto;">
+
+    <!-- Bio — spans rows 1–2 -->
+    <div class="bento flex flex-col justify-between"
+         style="grid-column: 1; grid-row: 1 / 3;">
+      <div>
+        <p class="text-sm leading-relaxed mb-5" style="color: var(--muted);">
+          Originally from San Diego, now rooted in Osaka. I build production Rails
+          applications with a focus on Hotwire, Stimulus, and Kamal — lean, modern
+          stacks deployed to VPS without the cloud overhead.
+        </p>
+        <p class="text-sm leading-relaxed" style="color: var(--muted);">
+          By night, I maintain a curated database of 250+ Kansai ramen shops, each
+          personally visited and rated. The two obsessions are more related than
+          they look — both reward deep attention to craft.
+        </p>
+      </div>
+      <div class="flex items-center gap-2 mt-6">
+        <span class="status-dot"></span>
+        <span class="text-sm" style="color: var(--muted);">Open to consulting</span>
+      </div>
+    </div>
+
+    <!-- Location card -->
+    <div class="bento" style="grid-column: 2; grid-row: 1;">
+      <div class="icon-box">📍</div>
+      <p class="font-semibold mb-1" style="color: var(--fg);">Osaka, Japan</p>
+      <p class="text-sm mb-2" style="color: var(--muted);">34.69° N · 135.50° E</p>
+      <p class="text-sm font-mono font-semibold" style="color: var(--em);"
+         data-clock-target="display">—:—:— JST</p>
+    </div>
+
+    <!-- Ramen count card -->
+    <div class="bento" style="grid-column: 3; grid-row: 1;">
+      <div class="icon-box">🍜</div>
+      <p class="font-bold mb-1" style="font-size: 2rem; color: var(--fg);">250+</p>
+      <p class="text-sm" style="color: var(--muted);">Ramen bowls<br>reviewed in Kansai</p>
+    </div>
+
+    <!-- Core stack card — spans cols 2-3 -->
+    <div class="bento" style="grid-column: 2 / 4; grid-row: 2;">
+      <p class="sec-label mb-3">Core Stack</p>
+      <div class="flex flex-wrap gap-2">
+        <span class="tag">Rails 8</span>
+        <span class="tag">Hotwire</span>
+        <span class="tag">Stimulus</span>
+        <span class="tag">Kamal</span>
+        <span class="tag">SQLite</span>
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">Docker</span>
+        <span class="tag">Tailwind</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">Ruby</span>
+      </div>
+    </div>
+
+    <!-- 8+ years card -->
+    <div class="bento" style="grid-column: 1; grid-row: 3;">
+      <div class="icon-box">&lt;/&gt;</div>
+      <p class="font-bold mb-1" style="font-size: 2rem; color: var(--fg);">8+</p>
+      <p class="text-sm" style="color: var(--muted);">Years shipping<br>Rails apps</p>
+    </div>
+
+    <!-- San Diego → Osaka card -->
+    <div class="bento" style="grid-column: 2; grid-row: 3;">
+      <div class="icon-box">✈️</div>
+      <p class="font-semibold mb-1" style="color: var(--fg);">San Diego → Osaka</p>
+      <p class="text-sm" style="color: var(--muted);">US expat,<br>Japan-based 2018–</p>
+    </div>
+
+  </div>
+</section>
+
+    </main>
+
+    <footer class="py-8 text-center text-sm border-t" style="border-color: var(--border); color: var(--muted);">
+      <p>Built with Ruby · Middleman · Stimulus · Tailwind</p>
+      <p class="mt-1">© 2025 Soren Umstot · Osaka, Japan</p>
+    </footer>
+
+  </body>
+</html>

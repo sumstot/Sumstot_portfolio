@@ -1,9 +1,47 @@
-<div class="banner row justify-content-center banner">
-  <div class="col-12 d-flex flex-row justify-content-around align-items-center h-100">
-    <%= image_tag 'IMG_7056.jpg', alt: "profile photo", class: 'avatar' %>
-      <div class="f-lex ms-5">
-        <h1 class="title-main">Soren's Web Development Portfolio</h1>
-        <p>A fullstack web developer based out of Osaka</p>
+<section id="hero" class="min-h-screen flex items-center px-8 md:px-16 py-24 max-w-7xl mx-auto">
+  <div class="w-full grid md:grid-cols-[1fr_auto] gap-16 items-start">
+
+    <!-- Left: text -->
+    <div class="reveal">
+      <p class="sec-label mb-6">Rails &amp; DevOps Consultant — Osaka, JP</p>
+
+      <h1 class="font-bold leading-[1.05] mb-6" style="font-size: clamp(2.8rem, 6vw, 5rem); color: var(--fg);">
+        Building digital<br>
+        experiences<br>
+        <span style="color: var(--em);">from Osaka.</span>
+      </h1>
+
+      <p class="text-base leading-relaxed mb-8 max-w-md" style="color: var(--muted);">
+        Hi, I'm Soren — a fullstack developer from San Diego, now based in Osaka.
+        I specialize in Ruby on Rails, Hotwire, and Kamal deployments.
+        Between deploys, I'm eating through Japan's ramen scene one bowl at a time.
+      </p>
+
+      <div class="flex flex-wrap gap-3 mb-10">
+        <a href="#projects" class="btn-em">View Projects</a>
+        <a href="#contact"  class="btn-ghost">Get in Touch</a>
       </div>
+
+      <div class="flex flex-wrap gap-2">
+        <span class="hero-pill">Ruby on Rails</span>
+        <span class="hero-pill">Hotwire</span>
+        <span class="hero-pill">Stimulus</span>
+        <span class="hero-pill">Kamal</span>
+        <span class="hero-pill">PostgreSQL</span>
+        <span class="hero-pill">Docker</span>
+      </div>
+    </div>
+
+    <!-- Right: photo card -->
+    <div class="reveal hidden md:flex flex-col items-center gap-3">
+      <%= image_tag 'IMG_7056.jpg',
+            alt: "Soren Umstot",
+            style: "width: 300px; height: 380px; object-fit: cover; object-position: top; border-radius: 18px;" %>
+      <div class="flex items-center gap-2">
+        <span class="status-dot"></span>
+        <span class="text-sm" style="color: var(--muted);">Open to consulting</span>
+      </div>
+    </div>
+
   </div>
-</div>
+</section>

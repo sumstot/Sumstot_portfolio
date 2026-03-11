@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title><%= current_page.data.title || "Soren's Portfolio" %></title>
+    <title>Soren's Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -20,8 +20,8 @@
         }
       }
     </script>
-    <%= stylesheet_link_tag "site" %>
-    <%= javascript_include_tag "application" %>
+    <link href="/stylesheets/site.css" rel="stylesheet" />
+    <script src="/javascripts/application.js"></script>
   </head>
   <body data-controller="page clock">
 
@@ -58,7 +58,37 @@
     </nav>
 
     <main class="pt-16">
-      <%= yield %>
+      <section id="ramen" class="py-20 px-6 max-w-5xl mx-auto" data-controller="ramen">
+  <p class="sec-label reveal">🍜 Ramen Quest</p>
+  <h2 class="text-3xl font-bold mb-3 reveal" style="color: var(--fg);">200+ Bowls &amp; Counting</h2>
+  <p class="mb-10 reveal" style="color: var(--muted);">Tracking the best ramen shops across Japan.</p>
+
+  <!-- Skeleton placeholders — replaced by ramen_controller -->
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 reveal" data-ramen-target="grid">
+      <div class="ramen-card">
+        <div class="ramen-img" style="background: var(--bg2);"></div>
+        <div class="p-4">
+          <div class="h-3 rounded mb-2" style="background: var(--border); width: 70%;"></div>
+          <div class="h-2 rounded"      style="background: var(--border); width: 50%;"></div>
+        </div>
+      </div>
+      <div class="ramen-card">
+        <div class="ramen-img" style="background: var(--bg2);"></div>
+        <div class="p-4">
+          <div class="h-3 rounded mb-2" style="background: var(--border); width: 70%;"></div>
+          <div class="h-2 rounded"      style="background: var(--border); width: 50%;"></div>
+        </div>
+      </div>
+      <div class="ramen-card">
+        <div class="ramen-img" style="background: var(--bg2);"></div>
+        <div class="p-4">
+          <div class="h-3 rounded mb-2" style="background: var(--border); width: 70%;"></div>
+          <div class="h-2 rounded"      style="background: var(--border); width: 50%;"></div>
+        </div>
+      </div>
+  </div>
+</section>
+
     </main>
 
     <footer class="py-8 text-center text-sm border-t" style="border-color: var(--border); color: var(--muted);">

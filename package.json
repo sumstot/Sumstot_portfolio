@@ -6,7 +6,7 @@
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
     "aos": "^2.3.4",
-    "esbuild": "^0.25.8",
+    "esbuild": "^0.27.3",
     "typewriter-effect": "^2.19.0"
   }
 }

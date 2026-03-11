@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title><%= current_page.data.title || "Soren's Portfolio" %></title>
+    <title>Soren's Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -20,8 +20,8 @@
         }
       }
     </script>
-    <%= stylesheet_link_tag "site" %>
-    <%= javascript_include_tag "application" %>
+    <link href="/stylesheets/site.css" rel="stylesheet" />
+    <script src="/javascripts/application.js"></script>
   </head>
   <body data-controller="page clock">
 
@@ -58,7 +58,27 @@
     </nav>
 
     <main class="pt-16">
-      <%= yield %>
+      <div class="row my-5">
+  <div class="col-12">
+  <div class="container">
+    <h2 class="mb-3">My Stacks</h2>
+    <div class="stacks d-flex align-items-center  flex-wrap">
+      <img class='stacks-icon mx-4 mb-3' src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ruby/ruby-original.svg" />
+      <img class='stacks-icon mx-4 mb-3' src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rails/rails-original-wordmark.svg" />
+      <img class='stacks-icon mx-4 mb-3' src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" />
+      <img class='stacks-icon mx-4 mb-3' src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" />
+      <img class='stacks-icon mx-4 mb-3' src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg" />
+      <img class='stacks-icon mx-4 mb-3' src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" />
+      <img class='stacks-icon mx-4 mb-3' src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" />
+      <img class='stacks-icon mx-4 mb-3' src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" />
+      <img class='stacks-icon mx-4 mb-3' src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sqlite/sqlite-original.svg" />
+
+
+    </div>
+  </div>
+  </div>
+</div>
+
     </main>
 
     <footer class="py-8 text-center text-sm border-t" style="border-color: var(--border); color: var(--muted);">

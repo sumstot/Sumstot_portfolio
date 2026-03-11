@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth" data-controller="theme">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Soren's Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'system-ui', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+    <link href="/stylesheets/site.css" rel="stylesheet" />
+    <script src="/javascripts/application.js"></script>
+  </head>
+  <body data-controller="page clock">
+
+    <nav data-page-target="nav"
+         class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 transition-all duration-300"
+         style="background: var(--bg); border-bottom: 1px solid transparent;">
+      <a href="#" class="font-semibold text-lg tracking-tight" style="color: var(--fg);">
+        soren<span style="color: var(--em);">.</span>
+      </a>
+      <div class="flex items-center gap-6">
+        <a href="#about"    class="nav-link hidden md:block">About</a>
+        <a href="#ramen"    class="nav-link hidden md:block">Ramen</a>
+        <a href="#projects" class="nav-link hidden md:block">Projects</a>
+        <a href="#contact"  class="nav-link hidden md:block">Contact</a>
+        <span class="hidden sm:flex items-center gap-1.5 text-xs font-mono" style="color: var(--muted);">
+          <span class="status-dot" style="width:6px;height:6px;"></span>
+          <span data-clock-target="display">—:—:— JST</span>
+        </span>
+        <button data-action="click->theme#toggle"
+                data-theme-target="toggleBtn"
+                class="flex items-center gap-1.5 text-sm px-3 py-1.5 rounded-full border transition-colors"
+                style="border-color: var(--border); color: var(--fg);">
+          <svg data-theme-target="sunIcon"
+               xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
+            <path d="M10 2a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 0110 2zM10 15a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 0110 15zM10 7a3 3 0 100 6 3 3 0 000-6zM15.657 5.404a.75.75 0 10-1.06-1.06l-1.061 1.06a.75.75 0 001.06 1.06l1.06-1.06zM6.464 14.596a.75.75 0 10-1.06-1.06l-1.06 1.06a.75.75 0 001.06 1.06l1.06-1.06zM18 10a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0118 10zM5 10a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 015 10zM14.596 15.657a.75.75 0 001.06-1.06l-1.06-1.061a.75.75 0 10-1.06 1.06l1.06 1.06zM5.404 6.464a.75.75 0 001.06-1.06L5.404 4.343a.75.75 0 00-1.06 1.06l1.06 1.061z"/>
+          </svg>
+          <svg data-theme-target="moonIcon"
+               xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 hidden">
+            <path fill-rule="evenodd" d="M7.455 2.004a.75.75 0 01.26.77 7 7 0 009.958 7.967.75.75 0 011.067.853A8.5 8.5 0 116.647 1.921a.75.75 0 01.808.083z" clip-rule="evenodd"/>
+          </svg>
+          <span data-theme-target="label" class="hidden sm:inline">Light</span>
+        </button>
+      </div>
+    </nav>
+
+    <main class="pt-16">
+      <section id="projects" class="py-20 px-6 max-w-5xl mx-auto">
+  <p class="sec-label reveal">Projects</p>
+  <h2 class="text-3xl font-bold mb-10 reveal" style="color: var(--fg);">Things I've built</h2>
+
+  <div class="flex flex-col gap-6">
+      <div class="proj-card reveal">
+          <div>
+            <img src="/images/projects/Ozei.png" alt="Ozei screenshot" class="proj-img" />
+          </div>
+          <div class="proj-wrap">
+            <p class="sec-label">Project Manager</p>
+            <h3 class="text-xl font-bold" style="color: var(--fg);">Ozei</h3>
+            <p class="text-sm leading-relaxed" style="color: var(--muted);">My team's final project for our bootcamp. Ozei is a fullstack mobile facing application that connects large groups of people with reservations at restaurants instantaneously! Users can search for real restaurants in Tokyo (provided by the Hot Pepper API) and send requests for a reservation. Owners of restaurants can use the app to either approve or deny reservations as well. As project manager, I was responsible for setting up the APIs (Hotpepper and Mapbox), assisting with backend, and doing some workin Javascript on the front end.</p>
+            <div class="flex flex-wrap gap-2">
+                <span class="tag">Ruby on Rails</span>
+                <span class="tag">Javascript</span>
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+            </div>
+            <a href="https://www.ozei.fun" target="_blank" class="btn-em self-start mt-1">View Site →</a>
+          </div>
+      </div>
+      <div class="proj-card reveal">
+          <div class="proj-wrap">
+            <p class="sec-label">Individual Project</p>
+            <h3 class="text-xl font-bold" style="color: var(--fg);">Live Chat App</h3>
+            <p class="text-sm leading-relaxed" style="color: var(--muted);">A slack clone I made using Rails ActionCable and AJAX. Users can send messages in chatrooms and create their own. ActionCable and AJAX are used so that messages automatically update for all parties instantly in the chatrooms. A direct messaging feature is currently under development.</p>
+            <div class="flex flex-wrap gap-2">
+                <span class="tag">Ruby on Rails</span>
+                <span class="tag">Javascript</span>
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+            </div>
+            <a href="https://live-chat-app.herokuapp.com/" target="_blank" class="btn-em self-start mt-1">View Site →</a>
+          </div>
+          <div>
+            <img src="/images/projects/live-chat.png" alt="Live Chat App screenshot" class="proj-img" />
+          </div>
+      </div>
+      <div class="proj-card reveal">
+          <div>
+            <img src="/images/projects/crypto.png" alt="Crypto Calculator screenshot" class="proj-img" />
+          </div>
+          <div class="proj-wrap">
+            <p class="sec-label">Individual Project</p>
+            <h3 class="text-xl font-bold" style="color: var(--fg);">Crypto Calculator</h3>
+            <p class="text-sm leading-relaxed" style="color: var(--muted);">A crypto currency portfolio calculator I made using React and Rails with API calls from Coinmarketcap. This calculator allows you to to calculate live crypto value from the top 200 crypto currencies listed on the coinmarketcap exchange. Enter the amount of crypto you own and it will appear in your portfolio on the right side.</p>
+            <div class="flex flex-wrap gap-2">
+                <span class="tag">React</span>
+                <span class="tag">Ruby on Rails</span>
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+            </div>
+            <a href="https://coinmarketcap-crypto-app.herokuapp.com/" target="_blank" class="btn-em self-start mt-1">View Site →</a>
+          </div>
+      </div>
+      <div class="proj-card reveal">
+          <div class="proj-wrap">
+            <p class="sec-label">Individual Project</p>
+            <h3 class="text-xl font-bold" style="color: var(--fg);">Gif Searcher</h3>
+            <p class="text-sm leading-relaxed" style="color: var(--muted);">Created a simple gif searcher using JS React and utilizing the Giphy search api. You can search for your favorite gifs and click on them to put it in the center of the screen to save it.</p>
+            <div class="flex flex-wrap gap-2">
+                <span class="tag">React</span>
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+            </div>
+            <a href="https://github.com/sumstot/React_Giphy_App" target="_blank" class="btn-em self-start mt-1">View Site →</a>
+          </div>
+          <div>
+            <img src="/images/projects/giphy-search.png" alt="Gif Searcher screenshot" class="proj-img" />
+          </div>
+      </div>
+      <div class="proj-card reveal">
+          <div>
+            <img src="/images/projects/fff.png" alt="Fluffy Friend Finder screenshot" class="proj-img" />
+          </div>
+          <div class="proj-wrap">
+            <p class="sec-label">Backend Developer</p>
+            <h3 class="text-xl font-bold" style="color: var(--fg);">Fluffy Friend Finder</h3>
+            <p class="text-sm leading-relaxed" style="color: var(--muted);">An AirBnB clone that connects pet owners with people who would like to rent a pet for the weekend! I was responsible for the backend dealing with the database and setting up our controllers and routes. I also assisted in making sure that both owners and users pages were connected and working Made with Ruby on Rails and JS.</p>
+            <div class="flex flex-wrap gap-2">
+                <span class="tag">Ruby on Rails</span>
+                <span class="tag">Javascript</span>
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+            </div>
+            <a href="https://fluffy-friends-forever.herokuapp.com/" target="_blank" class="btn-em self-start mt-1">View Site →</a>
+          </div>
+      </div>
+      <div class="proj-card reveal">
+          <div class="proj-wrap">
+            <p class="sec-label">Individual Project</p>
+            <h3 class="text-xl font-bold" style="color: var(--fg);">Movie Watchlist</h3>
+            <p class="text-sm leading-relaxed" style="color: var(--muted);">This is a full stack movie watchlist made with Ruby on Rails and Javascript. Create you own list of movies that you like! Currently working on adding a movie list API to increase the amount of movies that users can search for. This app is in production on my heroku page as well.</p>
+            <div class="flex flex-wrap gap-2">
+                <span class="tag">Ruby on Rails</span>
+                <span class="tag">Javascript</span>
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+            </div>
+            <a href="https://github.com/sumstot/rails-watch-list" target="_blank" class="btn-em self-start mt-1">View Site →</a>
+          </div>
+          <div>
+            <img src="/images/projects/movielist.png" alt="Movie Watchlist screenshot" class="proj-img" />
+          </div>
+      </div>
+      <div class="proj-card reveal">
+          <div>
+            <img src="/images/projects/pong.png" alt="Pong screenshot" class="proj-img" />
+          </div>
+          <div class="proj-wrap">
+            <p class="sec-label">Individual Project</p>
+            <h3 class="text-xl font-bold" style="color: var(--fg);">Pong</h3>
+            <p class="text-sm leading-relaxed" style="color: var(--muted);">A pong game made in python using turtle. Two players can simultaneously play at the same time.</p>
+            <div class="flex flex-wrap gap-2">
+                <span class="tag">Python</span>
+            </div>
+            <a href="https://github.com/sumstot/python_pong" target="_blank" class="btn-em self-start mt-1">View Site →</a>
+          </div>
+      </div>
+      <div class="proj-card reveal">
+          <div class="proj-wrap">
+            <p class="sec-label">Individual Project</p>
+            <h3 class="text-xl font-bold" style="color: var(--fg);">Snake!</h3>
+            <p class="text-sm leading-relaxed" style="color: var(--muted);">Eat the color blocks to get longer while avoiding your tail! Made in Python using Python Turtle using OOP. There is also a high score function built in where the high score will be written to a CSV file in the project so users are able to keep track of their high score.</p>
+            <div class="flex flex-wrap gap-2">
+                <span class="tag">Python</span>
+            </div>
+            <a href="https://github.com/sumstot/python_snake_game" target="_blank" class="btn-em self-start mt-1">View Site →</a>
+          </div>
+          <div>
+            <img src="/images/projects/Python_snake.png" alt="Snake! screenshot" class="proj-img" />
+          </div>
+      </div>
+      <div class="proj-card reveal">
+          <div>
+            <img src="/images/projects/etchasketch.png" alt="Etch-A-Sketch screenshot" class="proj-img" />
+          </div>
+          <div class="proj-wrap">
+            <p class="sec-label">Individual Project</p>
+            <h3 class="text-xl font-bold" style="color: var(--fg);">Etch-A-Sketch</h3>
+            <p class="text-sm leading-relaxed" style="color: var(--muted);">An etch-a-sketch I made using vanilla JS using dom manipulation. You can use the slider to adjust the size of the grid and reset using the buttons on the etch a sketch.</p>
+            <div class="flex flex-wrap gap-2">
+                <span class="tag">Javascript</span>
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+            </div>
+            <a href="https://github.com/sumstot/js-etch-a-sketch" target="_blank" class="btn-em self-start mt-1">View Site →</a>
+          </div>
+      </div>
+  </div>
+</section>
+
+    </main>
+
+    <footer class="py-8 text-center text-sm border-t" style="border-color: var(--border); color: var(--muted);">
+      <p>Built with Ruby · Middleman · Stimulus · Tailwind</p>
+      <p class="mt-1">© 2025 Soren Umstot · Osaka, Japan</p>
+    </footer>
+
+  </body>
+</html>
