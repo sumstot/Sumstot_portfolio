@@ -67,11 +67,12 @@
       </div>
     </div>
 
-    <!-- 8+ years card -->
+    <!-- Years experience card (calculated at build time) -->
+    <% years_exp = ((Date.today - Date.new(2023, 3, 13)) / 365.25).round %>
     <div class="bento" style="grid-column: 1; grid-row: 3;">
       <div class="icon-box">&lt;/&gt;</div>
-      <p class="font-bold mb-1" style="font-size: 2rem; color: var(--fg);">8+</p>
-      <p class="text-sm" style="color: var(--muted);">Years shipping<br>Rails apps</p>
+      <p class="font-bold mb-1" style="font-size: 2rem; color: var(--fg);"><%= years_exp %> years+</p>
+      <p class="text-sm" style="color: var(--muted);">Professional<br>experience</p>
     </div>
 
     <!-- San Diego → Osaka card -->
