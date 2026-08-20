@@ -1,0 +1,116 @@
+ja:
+  meta:
+    title: Soren Umstot — 大阪のフルスタックRails開発者
+    description: >-
+      大阪でRailsを書いています。本番で動くシステムを一人でつくり、その後も自分で運用しています。
+  locale_switch: English
+  nav:
+    work: 実績
+    how: 開発の進め方
+    contact: お問い合わせ
+
+  hero:
+    headline: 大阪のRails開発者です。
+    headline_quiet: つくったものは、その後も自分で動かし続けます。
+    lede_html: >-
+      来日10年、日常業務は日本語です。株式会社ビズ・クリエションで<strong>Kengaku
+      Cloud</strong>の開発を担当し、その傍らで自分のプロダクトを2つ運営しています。ひとつは実際のお金と法的な申請を扱うもの、もうひとつは8年分のラーメンを記録するものです。
+    cta: 実績を見る
+
+  work:
+    heading: 実績
+    note: すべて個人で開発・デプロイし、深夜2時でも自分の責任で運用しています。
+
+  projects:
+    mpj:
+      title: My Pension Japan
+      screenshot_alt: 審査から提出まで進行中のMy Pension Japanの申請画面
+      body: >-
+        日本を離れる人には年金の脱退一時金を受け取る権利がありますが、申請書類は日本語のみで、税金部分の手続きは法律上、有資格者しか代行できません。My
+        Pension Japanは申請の全工程を代行し、社労士と税理士を通して提出しています。現在はクローズドベータで、宣伝はまだしていませんが、有料のお客様3名の還付手続きが進行中です。
+      built:
+        - 前払い手数料と成功報酬を組み合わせたStripe決済
+        - 年金申請書の自動生成 — 座標指定のPDFオーバーレイ
+        - DocuSealによる電子署名、スタッフ用の審査キュー、全操作の監査ログ
+        - 書類は東京国内に保管（データレジデンシー対応）
+
+    portrait:
+      alt: Soren Umstot
+      caption: サンディエゴ出身、大阪在住
+
+    now:
+      title: 仕事以外では
+      subtitle: エディタを閉じたあと
+      items:
+        - label: 勉強中
+          value: 日本語能力試験N1に向けて
+        - label: つくったもの
+          value: 伊丹・関西空港の到着便を表示するRaspberry Piの電子ペーパー
+        - label: 調整中
+          value: Silvia Pro Xで淹れる浅煎り
+        - label: 焼いているもの
+          value: 食パン、サワードウ、ピザ
+
+    ramen:
+      title: Ramen Ranger
+      body: >-
+        2018年以降、関西で食べた一杯をすべて同じ基準で採点し、写真と地図付きで記録しています。JSON
+        APIを公開していて、下に並んでいるのはそのAPIから取得したものです。
+      stats:
+        reviews: レビュー
+        since: 記録開始
+        stack: Turbo・Google Places・Hetzner
+      feed_note: 最新5件を、このページのビルド時にAPIから取得しています。
+      feed_link: レビュー%{count}件をすべて見る
+
+    kengaku:
+      title: Kengaku Cloud
+      subtitle: 正社員
+      body: >-
+        日本のハウスメーカーや不動産会社が利用するクラウドサービスです。3名のチームで、長く運用されているRailsコードベースの機能開発と保守を担当しています。仕様書もコードレビューも顧客との打ち合わせも、すべて日本語です。
+
+    archive:
+      title: 初期の作品
+      subtitle: 2021 — 2022
+      body: >-
+        ブートキャンプ時代の学習用プロジェクトです。ActionCableを使ったRailsのチャットアプリ、Reactのポートフォリオ計算機、Pythonの簡単なゲームなど。今もGitHubに残しています。
+
+  stack:
+    heading: 開発の進め方
+    note: 自分で全部把握できる、小さな構成にしています。
+    intro: >-
+      Rails
+      8の最小構成を、自分で管理するサーバーで動かしています。SSHで入れないプラットフォームの不具合を追いかけるより、サーバーを自分で持って中身を完全に把握しているほうが性に合っています。どのプロダクトにも、本番と同じ構成のステージング環境を用意しています。
+    application:
+      heading: アプリケーション
+      items:
+        - Ruby on Rails 8
+        - Hotwire — Turbo、Stimulus
+        - Solid Queue、Cache、Cable
+        - SQLite + Litestream、PostgreSQL
+        - JavaScript、Python
+    infrastructure:
+      heading: インフラ
+      items:
+        - Kamal、Docker
+        - Vultr、Hetzner
+        - Cloudflare CDN・WAF
+        - Backblaze B2、AWS S3
+        - Litestreamによるバックアップ
+    integrations:
+      heading: 外部連携
+      items:
+        - Stripe
+        - DocuSealによる電子署名
+        - HexaPDFによる帳票生成
+        - Google Places・Maps
+        - Resend
+
+  contact:
+    heading: 完成させたいRailsのプロジェクトはありませんか？
+    body: >-
+      Railsの新規開発、レガシーコードの立て直し、自分で管理できるインフラへのデプロイについて、ご相談を承っています。英語・日本語のどちらでも対応します。
+    github: GitHub
+    linkedin: LinkedIn
+    copyright: © %{year} Soren Umstot — 大阪
+    colophon: Middlemanで構築、Netlifyでホスティング

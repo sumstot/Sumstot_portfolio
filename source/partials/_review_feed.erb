@@ -1,0 +1,24 @@
+<div class="feed-wrap">
+  <div class="feed">
+  <% (data.reviews["reviews"] || []).first(5).each do |review| %>
+    <a class="rev" href="<%= review["url"] %>" target="_blank" rel="noopener">
+      <% if review["image_url"].to_s != "" %>
+        <div class="thumb">
+          <img src="<%= review["image_url"] %>" alt="" loading="lazy">
+        </div>
+      <% end %>
+      <div class="score<%= " hi" if review["score"].to_f >= 4.5 %>">
+        <%= format("%.1f", review["score"].to_f) %>
+      </div>
+      <div class="shop"><%= review["name"] %></div>
+      <div class="shopjp jp"><%= review["name_ja"] %></div>
+      <% if Array(review["soup"]).any? %>
+        <div class="dish"><%= Array(review["soup"]).join(" × ") %></div>
+      <% end %>
+      <div class="when">
+        <%= review["area"] %><%= " · " if review["area"].to_s != "" %><%= review_date(review["visited_on"]) %>
+      </div>
+      </a>
+    <% end %>
+  </div>
+</div>

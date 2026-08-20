@@ -1,0 +1,35 @@
+name: Refresh ramen reviews
+
+# The Ramen Ranger API sends no CORS header, so the portfolio cannot call it
+# from the browser. data/reviews.yml is refreshed during `middleman build`
+# instead — this job just triggers a rebuild so the feed does not go stale
+# between deploys.
+
+on:
+  schedule:
+    - cron: '0 22 * * *' # 07:00 JST daily
+  workflow_dispatch:
+
+jobs:
+  trigger-rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Netlify build
+        env:
+          HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
+        run: |
+          if [ -z "$HOOK" ]; then
+            echo "NETLIFY_BUILD_HOOK secret is not set — skipping."
+            echo "Create one under Netlify → Site settings → Build & deploy → Build hooks,"
+            echo "then add it as a repository secret named NETLIFY_BUILD_HOOK."
+            exit 0
+          fi
+
+          status=$(curl -s -o /dev/null -w "%{http_code}" -X POST -d '{}' "$HOOK")
+
+          if [ "$status" = "200" ] || [ "$status" = "201" ]; then
+            echo "Rebuild triggered (HTTP $status)"
+          else
+            echo "Build hook returned HTTP $status"
+            exit 1
+          fi

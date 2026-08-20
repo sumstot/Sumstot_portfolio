@@ -1,0 +1,21 @@
+.hero {
+  padding: 84px 0 76px;
+
+  h1 {
+    font-size: clamp(40px, 6.4vw, 78px);
+    max-width: 15ch;
+    margin-bottom: 30px;
+
+    // The second sentence drops back in weight of attention, not font weight.
+    em { font-style: normal; color: var(--gray); }
+  }
+
+  .lede {
+    font-size: clamp(17px, 1.7vw, 20px);
+    color: var(--gray);
+    max-width: 56ch;
+    margin-bottom: 34px;
+
+    strong { color: var(--ink); font-weight: 500; }
+  }
+}

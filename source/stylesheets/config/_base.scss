@@ -1,0 +1,90 @@
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a { color: inherit; }
+
+h1, h2, h3, h4 {
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -.032em;
+  line-height: 1.08;
+}
+
+p { margin: 0; }
+
+.wrap {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+// Japanese sits better in Zen Kaku Gothic New than in the Latin face's fallback.
+.jp { font-family: "Zen Kaku Gothic New", var(--sans); }
+
+// Shared controls
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+}
+
+.btn {
+  display: inline-block;
+  background: var(--ink);
+  color: var(--bg);
+  text-decoration: none;
+  font-size: 15.5px;
+  font-weight: 500;
+  padding: 13px 24px;
+  border-radius: 100px;
+  transition: background .15s, transform .15s;
+
+  &:hover {
+    background: var(--red);
+    transform: translateY(-1px);
+  }
+}
+
+.txtlink {
+  font-size: 15.5px;
+  color: var(--gray);
+  text-decoration: none;
+  border-bottom: 1.5px solid var(--line);
+  padding-bottom: 2px;
+  transition: .15s;
+
+  &:hover {
+    color: var(--ink);
+    border-bottom-color: var(--red);
+  }
+}
+
+// Section heads
+.head {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 26px;
+  flex-wrap: wrap;
+
+  h2 { font-size: clamp(24px, 2.8vw, 32px); }
+  span { color: var(--gray); font-size: 15.5px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+  html { scroll-behavior: auto; }
+}

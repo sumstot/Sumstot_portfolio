@@ -1,0 +1,18 @@
+// Red appears in exactly four places: primary button hover, the bullet markers
+// in project lists, scores of 4.5+, and links in the contact block.
+// Adding a fifth weakens the other four.
+
+:root {
+  --bg:   #F5F4F1;
+  --card: #FFFFFF;
+  --ink:  #1A1917;
+  --gray: #6B6862;
+  --line: #E4E1DA;
+  --red:  #D63B22;
+  --dark: #171613;
+
+  --body: #44423D;
+
+  --sans: "Schibsted Grotesk", "Zen Kaku Gothic New", system-ui, -apple-system, sans-serif;
+  --wrap: 1160px;
+}

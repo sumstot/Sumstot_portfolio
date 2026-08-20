@@ -1,0 +1,77 @@
+<div class="nav">
+  <div class="wrap">
+    <a class="name" href="<%= I18n.locale == :ja ? "/ja/" : "/" %>">Soren Umstot</a>
+    <nav>
+      <a href="#work"><%= t("nav.work") %></a>
+      <a href="#stack"><%= t("nav.how") %></a>
+      <a href="#contact"><%= t("nav.contact") %></a>
+      <a href="<%= other_locale_path %>" hreflang="<%= other_locale %>" class="lang"><%= t("locale_switch") %></a>
+    </nav>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <h1><%= t("hero.headline") %> <em><%= t("hero.headline_quiet") %></em></h1>
+    <p class="lede"><%= t("hero.lede_html") %></p>
+    <div class="actions">
+      <a class="btn" href="#work"><%= t("hero.cta") %></a>
+      <a class="txtlink" href="mailto:<%= data.site.email %>"><%= data.site.email %></a>
+    </div>
+  </div>
+</header>
+
+<section id="work">
+  <div class="wrap">
+    <div class="head">
+      <h2><%= t("work.heading") %></h2>
+      <span><%= t("work.note") %></span>
+    </div>
+
+    <div class="bento">
+      <% data.projects.each do |project| %>
+        <%= partial "partials/tile", locals: { project: project } %>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<section class="stack" id="stack">
+  <div class="wrap">
+    <div class="head">
+      <h2><%= t("stack.heading") %></h2>
+      <span><%= t("stack.note") %></span>
+    </div>
+    <div class="cols">
+      <div>
+        <p><%= t("stack.intro") %></p>
+      </div>
+      <% %w[application infrastructure integrations].each do |group| %>
+        <div>
+          <h4><%= t("stack.#{group}.heading") %></h4>
+          <ul>
+            <% t("stack.#{group}.items").each do |item| %>
+              <li><%= item %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<footer class="contact" id="contact">
+  <div class="wrap">
+    <h2><%= t("contact.heading") %></h2>
+    <p><%= t("contact.body") %></p>
+    <div class="actions">
+      <a class="btn" href="mailto:<%= data.site.email %>"><%= data.site.email %></a>
+      <a class="txtlink" href="<%= data.site.github %>" target="_blank" rel="noopener"><%= t("contact.github") %></a>
+      <a class="txtlink" href="<%= data.site.linkedin %>" target="_blank" rel="noopener"><%= t("contact.linkedin") %></a>
+    </div>
+    <div class="foot">
+      <span><%= t("contact.copyright", year: Time.now.year) %></span>
+      <span><%= t("contact.colophon") %></span>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,12 @@
+.bento {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+}
+
+.c6 { grid-column: span 6; }
+.c4 { grid-column: span 4; }
+.c3 { grid-column: span 3; }
+.c2 { grid-column: span 2; }
+
+.r2 { grid-row: span 2; }

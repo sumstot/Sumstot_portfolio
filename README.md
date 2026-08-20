@@ -1,52 +1,54 @@
-# Middleman Template
-A simple way to build static pages with a Rails feel.
+# sorenumstot.com
 
-## Using
+Personal site and portfolio. Middleman, Sass, a little Stimulus. English at `/`,
+Japanese at `/ja/`.
 
-- [Middleman](https://middlemanapp.com)
-- [Sass](https://sass-lang.com)
-- [Bootstrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
-- [FontAwesome](https://fontawesome.com/icons)
+## Running it
 
-## Init a new project
-1. In the repo, click on the green `Code` button to copy your SSH address
-2. In Terminal, move to your code folder (or where you want to download the new repo)
-3. Clone the repository like this
-`git clone git@github.com:dmbf29/middleman-template.git middleman-portfolio`
-4. Move into the directory `cd middleman-portfolio`
-5. Remove the connection to my Github `git remote remove origin`
-6. Create your own repo `gh repo create`
-
-### Installation
 ```
-gem install middleman
 bundle install
+npm install
+bundle exec middleman        # http://localhost:4567
 ```
-⚠️ You may run into some into some gem warnings.<br>
-Warnings == 👌, but Fatal errors == ⛔️<br>
-If you get a fatal error, you can try fixing it with `bundle update` and hope for the best 🤞
 
-## Run a server
-- `middleman`<br>
-or if that fails, try
-- `bundle exec middleman`
+`bundle exec middleman build` writes the static site to `build/`.
+
+## Where things live
+
+```
+data/projects.yml         tile order and structure — id, type, span, url, stack
+data/reviews.yml          the five newest ramen reviews (generated, committed)
+data/site.yml             email and profile links
+locales/en.yml            all English copy
+locales/ja.yml            all Japanese copy
+source/localizable/       templates built once per locale
+source/partials/_tile.erb one project tile, dispatched on `type`
+source/stylesheets/       tokens in config/_tokens.scss, one file per component
+```
+
+Adding a project means an entry in `data/projects.yml` plus a `projects.<id>`
+block in each locale file. No template changes.
+
+## The ramen feed
+
+The Ramen Ranger API (`/api/v1/ramen_reviews`) is public and needs no key, but
+it sends no `Access-Control-Allow-Origin` header, so the browser cannot call it
+from this origin. `lib/review_fetcher.rb` fetches it during `middleman build`
+and writes `data/reviews.yml`, which the template renders statically.
+
+- Refresh by hand: `rake reviews:fetch`
+- Preview the fetch on the dev server: `FETCH_REVIEWS=1 bundle exec middleman`
+
+If the fetch fails the committed `data/reviews.yml` is left in place, so the row
+never renders empty. `.github/workflows/refresh-reviews.yml` pings a Netlify
+build hook daily so the feed does not go stale between deploys — it needs a
+`NETLIFY_BUILD_HOOK` repository secret and no-ops without one.
+
+To make the feed genuinely live instead, add the CORS header and a Rack::Attack
+throttle on the Ramen Ranger side and fetch from the client.
 
 ## Deploy
-1. [Sign into Netlify](https://www.netlify.com/)
-2. Add new site -> Import an existing project -> Github
-3. Choose repository and branch
-4. Make sure your deploy settings look like this:
-<img width="400" alt="Screen Shot 2021-06-18 at 14 19 13" src="https://user-images.githubusercontent.com/25542223/122510271-49d34900-d040-11eb-853f-5105b5d48fcd.png">
-5. Website is deployed!
-6. (Add purchased domain)
 
-## Meta Tags
-To use the gem `middlman-metaman`, [follow these setup instructions](https://github.com/cacheventures/middleman-metaman/)
-
-## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+Netlify builds from `main`. Build command `bundle exec middleman build`,
+publish directory `build`. Ruby and Node versions come from `.ruby-version` and
+`.node-version`.

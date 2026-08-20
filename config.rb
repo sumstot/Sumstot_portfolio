@@ -1,3 +1,10 @@
+require_relative "lib/review_fetcher"
+
+# Refresh the Ramen Ranger feed before Middleman reads data/. The API sends no
+# CORS header so the browser cannot call it; we render it statically instead.
+# A failed fetch leaves the committed data/reviews.yml in place.
+ReviewFetcher.refresh if build? || ENV["FETCH_REVIEWS"]
+
 # Activate and configure extensions
 # https://middlemanapp.com/advanced/configuration/#configuring-extensions
 
@@ -5,21 +12,9 @@ activate :autoprefixer do |prefix|
   prefix.browsers = "last 2 versions"
 end
 
-activate :external_pipeline,
-  name: :esbuild,
-  command: build? ?
-    "npm run build" :
-    "npm run dev",
-  source: ".tmp/dist",
-  latency: 1
-
-# Make sure assets are properly handled
-set :js_dir, "javascripts"
-
-
-configure :build do
-
-end
+# English at /, Japanese at /ja/. Templates under source/localizable are built
+# once per locale; everything else (partials, assets) is shared.
+activate :i18n, mount_at_root: :en, langs: [:en, :ja]
 
 # Layouts
 # https://middlemanapp.com/basics/layouts/
@@ -29,34 +24,65 @@ page '/*.xml', layout: false
 page '/*.json', layout: false
 page '/*.txt', layout: false
 
-# With alternative layout
-# page '/path/to/file.html', layout: 'other_layout'
+helpers do
+  # Middleman's built-in `t` splats its arguments, so in Ruby 3 an option like
+  # `default:` arrives at I18n.translate as a positional hash and raises.
+  # Take keywords properly instead.
+  def t(key, **options)
+    ::I18n.t(key, **options)
+  end
 
-# Proxy pages
-# https://middlemanapp.com/advanced/dynamic-pages/
+  # Tiles carry a column span out of six, and optionally a row span so a tall
+  # tile can sit beside a stack of shorter ones.
+  def tile_span_class(span, row_span = nil)
+    ["c#{span}", ("r#{row_span}" if row_span.to_i > 1)].compact.join(" ")
+  end
 
-# proxy(
-#   '/this-page-has-no-template.html',
-#   '/template-file.html',
-#   locals: {
-#     which_fake_page: 'Rendering a fake page with a local variable'
-#   },
-# )
+  # Path to the same page in the other locale. Only two locales, so this stays
+  # a swap rather than a lookup table.
+  def other_locale
+    I18n.locale == :ja ? :en : :ja
+  end
 
-# Helpers
-# Methods defined in the helpers block are available in templates
-# https://middlemanapp.com/basics/helper-methods/
+  def other_locale_path
+    other_locale == :en ? "/" : "/ja/"
+  end
 
-# helpers do
-#   def some_helper
-#     'Helping'
-#   end
-# end
+  # A tile is a link when it has a url and a plain div when it does not. ERB
+  # cannot straddle a conditional element, so the tags are emitted as strings.
+  def tile_open(span, url)
+    return %(<div class="tile #{span}">) unless url
 
-# Build-specific configuration
-# https://middlemanapp.com/advanced/configuration/#environment-specific-settings
+    %(<a class="tile #{span}" href="#{url}" target="_blank" rel="noopener">)
+  end
 
-# configure :build do
-#   activate :minify_css
-#   activate :minify_javascript
-# end
+  def tile_close(url)
+    url ? "</a>" : "</div>"
+  end
+
+  def bare_url(url)
+    url.to_s.sub(%r{\Ahttps?://}, "").chomp("/")
+  end
+
+  def reviews_count
+    data.reviews["review_count"].to_i
+  end
+
+  # "2026-04-30" -> "Apr 30, 2026" / "2026年4月30日"
+  def review_date(value)
+    parts = value.to_s[0, 10].split("-")
+    return "" unless parts.length == 3
+
+    year, month, day = parts.map(&:to_i)
+    if I18n.locale == :ja
+      "#{year}年#{month}月#{day}日"
+    else
+      months = %w[Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec]
+      "#{months[month - 1]} #{day}, #{year}"
+    end
+  end
+end
+
+configure :build do
+  activate :minify_css
+end

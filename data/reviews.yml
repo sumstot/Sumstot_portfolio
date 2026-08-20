@@ -1,0 +1,55 @@
+---
+fetched_at: '2026-08-20T07:06:06Z'
+review_count: 263
+reviews:
+- id: 263
+  score: 3.7
+  name: Chukasoba Tsuji
+  name_ja: 中華そば 辻
+  area: Osaka
+  soup:
+  - tantanmen
+  - mazesoba
+  visited_on: '2026-05-15'
+  image_url: https://theramenranger.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6NDc0OSwicHVyIjoiYmxvYl9pZCJ9fQ==--8f29cb60e31fdb291db0fc9362bbaffaaf0ce075/IMG_1085.jpeg
+  url: https://theramenranger.com/ramen_reviews/263
+- id: 262
+  score: 4.2
+  name: Jusandaime Menya Yoshikawa
+  name_ja: 十三代目 麺家よし川
+  area: Osaka
+  soup:
+  - iekei
+  visited_on: '2026-05-13'
+  image_url: https://theramenranger.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6NDY2MiwicHVyIjoiYmxvYl9pZCJ9fQ==--164c51addcc8404162a2d376d9b8d2479649b84e/IMG_1059.JPG
+  url: https://theramenranger.com/ramen_reviews/262
+- id: 261
+  score: 4.3
+  name: Nara Gamushara
+  name_ja: がむしゃら 奈良
+  area: Yamatokoriyama, Nara
+  soup:
+  - tonkotsu
+  visited_on: '2026-04-30'
+  image_url: https://theramenranger.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6NDU5MSwicHVyIjoiYmxvYl9pZCJ9fQ==--2495731734237e089ec904023d4d75a68f009bbe/IMG_0873.jpeg
+  url: https://theramenranger.com/ramen_reviews/261
+- id: 260
+  score: 4.7
+  name: Shima Ribon
+  name_ja: シマリボン
+  area: Nabari, Mie
+  soup:
+  - shoyu
+  visited_on: '2026-04-30'
+  image_url: https://theramenranger.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6NDQyMSwicHVyIjoiYmxvYl9pZCJ9fQ==--24693e902e11bab9ffa22ec0cda735a878d61081/IMG_0864.jpeg
+  url: https://theramenranger.com/ramen_reviews/260
+- id: 259
+  score: 4.6
+  name: Ramen Shiko
+  name_ja: らーめん志高
+  area: Osaka
+  soup:
+  - tonkotsu
+  visited_on: '2026-04-03'
+  image_url: https://theramenranger.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6NDM5OCwicHVyIjoiYmxvYl9pZCJ9fQ==--2481ab19cb0617f71ae5c02d52b24ccd878af4c7/IMG_0565.jpg
+  url: https://theramenranger.com/ramen_reviews/259
