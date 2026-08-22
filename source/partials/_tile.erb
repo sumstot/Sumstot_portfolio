@@ -55,6 +55,12 @@
       <% t("#{scope}.items").each do |item| %>
         <li><b><%= item[:label] %></b><%= item[:value] %></li>
       <% end %>
+      <% if (book = current_book) %>
+        <li>
+          <b><%= t("#{scope}.reading_label") %></b>
+          <%= book["title"] %><%= " — #{book['author']}" if book["author"] %>
+        </li>
+      <% end %>
     </ul>
   </div>
 

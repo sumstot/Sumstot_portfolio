@@ -9,13 +9,15 @@
 
   > div:first-child {
     flex: 1 1 420px;
+    min-width: 0;
     max-width: 52ch;
   }
 }
 
 .rr-nums {
   display: flex;
-  gap: 40px;
+  flex-wrap: wrap;
+  gap: 40px 40px;
   align-items: flex-start;
 
   strong {
@@ -39,6 +41,7 @@
 // carry the same left and right padding — otherwise the first card is a gutter
 // wider than the others and `aspect-ratio` makes its thumbnail taller too.
 .feed-wrap {
+  min-width: 0;
   border-top: 1px solid var(--line);
 }
 
@@ -46,6 +49,7 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 0;
+  min-width: 0;
   margin: 0 -20px;
 }
 

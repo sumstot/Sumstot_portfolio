@@ -35,10 +35,15 @@ en:
         licensed 社労士 and 税理士. It is live in private beta — three paying
         customers have refunds moving through it, before any marketing.
       built:
+        - >-
+          Licensed filings routed to a 社労士 and 税理士 — separate records,
+          separate reviewers
         - Stripe checkout with an upfront fee plus commission split
         - Generated pension forms — coordinate-mapped PDF overlays
         - DocuSeal e-signature, staff review queue, full audit log
-        - Documents stored in Tokyo for data residency
+        - >-
+          SQLite + Litestream on a server I own in Tokyo — data residency,
+          backups verified weekly
 
     portrait:
       alt: Soren Umstot
@@ -47,6 +52,7 @@ en:
     now:
       title: Off the clock
       subtitle: Outside the editor
+      reading_label: Reading
       items:
         - label: Studying
           value: Working toward JLPT N1
@@ -54,8 +60,6 @@ en:
           value: A Raspberry Pi e-ink board showing ITM and KIX arrivals
         - label: Dialing in
           value: Light roasts on a Silvia Pro X
-        - label: Baking
-          value: Shokupan, sourdough, pizza
 
     ramen:
       title: Ramen Ranger
@@ -80,16 +84,15 @@ en:
         client calls.
 
     archive:
-      title: Earlier work
+      title: Where I started
       subtitle: 2021 — 2022
       body: >-
-        Learning projects from my bootcamp years: a Rails chat app on
-        ActionCable, a React portfolio calculator, a few Python games. Still on
-        GitHub.
+        A Rails chat app on ActionCable, a React portfolio calculator, a few
+        Python games — my bootcamp year and the months after. The production
+        work since is closed source, so this is what's public.
 
   stack:
     heading: How I work
-    note: A small stack I understand completely.
     intro: >-
       Rails 8's minimal setup on servers I manage myself. I'd rather own the
       machine and know exactly what's on it than debug a platform I can't SSH
@@ -106,18 +109,18 @@ en:
       heading: Infrastructure
       items:
         - Kamal, Docker
-        - Vultr, Hetzner
+        - Vultr, Hetzner, Heroku
+        - AWS — S3, RDS, CloudFront, CloudWatch
         - Cloudflare CDN and WAF
-        - Backblaze B2, AWS S3
-        - Litestream backups
-    integrations:
-      heading: Integrations
+        - Backblaze B2, Litestream backups
+    working_together:
+      heading: Working together
       items:
-        - Stripe
-        - DocuSeal e-signature
-        - HexaPDF form generation
-        - Google Places and Maps
-        - Resend
+        - Solo builds, end to end
+        - Legacy rescue and refactoring
+        - Deployment and handover
+        - Ongoing maintenance
+        - English or 日本語
 
   contact:
     heading: Got a Rails project that needs finishing?

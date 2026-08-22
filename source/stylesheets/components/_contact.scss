@@ -17,11 +17,14 @@
     font-size: 17px;
   }
 
+  // Buttons always invert against their background — dark on the light
+  // sections, cream here. A vermilion fill this large stops reading as an
+  // accent and starts reading as orange.
   .btn {
-    background: var(--red);
-    color: #fff;
+    background: #F2F0EC;
+    color: var(--dark);
 
-    &:hover { background: #E8462C; }
+    &:hover { background: #fff; }
   }
 
   .txtlink {

@@ -40,13 +40,12 @@
   <div class="wrap">
     <div class="head">
       <h2><%= t("stack.heading") %></h2>
-      <span><%= t("stack.note") %></span>
     </div>
     <div class="cols">
       <div>
         <p><%= t("stack.intro") %></p>
       </div>
-      <% %w[application infrastructure integrations].each do |group| %>
+      <% %w[application infrastructure working_together].each do |group| %>
         <div>
           <h4><%= t("stack.#{group}.heading") %></h4>
           <ul>

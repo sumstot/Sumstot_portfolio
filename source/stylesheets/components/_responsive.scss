@@ -19,6 +19,7 @@
   .r2 { grid-row: auto; }
 
   .tile { padding: 26px; }
+  .tile .shot { margin: -26px -26px 22px; }
   .cols { grid-template-columns: 1fr; }
 
   .nav nav { gap: 18px; }
@@ -51,6 +52,9 @@
     &:last-child { border-right: 0; }
   }
 
-  .rr-nums { gap: 28px; }
+  // Once the stats wrap, the 16ch cap that keeps captions tidy in a row of
+  // three starts breaking them mid-phrase. Let them run their natural width.
+  .rr-nums { gap: 20px 24px; }
   .rr-nums strong { font-size: 30px; }
+  .rr-nums div span { max-width: none; }
 }

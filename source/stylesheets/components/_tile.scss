@@ -1,4 +1,5 @@
 .tile {
+  min-width: 0;
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: 20px;
@@ -9,23 +10,16 @@
   color: inherit;
   transition: border-color .18s, transform .18s, box-shadow .18s;
 
-  // Full-bleed to the tile edges: pulls back over the 32px padding and picks up
-  // the tile's corner radius, less the border width.
+  // The crop includes the app's own page margins, so the screenshot needs no
+  // padding here — it already sits in a field of its own background.
   .shot {
     margin: -32px -32px 26px;
+    background: #F9FAFB;
     border-bottom: 1px solid var(--line);
     border-radius: 19px 19px 0 0;
     overflow: hidden;
-    background: #EAE7E0;
-    aspect-ratio: 3 / 2;
 
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top center;
-      display: block;
-    }
+    img { width: 100%; height: auto; display: block; }
   }
 
   h3 { font-size: 27px; margin-bottom: 4px; }
@@ -101,14 +95,16 @@ a.tile {
   padding: 0;
   overflow: hidden;
   position: relative;
-  min-height: 240px;
+  min-height: 340px;
   background: #E8E5DE;
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 28%;
+    // Square headshot in a landscape box: the window has to sit high or the
+    // crop takes the top of his head off.
+    object-position: center 12%;
     position: absolute;
     inset: 0;
   }
