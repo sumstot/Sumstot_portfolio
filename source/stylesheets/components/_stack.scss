@@ -7,6 +7,18 @@
   grid-template-columns: 1.1fr 1fr 1fr 1fr;
   gap: 36px;
 
+  // The section title is the first column rather than a header above the grid,
+  // so all four headings share one baseline. Grid does that arithmetic itself,
+  // which matters because the h2 is a clamp() that resizes with the viewport
+  // while the h4s stay fixed — any hardcoded offset would only hold at one
+  // width.
+  align-items: baseline;
+
+  h2 {
+    font-size: clamp(24px, 2.8vw, 32px);
+    margin-bottom: 18px;
+  }
+
   h4 { font-size: 15.5px; margin-bottom: 14px; }
 
   ul {
