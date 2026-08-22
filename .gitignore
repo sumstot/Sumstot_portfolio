@@ -2,3 +2,10 @@ build/
 .sass-cache/
 .tmp/
 node_modules/
+.env
+
+# Local tooling cache
+.serena/
+
+# Working notes; contains an unfixed vulnerability writeup — keep out of a public repo
+HANDOFF.md
