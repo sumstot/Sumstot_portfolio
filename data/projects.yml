@@ -13,7 +13,7 @@
   subtitle_ja: 年金脱退一時金・還付申請サービス
   # Claim dashboard, light theme, seeded data. Crop the file to the shape you
   # want — the tile has no fixed ratio and renders it at its own proportions.
-  screenshot: projects/mpj-clean.png
+  screenshot: projects/mpj-full.webp
   stack: Rails 8 · Hotwire · SQLite + Litestream · Kamal · Vultr Tokyo · Cloudflare
 
 - id: portrait
