@@ -31,13 +31,25 @@ block in each locale file. No template changes.
 
 ## The ramen feed
 
-The Ramen Ranger API (`/api/v1/ramen_reviews`) is public and needs no key, but
-it sends no `Access-Control-Allow-Origin` header, so the browser cannot call it
-from this origin. `lib/review_fetcher.rb` fetches it during `middleman build`
-and writes `data/reviews.yml`, which the template renders statically.
+`lib/review_fetcher.rb` calls the Ramen Ranger API during `middleman build` and
+writes `data/reviews.yml`, which the template renders statically. The fetch
+never happens in the browser — the API sends no `Access-Control-Allow-Origin`
+header, and anything in frontend JavaScript is public, which would leak the key.
+
+The key comes from `RAMEN_RANGER_API_KEY` and is sent as `Authorization: Bearer`.
+Set it in two places:
+
+- **Locally** — copy `.env.example` to `.env` and fill it in. `.env` is gitignored.
+- **Netlify** — Site settings → Environment variables. Available at build time.
+
+Commands:
 
 - Refresh by hand: `rake reviews:fetch`
 - Preview the fetch on the dev server: `FETCH_REVIEWS=1 bundle exec middleman`
+
+A missing or rejected key logs a warning and leaves the committed
+`data/reviews.yml` in place, so a bad key breaks the build's freshness, never
+the page.
 
 If the fetch fails the committed `data/reviews.yml` is left in place, so the row
 never renders empty. `.github/workflows/refresh-reviews.yml` pings a Netlify

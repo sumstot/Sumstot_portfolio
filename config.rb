@@ -1,9 +1,16 @@
+require_relative "lib/env_file"
 require_relative "lib/review_fetcher"
+require_relative "lib/reading_fetcher"
+
+EnvFile.load
 
 # Refresh the Ramen Ranger feed before Middleman reads data/. The API sends no
 # CORS header so the browser cannot call it; we render it statically instead.
 # A failed fetch leaves the committed data/reviews.yml in place.
-ReviewFetcher.refresh if build? || ENV["FETCH_REVIEWS"]
+if build? || ENV["FETCH_REVIEWS"]
+  ReviewFetcher.refresh
+  ReadingFetcher.refresh
+end
 
 # Activate and configure extensions
 # https://middlemanapp.com/advanced/configuration/#configuring-extensions
@@ -62,6 +69,17 @@ helpers do
 
   def bare_url(url)
     url.to_s.sub(%r{\Ahttps?://}, "").chomp("/")
+  end
+
+  # The most recent book on the Goodreads shelf, or nil when the feed has
+  # never been fetched.
+  # Read through `data.reading` rather than `data.to_h`: to_h hands back a plain
+  # Hash with symbol keys underneath, so entry["books"] silently misses. The
+  # EnhancedHash from `data.reading` takes either.
+  def current_book
+    Array(data.reading && data.reading["books"]).first
+  rescue StandardError
+    nil
   end
 
   def reviews_count

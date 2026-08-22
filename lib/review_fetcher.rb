@@ -6,10 +6,12 @@ require "time"
 
 # Pulls the most recent Ramen Ranger reviews and writes them to data/reviews.yml.
 #
-# The API is public and unauthenticated, but sends no Access-Control-Allow-Origin
-# header, so the browser cannot call it directly. We fetch at build time instead
-# and render the result statically. If the fetch fails for any reason the
-# committed data/reviews.yml is left alone, so the row never renders empty.
+# The fetch runs at build time, never in the browser: the API sends no
+# Access-Control-Allow-Origin header, and anything in frontend JavaScript is
+# public, which would expose the key. Set RAMEN_RANGER_API_KEY in the
+# environment (Netlify build settings, or a local .env) and it is sent as a
+# bearer token. If the fetch fails for any reason the committed
+# data/reviews.yml is left alone, so the row never renders empty.
 module ReviewFetcher
   API_URL   = "https://theramenranger.com/api/v1/ramen_reviews"
   SITE_URL  = "https://theramenranger.com"
@@ -17,6 +19,7 @@ module ReviewFetcher
   TIMEOUT   = 8
   ROOT      = File.expand_path("..", __dir__)
   DATA_PATH = File.join(ROOT, "data", "reviews.yml")
+  API_KEY   = "RAMEN_RANGER_API_KEY"
 
   module_function
 
@@ -45,12 +48,26 @@ module ReviewFetcher
     end
   end
 
+  # The key is read from the environment and never written to disk or into the
+  # built page. Absent, the request goes out unauthenticated.
+  def headers
+    h = { "Accept" => "application/json" }
+    key = ENV[API_KEY].to_s.strip
+    h["Authorization"] = "Bearer #{key}" unless key.empty?
+    h
+  end
+
   def fetch
     uri = URI("#{API_URL}?limit=#{LIMIT}")
     response = Net::HTTP.start(
       uri.host, uri.port,
       use_ssl: true, open_timeout: TIMEOUT, read_timeout: TIMEOUT
-    ) { |http| http.get(uri.request_uri, "Accept" => "application/json") }
+    ) { |http| http.get(uri.request_uri, headers) }
+
+    if response.is_a?(Net::HTTPUnauthorized)
+      warn "[reviews] 401 from the API — check #{API_KEY}"
+      return nil
+    end
 
     return nil unless response.is_a?(Net::HTTPSuccess)
 
