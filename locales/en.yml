@@ -15,7 +15,7 @@ en:
     headline_quiet: I build things and then keep them running.
     lede_html: >-
       Ten years in Japan, working day to day in Japanese. I develop
-      <strong>Kengaku Cloud</strong> at Biz Creation, and outside that I run two
+      <strong>Kengaku&nbsp;Cloud</strong> at Biz Creation, and outside that I run two
       products of my own — one for Japanese Pension refunds, one
       documenting my eight years of reviewing ramen.
     cta: See the work
@@ -31,9 +31,9 @@ en:
       screenshot_alt: A My Pension Japan claim moving through review and filing
       body: >-
         People leaving Japan are owed their pension contributions back, but the
-        application is Japanese-only and the tax portion is legally restricted
+        application is cumberson for non Japanese speakers and the tax portion is legally restricted
         work. My Pension Japan connects them to the professionals licensed to do
-        it — a 社労士 for the pension filing, a 税理士 for the tax — and runs
+        it — a Labor and Social Security attorney for the pension filing, a Tax Accountantfor the tax — and runs
         everything around that: intake, documents, signatures, payment. It is
         live in private beta — three paying customers have refunds moving
         through it, before any marketing.

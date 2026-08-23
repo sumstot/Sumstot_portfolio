@@ -20,8 +20,12 @@
     // rather than a stagger, and that edge is the bento's only internal
     // gridline. Wide for a reading measure, but the lede is four lines.
     max-width: bento-span(4);
-    // Keeps "ramen." from ending the paragraph alone on its own line, which
-    // evens out the rag as a side effect.
+    // Keeps "ramen." from ending the paragraph alone, and evens the rag.
+    // The Kengaku Cloud product name is held together by a non-breaking
+    // space in the copy rather than by white-space: nowrap here, so that
+    // pretty optimises the paragraph with the name already an atom instead
+    // of splitting it and then being argued with. nowrap also spikes line
+    // one well past the others, which is a worse rag than the split was.
     text-wrap: pretty;
     margin-bottom: 34px;
 
