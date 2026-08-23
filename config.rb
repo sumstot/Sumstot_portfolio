@@ -103,4 +103,10 @@ end
 
 configure :build do
   activate :minify_css
+
+  # Fingerprint assets so a changed image or stylesheet reaches people who have
+  # already visited. Without this, images are served at a stable path and an
+  # updated file keeps showing the cached bytes until the browser decides to
+  # look again — which is indistinguishable from the change not working.
+  activate :asset_hash
 end
