@@ -3,7 +3,10 @@
 
   h1 {
     font-size: clamp(40px, 6.4vw, 78px);
-    max-width: 15ch;
+    max-width: bento-span(4);
+    // Widening the measure did not fix the rag -- it broke the same way with
+    // more room. The rag is a wrapping problem, so solve it as one.
+    text-wrap: balance;
     margin-bottom: 30px;
 
     // The second sentence drops back in weight of attention, not font weight.
@@ -13,7 +16,13 @@
   .lede {
     font-size: clamp(17px, 1.7vw, 20px);
     color: var(--gray);
-    max-width: 56ch;
+    // Four columns, same as the headline: the hero resolves to one right edge
+    // rather than a stagger, and that edge is the bento's only internal
+    // gridline. Wide for a reading measure, but the lede is four lines.
+    max-width: bento-span(4);
+    // Keeps "ramen." from ending the paragraph alone on its own line, which
+    // evens out the rag as a side effect.
+    text-wrap: pretty;
     margin-bottom: 34px;
 
     strong { color: var(--ink); font-weight: 500; }

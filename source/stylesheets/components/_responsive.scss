@@ -9,6 +9,11 @@
   .rev:nth-last-child(-n+1) { border-bottom: 0; }
 
   .cols { grid-template-columns: repeat(2, 1fr); }
+
+  // The six-column gridline the hero was aligning to no longer exists here,
+  // so the text goes back to being capped by reading measure.
+  .hero h1 { max-width: 15ch; }
+  .hero .lede { max-width: 56ch; }
 }
 
 @media (max-width: 640px) {

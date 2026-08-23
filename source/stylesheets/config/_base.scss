@@ -25,6 +25,17 @@ h1, h2, h3, h4 {
 
 p { margin: 0; }
 
+// The bento under the hero divides .wrap into six columns. Sizing anything
+// else in those same columns puts its right edge on a gridline the tiles
+// reuse, so the space beside it reads as a reserved column rather than as
+// room left over. Percentages resolve against .wrap's content box, which is
+// the same box the grid divides, so the edges land exactly.
+@function bento-span($n, $cols: 6) {
+  @return calc(
+    (100% - #{$cols - 1} * var(--gap)) / #{$cols} * #{$n} + #{$n - 1} * var(--gap)
+  );
+}
+
 .wrap {
   max-width: var(--wrap);
   margin: 0 auto;
