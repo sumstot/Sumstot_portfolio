@@ -22,7 +22,7 @@ en:
 
   work:
     heading: Work
-    note: Built solo, deployed by me, still my responsibility at 2am.
+    note: Built and deployed solo — and still maintained that way.
 
   projects:
     mpj:
@@ -66,12 +66,12 @@ en:
 
     ramen:
       title: Ramen Ranger
-      subtitle: Ramen reviews, Japan-wide
+      subtitle: Ramen reviews, mostly Kansai
       body: >-
-        My own ramen site: every bowl I've reviewed across Japan since 2018,
-        scored, photographed, and mapped. Readers can sign up to favorite bowls
-        and leave comments. It publishes a JSON API — which is what fills the
-        row below.
+        My own ramen site: every bowl I've reviewed since 2018 — mostly Kansai,
+        and wherever else in Japan I end up. Scored, photographed, and mapped.
+        Readers can sign up to favorite bowls and leave comments. It publishes a
+        JSON API — which is what fills the row below.
       stats:
         reviews: reviews
         since: hunting since
