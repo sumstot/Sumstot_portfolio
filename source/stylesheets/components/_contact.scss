@@ -27,9 +27,11 @@
     &:hover { background: #fff; }
   }
 
+  // #38352F was 1.48:1 against the dark ground -- a smudge rather than a rule.
+  // --gray reaches 3.26:1 here and still sits below the link text's 6.23.
   .txtlink {
     color: #9C978D;
-    border-bottom-color: #38352F;
+    border-bottom-color: var(--gray);
 
     &:hover { color: #fff; }
   }

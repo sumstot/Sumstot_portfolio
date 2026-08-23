@@ -10,7 +10,6 @@
   # Two rows tall, so the portrait and "Off the clock" stack in the column beside it.
   row_span: 2
   url: https://mypensionjapan.com
-  subtitle_ja: 年金脱退一時金・還付申請サービス
   # Claim dashboard, light theme, seeded data. Crop the file to the shape you
   # want — the tile has no fixed ratio and renders it at its own proportions.
   screenshot: projects/mpj-full.webp
@@ -29,12 +28,10 @@
   type: ramen
   span: 6
   url: https://theramenranger.com
-  subtitle_ja: 関西ラーメンレビュー・データベース
 
 - id: kengaku
   type: project
   span: 4
-  subtitle_ja: 株式会社ビズ・クリエション
   stack: Ruby on Rails · AWS · Heroku · legacy refactoring · 日本語業務
 
 - id: archive

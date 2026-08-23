@@ -1,6 +1,12 @@
-// Red appears in exactly four places: primary button hover, the bullet markers
-// in project lists, scores of 4.5+, and links in the contact block.
-// Adding a fifth weakens the other four.
+// Red is reserved for two jobs: data that earned it -- a score of 4.5 or
+// better -- and links that leave the page. Structure never gets it. The bullet
+// markers and the button hover used to, which made the accent louder than the
+// text it sat next to and left it meaning three different things at once.
+// Interaction states (txtlink hover, focus ring) borrow it; nothing else may.
+//
+// #BE3319 rather than a brighter vermilion: at 15.5px it has to clear 4.5:1 on
+// both the card white and the page cream, and #D63B22 only managed 4.24 on the
+// cream.
 
 :root {
   --bg:   #F5F4F1;
@@ -8,7 +14,7 @@
   --ink:  #1A1917;
   --gray: #6B6862;
   --line: #E4E1DA;
-  --red:  #D63B22;
+  --red:  #BE3319;
   --dark: #171613;
 
   --body: #44423D;

@@ -2,8 +2,8 @@ en:
   meta:
     title: Soren Umstot — Fullstack Rails developer, Osaka
     description: >-
-      Rails developer in Osaka. I build production systems solo and keep them
-      running — pension claims, payments, and a ramen database with a public API.
+      Rails developer in Osaka. I build production systems and keep them
+      running — pension, payments, and a ramen review site with a public API.
   locale_switch: 日本語
   nav:
     work: Work
@@ -16,8 +16,8 @@ en:
     lede_html: >-
       Ten years in Japan, working day to day in Japanese. I develop
       <strong>Kengaku Cloud</strong> at Biz Creation, and outside that I run two
-      products of my own — one handling real money and legal filings, one
-      documenting eight years of ramen.
+      products of my own — one for Japanese Pension refunds, one
+      documenting my eight years of reviewing ramen.
     cta: See the work
 
   work:
@@ -27,13 +27,16 @@ en:
   projects:
     mpj:
       title: My Pension Japan
+      subtitle: Pension refund claims
       screenshot_alt: A My Pension Japan claim moving through review and filing
       body: >-
         People leaving Japan are owed their pension contributions back, but the
         application is Japanese-only and the tax portion is legally restricted
-        work. My Pension Japan runs the whole claim, routing filings through a
-        licensed 社労士 and 税理士. It is live in private beta — three paying
-        customers have refunds moving through it, before any marketing.
+        work. My Pension Japan connects them to the professionals licensed to do
+        it — a 社労士 for the pension filing, a 税理士 for the tax — and runs
+        everything around that: intake, documents, signatures, payment. It is
+        live in private beta — three paying customers have refunds moving
+        through it, before any marketing.
       built:
         - >-
           Licensed filings routed to a 社労士 and 税理士 — separate records,
@@ -55,18 +58,20 @@ en:
       reading_label: Reading
       items:
         - label: Studying
-          value: Working toward JLPT N1
+          value: Working toward JLPT N1, and learning Go
         - label: Built
           value: A Raspberry Pi e-ink board showing ITM and KIX arrivals
         - label: Dialing in
-          value: Light roasts on a Silvia Pro X
+          value: Espresso on a Silvia Pro X
 
     ramen:
       title: Ramen Ranger
+      subtitle: Ramen reviews, Japan-wide
       body: >-
-        Every bowl I've eaten in Kansai since 2018, scored against the same
-        rubric, photographed and mapped. It publishes a JSON API — which is what
-        fills the row below.
+        My own ramen site: every bowl I've reviewed across Japan since 2018,
+        scored, photographed, and mapped. Readers can sign up to favorite bowls
+        and leave comments. It publishes a JSON API — which is what fills the
+        row below.
       stats:
         reviews: reviews
         since: hunting since
@@ -76,12 +81,15 @@ en:
 
     kengaku:
       title: Kengaku Cloud
-      subtitle: full time
+      subtitle: Biz Creation — full time
       body: >-
         A cloud platform used by Japanese home builders and real estate firms.
-        Feature work and maintenance on a long-lived Rails codebase with a team
-        of three, in a fully Japanese-language environment — specs, code review,
-        client calls.
+        New features, third-party integrations like the Google Calendar API, bug
+        fixes, and performance tuning on a long-lived Rails codebase with a team
+        of three. I also develop the agentic workflows the team builds with —
+        development velocity that doesn't come out of code quality. The whole
+        environment is Japanese: specs, code review, and working directly with
+        sales and customer success.
 
     archive:
       title: Where I started
@@ -94,7 +102,7 @@ en:
   stack:
     heading: How I work
     intro: >-
-      Rails 8's minimal setup on servers I manage myself. I'd rather own the
+      Rails 8's minimal setup on servers I manage myself. I'd rather have full control over the
       machine and know exactly what's on it than debug a platform I can't SSH
       into. Everything ships with a staging environment that matches production.
     application:
@@ -102,7 +110,7 @@ en:
       items:
         - Ruby on Rails 8
         - Hotwire — Turbo, Stimulus
-        - Solid Queue, Cache, Cable
+        - Solid Queue, Solid Cache, Solid Cable
         - SQLite + Litestream, PostgreSQL
         - JavaScript, Python
     infrastructure:
@@ -116,7 +124,7 @@ en:
     working_together:
       heading: Working together
       items:
-        - Solo builds, end to end
+        - Solo end to end, or embedded in your team
         - Legacy rescue and refactoring
         - Deployment and handover
         - Ongoing maintenance

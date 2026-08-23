@@ -40,6 +40,12 @@ p { margin: 0; }
   flex-wrap: wrap;
   gap: 14px;
   align-items: center;
+
+  // A flat gap made the button and the links read as three peers. The extra
+  // space goes on the button's right rather than the link's left so that when
+  // the row wraps on narrow screens the button is simply last on its line --
+  // a left margin would indent the wrapped links and look like a mistake.
+  .btn { margin-right: 16px; }
 }
 
 .btn {
@@ -53,8 +59,11 @@ p { margin: 0; }
   border-radius: 100px;
   transition: background .15s, transform .15s;
 
+  // Lifts rather than changes hue -- the contact block does the same thing in
+  // the other direction, cream to white. A red fill this size stopped reading
+  // as the primary action and started reading as the accent.
   &:hover {
-    background: var(--red);
+    background: #38352F;
     transform: translateY(-1px);
   }
 }
@@ -63,7 +72,11 @@ p { margin: 0; }
   font-size: 15.5px;
   color: var(--gray);
   text-decoration: none;
-  border-bottom: 1.5px solid var(--line);
+  // Not var(--line): that token is for decorative hairlines between rows,
+  // which nothing depends on seeing. This rule is what marks the link, and at
+  // #E4E1DA it sat at 1.19:1 on the page cream. #8E8A7E clears 3:1 while
+  // staying quieter than the text above it.
+  border-bottom: 1.5px solid #8E8A7E;
   padding-bottom: 2px;
   transition: .15s;
 

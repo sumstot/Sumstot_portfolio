@@ -17,8 +17,12 @@
   <div class="score<%= " hi" if review["score"].to_f >= 4.5 %>">
     <%= format("%.1f", review["score"].to_f) %>
   </div>
-  <div class="shop"><%= review["name"] %></div>
-  <div class="shopjp jp"><%= review["name_ja"] %></div>
+  <%# The shop's Japanese name leads on /ja/ and the romanization leads on /,
+      so neither reader gets their own language demoted to the gray subtitle.
+      The `jp` class follows the Japanese string rather than the slot. %>
+  <% ja = I18n.locale == :ja %>
+  <div class="shop<%= " jp" if ja %>"><%= ja ? review["name_ja"] : review["name"] %></div>
+  <div class="shopjp<%= " jp" unless ja %>"><%= ja ? review["name"] : review["name_ja"] %></div>
   <% if show_all || Array(review["soup"]).any? %>
     <div class="dish"><%= Array(review["soup"]).join(" × ") %></div>
   <% end %>

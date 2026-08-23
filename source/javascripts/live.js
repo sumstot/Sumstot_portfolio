@@ -92,8 +92,9 @@
     score.textContent = review.score.toFixed(1);
     score.classList.toggle("hi", review.score >= 4.5);
 
-    node.querySelector(".shop").textContent = review.name;
-    node.querySelector(".shopjp").textContent = review.nameJa;
+    // Same order as _review_card.erb: the reader's own language leads.
+    node.querySelector(".shop").textContent = JA ? review.nameJa : review.name;
+    node.querySelector(".shopjp").textContent = JA ? review.name : review.nameJa;
 
     var dish = node.querySelector(".dish");
     if (dish) {

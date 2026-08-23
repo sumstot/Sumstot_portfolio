@@ -117,7 +117,7 @@
   }
 }
 
-// One of the four places red is allowed: a score of 4.5 or better.
+// The one piece of data that earns red. live.js applies the same 4.5 cutoff.
 .hi { color: var(--red); }
 
 .feed-note {

@@ -77,7 +77,9 @@ a.tile {
   margin-top: auto;
 }
 
-// What was actually built, one line each.
+// What was actually built, one line each. The hairlines already separate the
+// rows, so there is no marker -- a dot sitting on top of a rule says the same
+// thing twice, and in red it outshouted the line it was introducing.
 .built {
   list-style: none;
   margin: 0 0 22px;
@@ -86,20 +88,8 @@ a.tile {
   color: var(--body);
 
   li {
-    padding: 9px 0 9px 20px;
+    padding: 9px 0;
     border-top: 1px solid var(--line);
-    position: relative;
-
-    &::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 18px;
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--red);
-    }
   }
 }
 
