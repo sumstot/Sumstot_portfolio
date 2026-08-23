@@ -16,7 +16,7 @@
     <p class="lede"><%= t("hero.lede_html") %></p>
     <div class="actions">
       <a class="btn" href="#work"><%= t("hero.cta") %></a>
-      <a class="txtlink" href="mailto:<%= data.site.email %>"><%= data.site.email %></a>
+      <a class="txtlink" href="<%= mailto(data.site.email, "contact.email_subject") %>"><%= data.site.email %></a>
     </div>
   </div>
 </header>
@@ -62,7 +62,7 @@
     <h2><%= t("contact.heading") %></h2>
     <p><%= t("contact.body") %></p>
     <div class="actions">
-      <a class="btn" href="mailto:<%= data.site.email %>"><%= data.site.email %></a>
+      <a class="btn" href="<%= mailto(data.site.email, "contact.email_subject") %>"><%= data.site.email %></a>
       <a class="txtlink" href="<%= data.site.github %>" target="_blank" rel="noopener"><%= t("contact.github") %></a>
       <a class="txtlink" href="<%= data.site.linkedin %>" target="_blank" rel="noopener"><%= t("contact.linkedin") %></a>
     </div>

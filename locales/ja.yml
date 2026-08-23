@@ -109,6 +109,7 @@ ja:
     heading: 完成させたいRailsのプロジェクトはありませんか？
     body: >-
       Railsの新規開発、レガシーコードの立て直し、自分で管理できるインフラへのデプロイについて、ご相談を承っています。英語・日本語のどちらでも対応します。
+    email_subject: サイトを拝見しました
     github: GitHub
     linkedin: LinkedIn
     copyright: © %{year} Soren Umstot — 大阪

@@ -136,6 +136,7 @@ en:
       Available for consulting on Rails builds, legacy rescue, and getting
       applications deployed on infrastructure you actually control. English or
       日本語.
+    email_subject: Saw your site
     github: GitHub
     linkedin: LinkedIn
     copyright: © %{year} Soren Umstot — Osaka, Japan

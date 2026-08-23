@@ -71,6 +71,13 @@ helpers do
     url.to_s.sub(%r{\Ahttps?://}, "").chomp("/")
   end
 
+  # Prefill the subject so a mail client opens with something already typed.
+  # ERB::Util.url_encode, not CGI.escape — the latter writes spaces as "+",
+  # which mail clients paste through literally.
+  def mailto(address, subject_key)
+    "mailto:#{address}?subject=#{ERB::Util.url_encode(t(subject_key))}"
+  end
+
   # The most recent book on the Goodreads shelf, or nil when the feed has
   # never been fetched.
   # Read through `data.reading` rather than `data.to_h`: to_h hands back a plain
