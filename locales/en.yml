@@ -71,7 +71,7 @@ en:
         reviews: reviews
         since: hunting since
         stack: Turbo, Google Places, Hetzner
-      feed_note: The five most recent, pulled from the API when this page was built.
+      feed_note: The five most recent, pulled live from the API.
       feed_link: All %{count} reviews
 
     kengaku:

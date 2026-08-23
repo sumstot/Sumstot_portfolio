@@ -51,12 +51,14 @@
   <div class="tile <%= span %>">
     <h3><%= title %></h3>
     <div class="sub"><%= sub_en %></div>
-    <ul class="now">
+    <%# The label rides on the list so live.js can build the row from nothing
+        when the build had no book to show. %>
+    <ul class="now" data-reading-label="<%= t("#{scope}.reading_label") %>">
       <% t("#{scope}.items").each do |item| %>
         <li><b><%= item[:label] %></b><%= item[:value] %></li>
       <% end %>
       <% if (book = current_book) %>
-        <li>
+        <li data-reading>
           <b><%= t("#{scope}.reading_label") %></b>
           <%= book["title"] %><%= " — #{book['author']}" if book["author"] %>
         </li>
@@ -75,7 +77,7 @@
       </div>
       <div class="rr-nums">
         <div>
-          <strong><%= reviews_count %></strong>
+          <strong data-review-count><%= reviews_count %></strong>
           <span><%= t("#{scope}.stats.reviews") %></span>
         </div>
         <div>
@@ -93,7 +95,7 @@
 
     <p class="feed-note">
       <span><%= t("#{scope}.feed_note") %></span>
-      <a href="<%= data.site.ramen_ranger.reviews_url %>" target="_blank" rel="noopener"><%= t("#{scope}.feed_link", count: reviews_count) %></a>
+      <a href="<%= data.site.ramen_ranger.reviews_url %>" target="_blank" rel="noopener" data-review-count><%= t("#{scope}.feed_link", count: reviews_count) %></a>
     </p>
   </div>
 <% end %>

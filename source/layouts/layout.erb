@@ -14,5 +14,10 @@
   </head>
   <body>
     <%= yield %>
+
+    <%# Refreshes the ramen and reading feeds past what the build captured.
+        Deferred and failure-tolerant: with it blocked or broken the page is
+        exactly the static one it was before. %>
+    <%= javascript_include_tag "live", defer: true %>
   </body>
 </html>

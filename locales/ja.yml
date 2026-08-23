@@ -60,7 +60,7 @@ ja:
         reviews: レビュー
         since: 記録開始
         stack: Turbo・Google Places・Hetzner
-      feed_note: 最新5件を、このページのビルド時にAPIから取得しています。
+      feed_note: 最新5件を、APIからリアルタイムで取得しています。
       feed_link: レビュー%{count}件をすべて見る
 
     kengaku:

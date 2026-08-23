@@ -1,9 +1,10 @@
 name: Refresh ramen reviews
 
-# The Ramen Ranger API sends no CORS header, so the portfolio cannot call it
-# from the browser. data/reviews.yml is refreshed during `middleman build`
-# instead — this job just triggers a rebuild so the feed does not go stale
-# between deploys.
+# The feeds refresh in the browser on every page load, so this job is not what
+# keeps them current any more. It refreshes the copy committed to data/, which
+# is what renders before the fetch returns, when a source is down, and for
+# anything not running JavaScript. Without it that fallback drifts as far back
+# as the last deploy.
 
 on:
   schedule:

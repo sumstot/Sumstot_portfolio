@@ -29,35 +29,56 @@ source/stylesheets/       tokens in config/_tokens.scss, one file per component
 Adding a project means an entry in `data/projects.yml` plus a `projects.<id>`
 block in each locale file. No template changes.
 
-## The ramen feed
+## The live feeds
 
-`lib/review_fetcher.rb` calls the Ramen Ranger API during `middleman build` and
-writes `data/reviews.yml`, which the template renders statically. The fetch
-never happens in the browser — the API sends no `Access-Control-Allow-Origin`
-header, and anything in frontend JavaScript is public, which would leak the key.
+Two rows show data from elsewhere: the five most recent ramen reviews, and the
+book currently on the Goodreads shelf. Both are rendered twice.
 
-The key comes from `RAMEN_RANGER_API_KEY` and is sent as `Authorization: Bearer`.
-Set it in two places:
+**At build time.** `lib/review_fetcher.rb` and `lib/reading_fetcher.rb` run
+during `middleman build` and write `data/reviews.yml` and `data/reading.yml`,
+which the templates render into the HTML. This is what search engines and
+JavaScript-less browsers see, and what stays on screen when a source is down.
 
-- **Locally** — copy `.env.example` to `.env` and fill it in. `.env` is gitignored.
-- **Netlify** — Site settings → Environment variables. Available at build time.
+**On page load.** `source/javascripts/live.js` re-fetches both and swaps the
+rendered markup for anything newer. Every failure path — offline, blocked,
+timed out, malformed — leaves the built markup untouched, so the worst case is
+a slightly old page rather than an empty one. Review cards are cloned from a
+`<template>` filled by `_review_card.erb`, so the card markup is defined once
+rather than once in ERB and again in JavaScript.
+
+The two sources reach the browser differently:
+
+- **Ramen Ranger** is called directly. `/api/v1/ramen_reviews` is public and
+  sends `Access-Control-Allow-Origin` for this domain; `Rack::Attack` throttles
+  it. No key is involved, which is the point — a key in frontend JavaScript
+  would not be a secret.
+- **Goodreads** cannot be called directly: `goodreads.com` sends no CORS header
+  and is not ours to change, and the feed URL carries a `key` parameter that
+  would be public in page source. `netlify/functions/reading.mjs` fetches and
+  parses it server side and serves JSON from `/api/reading`, same-origin and
+  cached for 15 minutes.
+
+Environment variables, set locally in `.env` (copy `.env.example`; gitignored)
+and on Netlify under Site settings → Environment variables:
+
+- `RAMEN_RANGER_API_KEY` — build-time only, sent as `Authorization: Bearer`.
+  The endpoint the browser uses needs no key; this one still authenticates the
+  build's fetch.
+- `GOODREADS_RSS_URL` — read at build time and by the Netlify function.
 
 Commands:
 
-- Refresh by hand: `rake reviews:fetch`
-- Preview the fetch on the dev server: `FETCH_REVIEWS=1 bundle exec middleman`
+- Refresh by hand: `rake reviews:fetch`, `rake reading:fetch`
+- Preview the fetches on the dev server: `FETCH_REVIEWS=1 bundle exec middleman`
+- `middleman server` does not run functions, so `/api/reading` 404s locally and
+  the reading row falls back to `data/reading.yml`. Use `netlify dev` to
+  exercise it.
 
-A missing or rejected key logs a warning and leaves the committed
-`data/reviews.yml` in place, so a bad key breaks the build's freshness, never
-the page.
-
-If the fetch fails the committed `data/reviews.yml` is left in place, so the row
-never renders empty. `.github/workflows/refresh-reviews.yml` pings a Netlify
-build hook daily so the feed does not go stale between deploys — it needs a
+A missing or rejected key logs a warning and leaves the committed YAML in
+place, so bad configuration costs freshness, never the page.
+`.github/workflows/refresh-reviews.yml` pings a Netlify build hook daily to
+keep that committed fallback from drifting too far — it needs a
 `NETLIFY_BUILD_HOOK` repository secret and no-ops without one.
-
-To make the feed genuinely live instead, add the CORS header and a Rack::Attack
-throttle on the Ramen Ranger side and fetch from the client.
 
 ## Deploy
 

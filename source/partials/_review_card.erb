@@ -1,0 +1,28 @@
+<%#
+  One review card.
+
+  Rendered here for the static build, and cloned by javascripts/live.js when
+  the live fetch returns something newer, so the markup is defined once rather
+  than once in ERB and again in JavaScript. The <template> copy passes
+  `prototype: true` to keep the optional nodes present even though it carries
+  no data — JS removes the ones a given review has no use for.
+%>
+<% show_all = defined?(prototype) && prototype %>
+<a class="rev" href="<%= review["url"] %>" data-review-id="<%= review["id"] %>" target="_blank" rel="noopener">
+  <% if show_all || review["image_url"].to_s != "" %>
+    <div class="thumb">
+      <img src="<%= review["image_url"] %>" alt="" loading="lazy">
+    </div>
+  <% end %>
+  <div class="score<%= " hi" if review["score"].to_f >= 4.5 %>">
+    <%= format("%.1f", review["score"].to_f) %>
+  </div>
+  <div class="shop"><%= review["name"] %></div>
+  <div class="shopjp jp"><%= review["name_ja"] %></div>
+  <% if show_all || Array(review["soup"]).any? %>
+    <div class="dish"><%= Array(review["soup"]).join(" × ") %></div>
+  <% end %>
+  <div class="when">
+    <%= review["area"] %><%= " · " if review["area"].to_s != "" %><%= review_date(review["visited_on"]) %>
+  </div>
+</a>

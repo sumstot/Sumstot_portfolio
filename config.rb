@@ -86,6 +86,15 @@ helpers do
     data.reviews["review_count"].to_i
   end
 
+  # Fills the <template> copy of a review card, which carries structure for
+  # javascripts/live.js to clone but no data of its own.
+  def blank_review
+    {
+      "id" => "", "score" => 0.0, "name" => "", "name_ja" => "", "area" => "",
+      "soup" => [], "visited_on" => "", "image_url" => "", "url" => "#"
+    }
+  end
+
   # "2026-04-30" -> "Apr 30, 2026" / "2026年4月30日"
   def review_date(value)
     parts = value.to_s[0, 10].split("-")

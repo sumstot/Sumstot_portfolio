@@ -1,24 +1,17 @@
 <div class="feed-wrap">
   <div class="feed">
-  <% (data.reviews["reviews"] || []).first(5).each do |review| %>
-    <a class="rev" href="<%= review["url"] %>" target="_blank" rel="noopener">
-      <% if review["image_url"].to_s != "" %>
-        <div class="thumb">
-          <img src="<%= review["image_url"] %>" alt="" loading="lazy">
-        </div>
-      <% end %>
-      <div class="score<%= " hi" if review["score"].to_f >= 4.5 %>">
-        <%= format("%.1f", review["score"].to_f) %>
-      </div>
-      <div class="shop"><%= review["name"] %></div>
-      <div class="shopjp jp"><%= review["name_ja"] %></div>
-      <% if Array(review["soup"]).any? %>
-        <div class="dish"><%= Array(review["soup"]).join(" × ") %></div>
-      <% end %>
-      <div class="when">
-        <%= review["area"] %><%= " · " if review["area"].to_s != "" %><%= review_date(review["visited_on"]) %>
-      </div>
-      </a>
+    <% (data.reviews["reviews"] || []).first(5).each do |review| %>
+      <%= partial "partials/review_card", locals: { review: review } %>
     <% end %>
   </div>
+
+  <%#
+    The card javascripts/live.js clones when the API returns newer reviews than
+    the build baked in. A <template> is inert — nothing inside it renders and
+    the empty image never loads — so this costs a few hundred bytes and buys a
+    single definition of the card markup.
+  %>
+  <template id="review-card-template">
+    <%= partial "partials/review_card", locals: { review: blank_review, prototype: true } %>
+  </template>
 </div>
