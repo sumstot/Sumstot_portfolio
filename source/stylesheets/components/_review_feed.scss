@@ -108,6 +108,9 @@
     font-size: 13.5px;
     color: #55524C;
     line-height: 1.45;
+    // Soup names are stored lowercase; the "×" between them reads as a word
+    // break, so each term capitalises: "tonkotsu × gyokai" -> "Tonkotsu × Gyokai".
+    text-transform: capitalize;
   }
 
   .when {
