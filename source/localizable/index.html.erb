@@ -5,7 +5,7 @@
       <a href="#work"><%= t("nav.work") %></a>
       <a href="#stack"><%= t("nav.how") %></a>
       <a href="#contact"><%= t("nav.contact") %></a>
-      <a href="<%= other_locale_path %>" hreflang="<%= other_locale %>" class="lang"><%= t("locale_switch") %></a>
+      <a href="<%= other_locale_path %>" hreflang="<%= other_locale %>" lang="<%= other_locale %>" class="lang"><%= t("locale_switch") %></a>
     </nav>
   </div>
 </div>
@@ -13,7 +13,7 @@
 <header class="hero">
   <div class="wrap">
     <h1><%= t("hero.headline") %> <em><%= t("hero.headline_quiet") %></em></h1>
-    <p class="lede"><%= t("hero.lede_html") %></p>
+    <p class="lede"><%= t("hero.lede_html", years: years_in_japan, ramen_years: years_reviewing_ramen) %></p>
     <div class="actions">
       <a class="btn" href="#work"><%= t("hero.cta") %></a>
       <a class="txtlink" href="<%= mailto(data.site.email, "contact.email_subject") %>"><%= data.site.email %></a>

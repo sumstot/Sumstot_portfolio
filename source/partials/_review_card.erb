@@ -22,7 +22,7 @@
       The `jp` class follows the Japanese string rather than the slot. %>
   <% ja = I18n.locale == :ja %>
   <div class="shop<%= " jp" if ja %>"><%= ja ? review["name_ja"] : review["name"] %></div>
-  <div class="shopjp<%= " jp" unless ja %>"><%= ja ? review["name"] : review["name_ja"] %></div>
+  <div class="shopjp<%= " jp" unless ja %>" lang="<%= other_locale %>"><%= ja ? review["name"] : review["name_ja"] %></div>
   <% if show_all || Array(review["soup"]).any? %>
     <div class="dish"><%= Array(review["soup"]).join(" × ") %></div>
   <% end %>

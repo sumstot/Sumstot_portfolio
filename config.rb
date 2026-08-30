@@ -1,3 +1,6 @@
+require "date"
+require "json"
+
 require_relative "lib/env_file"
 require_relative "lib/review_fetcher"
 require_relative "lib/reading_fetcher"
@@ -51,8 +54,46 @@ helpers do
     I18n.locale == :ja ? :en : :ja
   end
 
+  # Root path of a locale's page. Two locales, so a swap rather than a lookup.
+  def locale_path(locale = I18n.locale)
+    locale == :ja ? "/ja/" : "/"
+  end
+
   def other_locale_path
-    other_locale == :en ? "/" : "/ja/"
+    locale_path(other_locale)
+  end
+
+  # Fully-qualified URLs for the <head>: canonical, hreflang alternates, and the
+  # Open Graph / JSON-LD tags all need an absolute address.
+  def site_url
+    data.site.url
+  end
+
+  def absolute_url(path)
+    "#{site_url}#{path}"
+  end
+
+  def canonical_url
+    absolute_url(locale_path)
+  end
+
+  # schema.org Person, emitted as JSON-LD so search can tie the site to the
+  # GitHub and LinkedIn profiles behind it.
+  def person_schema
+    {
+      "@context" => "https://schema.org",
+      "@type" => "Person",
+      "name" => "Soren Umstot",
+      "url" => site_url,
+      "image" => absolute_url(image_path("soren-umstot.jpg")),
+      "jobTitle" => t("meta.job_title"),
+      "worksFor" => { "@type" => "Organization", "name" => "Biz Creation" },
+      "address" => {
+        "@type" => "PostalAddress", "addressLocality" => "Osaka", "addressCountry" => "JP"
+      },
+      "knowsLanguage" => %w[en ja],
+      "sameAs" => [data.site.github, data.site.linkedin]
+    }.to_json
   end
 
   # A tile is a link when it has a url and a plain div when it does not. ERB
@@ -91,6 +132,27 @@ helpers do
 
   def reviews_count
     data.reviews["review_count"].to_i
+  end
+
+  # Whole years since a date. An anniversary that hasn't come round yet this
+  # year doesn't count. Evaluated at build time, so the copy that uses it steps
+  # up on the next deploy after the date — fine for a figure that moves once a
+  # year.
+  def years_since(date)
+    today = Date.today
+    elapsed = today.year - date.year
+    before_anniversary = ([today.month, today.day] <=> [date.month, date.day]).negative?
+    before_anniversary ? elapsed - 1 : elapsed
+  end
+
+  # Landed in Japan on 2016-07-24.
+  def years_in_japan
+    years_since(Date.new(2016, 7, 24))
+  end
+
+  # Reviewing ramen since 2018 — only the year is on record.
+  def years_reviewing_ramen
+    Date.today.year - data.site.ramen_ranger.since.to_i
   end
 
   # Fills the <template> copy of a review card, which carries structure for
