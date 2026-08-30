@@ -4,6 +4,7 @@ en:
     description: >-
       Rails developer in Osaka. I build production systems and keep them
       running — pension, payments, and a ramen review site with a public API.
+    job_title: Fullstack Rails developer
   locale_switch: 日本語
   nav:
     work: Work
@@ -14,10 +15,10 @@ en:
     headline: Rails developer in Osaka.
     headline_quiet: I build things and then keep them running.
     lede_html: >-
-      Ten years in Japan, working day to day in Japanese. I develop
+      %{years} years in Japan, working day to day in Japanese. I develop
       <strong>Kengaku&nbsp;Cloud</strong> at Biz Creation, and outside that I run two
       products of my own — one for Japanese Pension refunds, one
-      documenting my eight years of reviewing ramen.
+      documenting my %{ramen_years} years of reviewing ramen.
     cta: See the work
 
   work:
@@ -31,12 +32,13 @@ en:
       screenshot_alt: A My Pension Japan claim moving through review and filing
       body: >-
         People leaving Japan are owed their pension contributions back, but the
-        application is cumberson for non Japanese speakers and the tax portion is legally restricted
-        work. My Pension Japan connects them to the professionals licensed to do
-        it — a Labor and Social Security attorney for the pension filing, a Tax Accountantfor the tax — and runs
-        everything around that: intake, documents, signatures, payment. It is
-        live in private beta — three paying customers have refunds moving
-        through it, before any marketing.
+        application is cumbersome for non-Japanese speakers, and the tax portion
+        is legally restricted work. My Pension Japan connects them to the
+        professionals licensed to do it: a Labor and Social Security attorney
+        files the pension claim, a tax accountant handles the tax. It runs
+        everything around that in one place: intake, documents, signatures,
+        payment. It is live in private beta, with multiple paying customers
+        moving refunds through it before any marketing.
       built:
         - >-
           Licensed filings routed to a 社労士 and 税理士 — separate records,
@@ -45,7 +47,7 @@ en:
         - Generated pension forms — coordinate-mapped PDF overlays
         - DocuSeal e-signature, staff review queue, full audit log
         - >-
-          SQLite + Litestream on a server I own in Tokyo — data residency,
+          SQLite + Litestream on a server I run in Tokyo — data residency,
           backups verified weekly
 
     portrait:
@@ -56,6 +58,7 @@ en:
       title: Off the clock
       subtitle: Outside the editor
       reading_label: Reading
+      reading_note: Live from Goodreads
       items:
         - label: Studying
           value: Working toward JLPT N1, and learning Go
@@ -68,15 +71,15 @@ en:
       title: Ramen Ranger
       subtitle: Ramen reviews, mostly Kansai
       body: >-
-        My own ramen site: every bowl I've reviewed since 2018 — mostly Kansai,
+        My own ramen site: every bowl I've reviewed since 2018, mostly Kansai
         and wherever else in Japan I end up. Scored, photographed, and mapped.
         Readers can sign up to favorite bowls and leave comments. It publishes a
-        JSON API — which is what fills the row below.
+        JSON API, which is what fills the row below.
       stats:
         reviews: reviews
         since: hunting since
-        stack: Turbo, Google Places, Hetzner
-      feed_note: The five most recent, pulled live from the API.
+        stack: Turbo, Kamal, Hetzner
+      feed_note: The five most recent, pulled live from my API.
       feed_link: All %{count} reviews
 
     kengaku:
@@ -84,9 +87,9 @@ en:
       subtitle: Biz Creation — full time
       body: >-
         A cloud platform used by Japanese home builders and real estate firms.
-        New features, third-party integrations like the Google Calendar API, bug
-        fixes, and performance tuning on a long-lived Rails codebase with a team
-        of three. I also develop the agentic workflows the team builds with —
+        I work on a long-lived Rails codebase with a team of three: new features,
+        third-party integrations like the Google Calendar API, bug fixes, and
+        performance tuning. I also develop the agentic workflows the team builds with —
         development velocity that doesn't come out of code quality. The whole
         environment is Japanese: specs, code review, and working directly with
         sales and customer success.
@@ -95,9 +98,11 @@ en:
       title: Where I started
       subtitle: 2021 — 2022
       body: >-
-        A Rails chat app on ActionCable, a React portfolio calculator, a few
-        Python games — my bootcamp year and the months after. The production
-        work since is closed source, so this is what's public.
+        A Rails chat app on ActionCable, a React crypto portfolio calculator,
+        Ozei (a team project that helps large groups find restaurant
+        reservations), and a few Python games. My bootcamp year and the months
+        after. The production work since is closed source, so this is what's
+        public.
 
   stack:
     heading: How I work

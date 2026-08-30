@@ -3,6 +3,7 @@ ja:
     title: Soren Umstot — 大阪のフルスタックRails開発者
     description: >-
       大阪でRailsを書いています。本番で動くシステムを一人でつくり、その後も自分で運用しています。
+    job_title: フルスタックRails開発者
   locale_switch: English
   nav:
     work: 実績
@@ -13,7 +14,7 @@ ja:
     headline: 大阪のRails開発者です。
     headline_quiet: つくったものは、その後も自分で動かし続けます。
     lede_html: >-
-      来日10年、日常業務は日本語です。株式会社ビズ・クリエションで<strong>Kengaku&nbsp;Cloud</strong>の開発を担当し、その傍らで自分のプロダクトを2つ運営しています。ひとつは実際のお金と法的な申請を扱うもの、もうひとつは8年分のラーメンを記録するものです。
+      日本在住%{years}年、日常業務は日本語です。株式会社ビズ・クリエションで<strong>Kengaku&nbsp;Cloud</strong>の開発を担当し、その傍らで自分のプロダクトを2つ運営しています。ひとつは実際のお金と法的な申請を扱うもの、もうひとつは%{ramen_years}年分のラーメンを記録するものです。
     cta: 実績を見る
 
   work:
@@ -26,7 +27,7 @@ ja:
       subtitle: 年金脱退一時金・還付申請サービス
       screenshot_alt: 審査から提出まで進行中のMy Pension Japanの申請画面
       body: >-
-        日本を離れる人には年金の脱退一時金を受け取る権利がありますが、申請書類は日本語のみで、税金部分の手続きは法律上、有資格者しか代行できません。My Pension Japanは、年金の申請は社労士へ、税金の手続きは税理士へと有資格者におつなぎし、その周辺の工程（受付、書類作成、署名、決済）を一貫して担っています。現在はクローズドベータで、宣伝はまだしていませんが、有料のお客様3名の還付手続きが進行中です。
+        日本を離れる人には年金の脱退一時金を受け取る権利がありますが、申請書類は日本語のみで、税金部分の手続きは法律上、有資格者しか代行できません。My Pension Japanは、年金の申請を社労士に、税金の手続きを税理士におつなぎし、その周辺の工程（受付、書類作成、署名、決済）を一貫して担います。現在はクローズドベータで、宣伝を始める前の段階ですが、すでに複数の有料のお客様の還付手続きが進行しています。
       built:
         - 士業が扱う申請は社労士・税理士へ — 別レコード、別の担当者
         - 前払い手数料と成功報酬を組み合わせたStripe決済
@@ -42,13 +43,14 @@ ja:
       title: 仕事以外では
       subtitle: エディタを閉じたあと
       reading_label: 読んでいる本
+      reading_note: Goodreadsからリアルタイムで取得しています。
       items:
         - label: 勉強中
           value: 日本語能力試験N1とGo
         - label: つくったもの
           value: 伊丹・関西空港の到着便を表示するRaspberry Piの電子ペーパー
         - label: 調整中
-          value: Silvia Pro Xで淹れる浅煎り
+          value: Silvia Pro Xでのエスプレッソ抽出
 
     ramen:
       title: Ramen Ranger
@@ -58,8 +60,8 @@ ja:
       stats:
         reviews: レビュー
         since: 記録開始
-        stack: Turbo・Google Places・Hetzner
-      feed_note: 最新5件を、APIからリアルタイムで取得しています。
+        stack: Turbo・Kamal・Hetzner
+      feed_note: 最新5件を、自作のAPIからリアルタイムで取得しています。
       feed_link: レビュー%{count}件をすべて見る
 
     kengaku:
@@ -72,7 +74,7 @@ ja:
       title: 出発点
       subtitle: 2021 — 2022
       body: >-
-        ActionCableを使ったRailsのチャットアプリ、Reactのポートフォリオ計算機、Pythonのゲームなど、ブートキャンプ時代とその後に作ったものです。その後のプロダクト開発はすべてクローズドソースのため、公開しているのはこれらだけです。
+        ActionCableを使ったRailsのチャットアプリ、Reactの仮想通貨ポートフォリオ計算機、大人数の飲食店予約を探せるチームプロジェクト「Ozei」、Pythonのゲームなど、ブートキャンプ時代とその後に作ったものです。その後のプロダクト開発はすべてクローズドソースのため、公開しているのはこれらだけです。
 
   stack:
     heading: 開発の進め方
