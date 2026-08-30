@@ -1,6 +1,12 @@
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  // The nav is sticky and 72px tall, so a bare jump to #work / #stack /
+  // #contact parks the section heading underneath it. Offset every in-page
+  // anchor by the nav plus a little breathing room.
+  scroll-padding-top: 104px;
+}
 
 body {
   margin: 0;
