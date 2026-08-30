@@ -170,9 +170,7 @@
       var book = payload && Array.isArray(payload.books) ? payload.books[0] : null;
       if (!book || !book.title) return;
 
-      var text = book.author ? book.title + " — " + book.author : book.title;
       var row = list.querySelector("[data-reading]");
-
       if (!row) {
         row = document.createElement("li");
         row.setAttribute("data-reading", "");
@@ -182,10 +180,36 @@
       var label = document.createElement("b");
       label.textContent = list.getAttribute("data-reading-label");
 
+      // The title links to its Goodreads page when the feed carried one.
+      // .txtlink matches the built markup and keeps the underline the bare
+      // <a> reset drops. textContent / explicit nodes throughout: the title
+      // and author are third-party strings.
+      var title;
+      if (book.link) {
+        title = document.createElement("a");
+        title.className = "txtlink";
+        title.href = book.link;
+        title.target = "_blank";
+        title.rel = "noopener";
+        title.textContent = book.title;
+      } else {
+        title = document.createTextNode(book.title);
+      }
+
       // Leading space matches what the ERB emits between the label and the
-      // title, so a live row and a built one have identical text content.
-      // textContent throughout: the title and author are third-party strings.
-      row.replaceChildren(label, document.createTextNode(" " + text));
+      // title, so a live row and a built one read the same.
+      var nodes = [label, document.createTextNode(" "), title];
+      if (book.author) nodes.push(document.createTextNode(" — " + book.author));
+
+      var note = list.getAttribute("data-reading-note");
+      if (note) {
+        var src = document.createElement("span");
+        src.className = "now-src";
+        src.textContent = note;
+        nodes.push(src);
+      }
+
+      row.replaceChildren.apply(row, nodes);
     });
   }
 

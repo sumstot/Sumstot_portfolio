@@ -59,14 +59,15 @@
     <div class="sub<%= sub_jp %>"><%= sub %></div>
     <%# The label rides on the list so live.js can build the row from nothing
         when the build had no book to show. %>
-    <ul class="now" data-reading-label="<%= t("#{scope}.reading_label") %>">
+    <ul class="now" data-reading-label="<%= t("#{scope}.reading_label") %>" data-reading-note="<%= t("#{scope}.reading_note") %>">
       <% t("#{scope}.items").each do |item| %>
         <li><b><%= item[:label] %></b><%= item[:value] %></li>
       <% end %>
       <% if (book = current_book) %>
         <li data-reading>
           <b><%= t("#{scope}.reading_label") %></b>
-          <%= book["title"] %><%= " — #{book['author']}" if book["author"] %>
+          <% if book["link"] %><a class="txtlink" href="<%= book["link"] %>" target="_blank" rel="noopener"><%= book["title"] %></a><% else %><%= book["title"] %><% end %><%= " — #{book['author']}" if book["author"] %>
+          <span class="now-src"><%= t("#{scope}.reading_note") %></span>
         </li>
       <% end %>
     </ul>

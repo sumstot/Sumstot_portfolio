@@ -80,7 +80,7 @@ module ReadingFetcher
       {
         "title" => title,
         "author" => text(item, "author_name"),
-        "link" => text(item, "link"),
+        "link" => book_url(text(item, "book_id")),
         "cover" => text(item, "book_large_image_url") ||
                    text(item, "book_medium_image_url") ||
                    text(item, "book_small_image_url"),
@@ -90,6 +90,12 @@ module ReadingFetcher
   rescue StandardError => e
     warn "[reading] parse failed: #{e.class}: #{e.message}"
     []
+  end
+
+  # The feed's <link> is the private review page (/review/show/…), which 404s
+  # for anyone not logged in as me. <book_id> gives the public book page.
+  def book_url(id)
+    id && "https://www.goodreads.com/book/show/#{id}"
   end
 
   def text(item, name)
