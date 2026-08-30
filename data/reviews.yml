@@ -1,7 +1,17 @@
 ---
-fetched_at: '2026-08-20T07:06:06Z'
-review_count: 263
+fetched_at: '2026-08-30T05:51:17Z'
+review_count: 264
 reviews:
+- id: 264
+  score: 4.5
+  name: Miso Ramen Satsuki
+  name_ja: みそラーメンさつき
+  area: Kobe, Hyogo
+  soup:
+  - miso
+  visited_on: '2026-05-17'
+  image_url: https://theramenranger.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6NDc5MSwicHVyIjoiYmxvYl9pZCJ9fQ==--52d3da9eaf188dd43ca104aa5fd178a5acb1f2f8/IMG_1119.jpeg
+  url: https://theramenranger.com/ramen_reviews/264
 - id: 263
   score: 3.7
   name: Chukasoba Tsuji
@@ -43,13 +53,3 @@ reviews:
   visited_on: '2026-04-30'
   image_url: https://theramenranger.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6NDQyMSwicHVyIjoiYmxvYl9pZCJ9fQ==--24693e902e11bab9ffa22ec0cda735a878d61081/IMG_0864.jpeg
   url: https://theramenranger.com/ramen_reviews/260
-- id: 259
-  score: 4.6
-  name: Ramen Shiko
-  name_ja: らーめん志高
-  area: Osaka
-  soup:
-  - tonkotsu
-  visited_on: '2026-04-03'
-  image_url: https://theramenranger.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6NDM5OCwicHVyIjoiYmxvYl9pZCJ9fQ==--2481ab19cb0617f71ae5c02d52b24ccd878af4c7/IMG_0565.jpg
-  url: https://theramenranger.com/ramen_reviews/259
