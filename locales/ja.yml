@@ -44,7 +44,7 @@ ja:
       title: 仕事以外では
       subtitle: エディタを閉じたあと
       reading_label: 読んでいる本
-      reading_note: 取得できる場合はGoodreadsから更新しています。
+      reading_note: Goodreadsから更新しています。
       items:
         - label: 勉強中
           value: 日本語能力試験N1とGo

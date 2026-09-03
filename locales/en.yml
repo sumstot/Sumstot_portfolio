@@ -59,7 +59,7 @@ en:
       title: Off the clock
       subtitle: Outside the editor
       reading_label: Reading
-      reading_note: Updated from Goodreads when available
+      reading_note: Updated from Goodreads
       items:
         - label: Studying
           value: Working toward JLPT N1, and learning Go
