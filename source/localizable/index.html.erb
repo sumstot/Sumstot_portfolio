@@ -1,3 +1,5 @@
+<a class="skip-link" href="#main-content"><%= t("nav.skip") %></a>
+
 <div class="nav">
   <div class="wrap">
     <a class="name" href="<%= I18n.locale == :ja ? "/ja/" : "/" %>">Soren Umstot</a>
@@ -10,6 +12,7 @@
   </div>
 </div>
 
+<main id="main-content">
 <header class="hero">
   <div class="wrap">
     <h1><%= t("hero.headline") %> <em><%= t("hero.headline_quiet") %></em></h1>
@@ -45,7 +48,7 @@
       </div>
       <% %w[application infrastructure working_together].each do |group| %>
         <div>
-          <h4><%= t("stack.#{group}.heading") %></h4>
+          <h3><%= t("stack.#{group}.heading") %></h3>
           <ul>
             <% t("stack.#{group}.items").each do |item| %>
               <li><%= item %></li>
@@ -56,6 +59,7 @@
     </div>
   </div>
 </section>
+</main>
 
 <footer class="contact" id="contact">
   <div class="wrap">

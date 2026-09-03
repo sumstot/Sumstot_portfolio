@@ -83,8 +83,12 @@ helpers do
     {
       "@context" => "https://schema.org",
       "@type" => "Person",
+      # A stable @id ties the English and Japanese pages to one entity. Without
+      # it each locale reads as a separate Person who happens to share a name.
+      "@id" => "#{site_url}/#person",
       "name" => "Soren Umstot",
-      "url" => site_url,
+      "url" => canonical_url,
+      "inLanguage" => I18n.locale.to_s,
       "image" => absolute_url(image_path("soren-umstot.jpg")),
       "jobTitle" => t("meta.job_title"),
       "worksFor" => { "@type" => "Organization", "name" => "Biz Creation" },
@@ -96,20 +100,52 @@ helpers do
     }.to_json
   end
 
-  # A tile is a link when it has a url and a plain div when it does not. ERB
-  # cannot straddle a conditional element, so the tags are emitted as strings.
+  # A tile is always a div. When it links somewhere the anchor lives on the
+  # heading and an ::after overlay stretches the click target back over the
+  # whole card -- wrapping the card itself in an <a> made the accessible name
+  # the entire tile, several hundred characters read as one utterance.
   def tile_open(span, url)
-    return %(<div class="tile #{span}">) unless url
-
-    %(<a class="tile #{span}" href="#{url}" target="_blank" rel="noopener">)
+    %(<div class="tile #{url ? "linked " : ""}#{span}">)
   end
 
-  def tile_close(url)
-    url ? "</a>" : "</div>"
+  def tile_close(_url = nil)
+    "</div>"
+  end
+
+  # The heading of a linked tile. The overlay that makes the rest of the card
+  # clickable is drawn by .tile-link::after in _tile.scss.
+  def tile_heading(title, url)
+    return %(<h3>#{title}</h3>) unless url
+
+    %(<h3><a class="tile-link" href="#{url}" target="_blank" rel="noopener">#{title}</a></h3>)
+  end
+
+  # An English page that drops a Japanese word into an English sentence has to
+  # tag it, or a screen reader voices it with an English engine and it comes
+  # out as noise. Wraps each run of Japanese in <span lang="ja">. On the
+  # Japanese page <html lang="ja"> already covers it, so this is a no-op there.
+  JAPANESE_RUN = /([\p{Han}\p{Hiragana}\p{Katakana}\u30FC]+)/.freeze
+
+  def tag_japanese(text)
+    string = text.to_s
+    return string if I18n.locale == :ja
+
+    string.split(JAPANESE_RUN).map do |part|
+      part.match?(/\A#{JAPANESE_RUN}\z/) ? %(<span lang="ja">#{part}</span>) : part
+    end.join
   end
 
   def bare_url(url)
     url.to_s.sub(%r{\Ahttps?://}, "").chomp("/")
+  end
+
+  # The review cards are only a few hundred pixels wide, so ask Netlify's
+  # edge image service for a bounded derivative instead of the full photo.
+  def review_image_url(url, width:, height: 200)
+    return "" if url.to_s.empty?
+    return url unless build?
+
+    "/.netlify/images?url=#{ERB::Util.url_encode(url)}&w=#{width}&h=#{height}&fit=cover&q=72"
   end
 
   # Prefill the subject so a mail client opens with something already typed.
@@ -181,6 +217,10 @@ end
 
 configure :build do
   activate :minify_css
+
+  # live.js ships with its reasoning intact in source; none of that needs to
+  # travel over the wire.
+  activate :minify_javascript
 
   # Fingerprint assets so a changed image or stylesheet reaches people who have
   # already visited. Without this, images are served at a stable path and an

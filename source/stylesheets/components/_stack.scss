@@ -10,7 +10,7 @@
   // The section title is the first column rather than a header above the grid,
   // so all four headings share one baseline. Grid does that arithmetic itself,
   // which matters because the h2 is a clamp() that resizes with the viewport
-  // while the h4s stay fixed — any hardcoded offset would only hold at one
+  // while the h3s stay fixed — any hardcoded offset would only hold at one
   // width.
   align-items: baseline;
 
@@ -19,7 +19,7 @@
     margin-bottom: 18px;
   }
 
-  h4 { font-size: 15.5px; margin-bottom: 14px; }
+  h3 { font-size: 15.5px; margin-bottom: 14px; }
 
   ul {
     list-style: none;

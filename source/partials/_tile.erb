@@ -21,7 +21,7 @@
         <%= image_tag project["screenshot"], alt: t("#{scope}.screenshot_alt", default: "") %>
       </div>
     <% end %>
-    <h3><%= title %></h3>
+    <%= tile_heading(title, url) %>
     <div class="sub<%= sub_jp %>"><%= sub %></div>
     <p><%= t("#{scope}.body") %></p>
     <%# I18n reads an Array default as a list of fallback keys, so ask for nil. %>
@@ -34,7 +34,7 @@
       </ul>
     <% end %>
     <% if project["stack"] %>
-      <div class="stackline"><%= project["stack"] %></div>
+      <div class="stackline"><%= tag_japanese(project["stack"]) %></div>
     <% end %>
   <%= tile_close(url) %>
 
@@ -102,7 +102,7 @@
 
     <p class="feed-note">
       <span><%= t("#{scope}.feed_note") %></span>
-      <a href="<%= data.site.ramen_ranger.reviews_url %>" target="_blank" rel="noopener" data-review-count><%= t("#{scope}.feed_link", count: reviews_count) %></a>
+      <a href="<%= data.site.ramen_ranger.reviews_url %>" target="_blank" rel="noopener"><%= t("#{scope}.feed_link") %></a>
     </p>
   </div>
 <% end %>
