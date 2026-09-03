@@ -31,5 +31,9 @@
 
       &:hover { color: var(--ink); }
     }
+
+    // Japanese can line-break between any two characters. Keep the locale
+    // switch together when the flex row tightens on narrow iPhones.
+    .lang { white-space: nowrap; }
   }
 }

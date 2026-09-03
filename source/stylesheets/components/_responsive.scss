@@ -17,6 +17,7 @@
 }
 
 @media (max-width: 640px) {
+  html { scroll-padding-top: 144px; }
   body { font-size: 16px; }
 
   .bento { grid-template-columns: 1fr; }
@@ -27,10 +28,36 @@
   .tile .shot { margin: -26px -26px 22px; }
   .cols { grid-template-columns: 1fr; }
 
-  .nav nav { gap: 18px; }
-  .nav nav a:nth-child(2) { display: none; }
+  // The desktop header has five peers competing for one narrow row. On phones,
+  // treat the identity and navigation as two deliberate lines instead of
+  // letting individual labels wrap wherever the browser finds room.
+  .nav .wrap {
+    height: auto;
+    min-height: 112px;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    gap: 12px;
+  }
 
-  .hero { padding: 56px 0 52px; }
+  .nav .name {
+    align-self: flex-start;
+    white-space: nowrap;
+  }
+
+  .nav nav {
+    margin-left: 0;
+    width: 100%;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .nav nav a {
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  .hero { padding: 44px 0 52px; }
 
   // Five stacked cards is a long scroll on a phone, so the feed swipes
   // sideways instead. Card widths are set in vw so the next one peeks in and

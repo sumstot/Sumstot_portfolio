@@ -7,6 +7,7 @@ en:
     job_title: Fullstack Rails developer
   locale_switch: 日本語
   nav:
+    skip: Skip to content
     work: Work
     how: How I work
     contact: Contact
@@ -23,7 +24,7 @@ en:
 
   work:
     heading: Work
-    note: Built and deployed solo — and still maintained that way.
+    note: Independent products I build and operate, alongside team-based product work.
 
   projects:
     mpj:
@@ -58,7 +59,7 @@ en:
       title: Off the clock
       subtitle: Outside the editor
       reading_label: Reading
-      reading_note: Live from Goodreads
+      reading_note: Updated from Goodreads
       items:
         - label: Studying
           value: Working toward JLPT N1, and learning Go
@@ -79,20 +80,20 @@ en:
         reviews: reviews
         since: hunting since
         stack: Turbo, Kamal, Hetzner
-      feed_note: The five most recent, pulled live from my API.
-      feed_link: All %{count} reviews
+      feed_note: Latest five from my API, with a build-time fallback.
+      feed_link: Browse the reviews
 
     kengaku:
       title: Kengaku Cloud
-      subtitle: Biz Creation — full time
+      subtitle: Biz Creation — 2023 to present
       body: >-
         A cloud platform used by Japanese home builders and real estate firms.
         I work on a long-lived Rails codebase with a team of three: new features,
         third-party integrations like the Google Calendar API, bug fixes, and
-        performance tuning. I also develop the agentic workflows the team builds with —
-        development velocity that doesn't come out of code quality. The whole
-        environment is Japanese: specs, code review, and working directly with
-        sales and customer success.
+        performance tuning. I also help define the team's practical workflow
+        for using AI tools to deliver faster while maintaining code-quality
+        standards. The whole environment is Japanese: specs, code review, and
+        working directly with sales and customer success.
 
     archive:
       title: Where I started
@@ -110,8 +111,7 @@ en:
       Rails 8's minimal setup, deployed with Kamal to servers I manage myself
       when the choice is mine — I'd rather know exactly what is on the machine
       than debug a platform I can't SSH into. When a project already runs on
-      AWS, I work there too. Everything ships with a staging environment that
-      matches production.
+      AWS, I work there too. For products I operate, staging mirrors production.
     application:
       heading: Application
       items:
@@ -131,18 +131,18 @@ en:
     working_together:
       heading: Working together
       items:
-        - Solo end to end, or embedded in your team
-        - Legacy rescue and refactoring
-        - Deployment and handover
+        - One developer from build through deployment, or embedded in your team
+        - Stabilizing and improving an existing Rails application
+        - Deployment with documented operating and handover steps
         - Ongoing maintenance
         - English or 日本語
 
   contact:
     heading: Got a Rails project that needs finishing?
     body: >-
-      Available for consulting on Rails builds, legacy rescue, and getting
-      applications deployed on infrastructure you actually control. English or
-      日本語.
+      I take on focused Rails engagements: finishing stalled builds, stabilizing
+      existing applications, and deploying them with documented operating steps.
+      Tell me what is blocked and what a useful handover looks like. English or 日本語.
     email_subject: Saw your site
     github: GitHub
     linkedin: LinkedIn

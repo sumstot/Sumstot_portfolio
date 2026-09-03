@@ -21,6 +21,11 @@
   var MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
                 "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
+  function reviewImageUrl(url, width, height) {
+    return "/.netlify/images?url=" + encodeURIComponent(url) +
+      "&w=" + width + "&h=" + height + "&fit=cover&q=72";
+  }
+
   function getJSON(url) {
     var controller = new AbortController();
     var timer = setTimeout(function () { controller.abort(); }, TIMEOUT);
@@ -82,7 +87,16 @@
     var thumb = node.querySelector(".thumb");
     if (thumb) {
       if (review.imageUrl) {
-        thumb.querySelector("img").src = review.imageUrl;
+        var image = thumb.querySelector("img");
+        image.src = reviewImageUrl(review.imageUrl, 320, 400);
+        image.srcset = [
+          reviewImageUrl(review.imageUrl, 240, 300) + " 240w",
+          reviewImageUrl(review.imageUrl, 320, 400) + " 320w",
+          reviewImageUrl(review.imageUrl, 480, 600) + " 480w"
+        ].join(", ");
+        image.sizes = "(max-width: 640px) 62vw, 240px";
+        image.width = 320;
+        image.height = 400;
       } else {
         thumb.remove();
       }
@@ -151,6 +165,9 @@
       // re-rendering identical cards and dropping the images mid-paint.
       if (rendered.join(",") === incoming.join(",")) return;
 
+      var focusedReview = feed.contains(document.activeElement) ?
+        document.activeElement.closest(".rev") : null;
+      var focusedId = focusedReview && focusedReview.getAttribute("data-review-id");
       var fragment = document.createDocumentFragment();
       reviews.forEach(function (review) {
         var node = template.content.firstElementChild.cloneNode(true);
@@ -159,6 +176,11 @@
       });
 
       feed.replaceChildren(fragment);
+
+      if (focusedId) {
+        var replacement = feed.querySelector('[data-review-id="' + focusedId + '"]');
+        if (replacement) replacement.focus();
+      }
     });
   }
 
