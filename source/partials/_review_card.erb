@@ -14,7 +14,8 @@
       <img class="review-thumb"
            src="<%= review_image_url(review["image_url"]) %>"
            sizes="(max-width: 640px) 62vw, 240px"
-           width="320" height="400" alt="" loading="lazy" decoding="async">
+           width="320" height="400" alt="" loading="eager"
+           fetchpriority="low" decoding="async">
     </div>
   <% end %>
   <div class="score<%= " hi" if review["score"].to_f >= 4.5 %>">
