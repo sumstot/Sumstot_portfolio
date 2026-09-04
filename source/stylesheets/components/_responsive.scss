@@ -1,0 +1,92 @@
+@media (max-width: 1000px) {
+  .bento { grid-template-columns: repeat(2, 1fr); }
+  .c6, .c4, .c3, .c2 { grid-column: span 2; }
+  .r2 { grid-row: auto; }
+
+  .feed { grid-template-columns: repeat(2, 1fr); }
+  .rev { border-bottom: 1px solid var(--line); border-right: 1px solid var(--line); }
+  .rev:nth-child(2n) { border-right: 0; }
+  .rev:nth-last-child(-n+1) { border-bottom: 0; }
+
+  .cols { grid-template-columns: repeat(2, 1fr); }
+
+  // The six-column gridline the hero was aligning to no longer exists here,
+  // so the text goes back to being capped by reading measure.
+  .hero h1 { max-width: 15ch; }
+  .hero .lede { max-width: 56ch; }
+}
+
+@media (max-width: 640px) {
+  html { scroll-padding-top: 144px; }
+  body { font-size: 16px; }
+
+  .bento { grid-template-columns: 1fr; }
+  .c6, .c4, .c3, .c2 { grid-column: span 1; }
+  .r2 { grid-row: auto; }
+
+  .tile { padding: 26px; }
+  .tile .shot { margin: -26px -26px 22px; }
+  .cols { grid-template-columns: 1fr; }
+
+  // The desktop header has five peers competing for one narrow row. On phones,
+  // treat the identity and navigation as two deliberate lines instead of
+  // letting individual labels wrap wherever the browser finds room.
+  .nav .wrap {
+    height: auto;
+    min-height: 112px;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .nav .name {
+    align-self: flex-start;
+    white-space: nowrap;
+  }
+
+  .nav nav {
+    margin-left: 0;
+    width: 100%;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .nav nav a {
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  .hero { padding: 44px 0 52px; }
+
+  // Five stacked cards is a long scroll on a phone, so the feed swipes
+  // sideways instead. Card widths are set in vw so the next one peeks in and
+  // the row reads as scrollable without a scrollbar or an affordance label.
+  .feed {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    margin: 0 -26px;
+    padding: 0 8px;
+
+    &::-webkit-scrollbar { display: none; }
+  }
+
+  .rev {
+    flex: 0 0 62vw;
+    scroll-snap-align: start;
+    border-bottom: 0;
+    border-right: 1px solid var(--line);
+    padding: 22px 18px 20px;
+
+    &:last-child { border-right: 0; }
+  }
+
+  // Once the stats wrap, the 16ch cap that keeps captions tidy in a row of
+  // three starts breaking them mid-phrase. Let them run their natural width.
+  .rr-nums { gap: 20px 24px; }
+  .rr-nums strong { font-size: 30px; }
+  .rr-nums div span { max-width: none; }
+}

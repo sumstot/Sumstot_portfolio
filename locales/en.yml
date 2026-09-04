@@ -1,0 +1,150 @@
+en:
+  meta:
+    title: Soren Umstot — Fullstack Rails developer, Osaka
+    description: >-
+      Rails developer in Osaka. I build production systems and keep them
+      running — pension, payments, and a ramen review site with a public API.
+    job_title: Fullstack Rails developer
+  locale_switch: 日本語
+  nav:
+    skip: Skip to content
+    work: Work
+    how: How I work
+    contact: Contact
+
+  hero:
+    headline: Rails developer in Osaka.
+    headline_quiet: I build things and then keep them running.
+    lede_html: >-
+      %{years} years in Japan, working day to day in Japanese. I develop
+      <strong>Kengaku&nbsp;Cloud</strong> at Biz Creation, and outside that I run two
+      products of my own — one for Japanese Pension refunds, one
+      documenting my %{ramen_years} years of reviewing ramen.
+    cta: See the work
+
+  work:
+    heading: Work
+    note: Independent products I build and operate, alongside team-based product work.
+
+  projects:
+    mpj:
+      title: My Pension Japan
+      subtitle: Pension refund claims
+      screenshot_alt: A My Pension Japan claim moving through review and filing
+      body: >-
+        People leaving Japan are owed their pension contributions back, but the
+        application is cumbersome for non-Japanese speakers, and the tax portion
+        is legally restricted work. My Pension Japan connects them to the
+        professionals licensed to do it: a Labor and Social Security attorney
+        files the pension claim, a tax accountant handles the tax. It runs
+        everything around that in one place: intake, documents, signatures,
+        payment. It is live in private beta, with multiple paying customers
+        moving refunds through it before any marketing.
+      built:
+        - >-
+          Licensed filings routed to a labor attorney and a tax accountant —
+          separate records, separate reviewers
+        - Stripe checkout with an upfront fee plus commission split
+        - Generated pension forms — coordinate-mapped PDF overlays
+        - DocuSeal e-signature, staff review queue, full audit log
+        - >-
+          SQLite + Litestream on a server I run in Tokyo — data residency,
+          backups verified weekly
+
+    portrait:
+      alt: Soren Umstot
+      caption: Osaka, by way of San Diego
+
+    now:
+      title: Off the clock
+      subtitle: Outside the editor
+      reading_label: Reading
+      reading_note: Updated from Goodreads
+      items:
+        - label: Studying
+          value: Working toward JLPT N1, and learning Go
+        - label: Built
+          value: A Raspberry Pi e-ink board showing ITM and KIX arrivals
+        - label: Dialing in
+          value: Espresso on a Silvia Pro X
+
+    ramen:
+      title: Ramen Ranger
+      subtitle: Ramen reviews, mostly Kansai
+      body: >-
+        My own ramen site: every bowl I've reviewed since 2018, mostly Kansai
+        and wherever else in Japan I end up. Scored, photographed, and mapped.
+        Readers can sign up to favorite bowls and leave comments. It publishes a
+        JSON API, which is what fills the row below.
+      stats:
+        reviews: reviews
+        since: hunting since
+        stack: Turbo, Kamal, Hetzner
+      feed_note: Latest five from my API, with a build-time fallback.
+      feed_link: Browse the reviews
+
+    kengaku:
+      title: Kengaku Cloud
+      subtitle: Biz Creation — 2023 to present
+      body: >-
+        A cloud platform used by Japanese home builders and real estate firms.
+        I work on a long-lived Rails codebase with a team of three: new features,
+        third-party integrations like the Google Calendar API, bug fixes, and
+        performance tuning. I also help define the team's practical workflow
+        for using AI tools to deliver faster while maintaining code-quality
+        standards. The whole environment is Japanese: specs, code review, and
+        working directly with sales and customer success.
+
+    archive:
+      title: Where I started
+      subtitle: 2021 — 2022
+      body: >-
+        A Rails chat app on ActionCable, a React crypto portfolio calculator,
+        Ozei (a team project that helps large groups find restaurant
+        reservations), and a few Python games. My bootcamp year and the months
+        after. The production work since is closed source, so this is what's
+        public.
+
+  stack:
+    heading: How I work
+    intro: >-
+      Rails 8's minimal setup, deployed with Kamal to servers I manage myself
+      when the choice is mine — I'd rather know exactly what is on the machine
+      than debug a platform I can't SSH into. When a project already runs on
+      AWS, I work there too. For products I operate, staging mirrors production.
+    application:
+      heading: Application
+      items:
+        - Ruby on Rails 8
+        - Hotwire — Turbo, Stimulus
+        - Solid Queue, Solid Cache, Solid Cable
+        - SQLite + Litestream, PostgreSQL
+        - JavaScript, Python
+    infrastructure:
+      heading: Infrastructure
+      items:
+        - Kamal, Docker
+        - Vultr, Hetzner, Heroku
+        - AWS — S3, RDS, CloudFront, CloudWatch
+        - Cloudflare CDN and WAF
+        - Backblaze B2, Litestream backups
+    working_together:
+      heading: Working together
+      items:
+        - One developer from build through deployment, or embedded in your team
+        - Stabilizing and improving an existing Rails application
+        - Deployment with documented operating and handover steps
+        - Ongoing maintenance
+        - English or 日本語
+
+  contact:
+    heading: Got a Rails project that needs finishing?
+    body: >-
+      I take on focused Rails engagements: finishing stalled builds, stabilizing
+      existing applications, and deploying them with documented operating steps.
+      Tell me what is blocked and what a useful handover looks like. English or 日本語.
+    email_subject: Saw your site
+    github: GitHub
+    linkedin: LinkedIn
+    copyright: © %{year} Soren Umstot — Osaka, Japan
+    colophon: Built with Middleman, deployed on Netlify

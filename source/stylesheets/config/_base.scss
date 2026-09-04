@@ -1,0 +1,141 @@
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  // The nav is sticky and 72px tall, so a bare jump to #work / #stack /
+  // #contact parks the section heading underneath it. Offset every in-page
+  // anchor by the nav plus a little breathing room.
+  scroll-padding-top: 104px;
+}
+
+body {
+  margin: 0;
+  overflow-x: clip;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a { color: inherit; }
+
+a:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 100;
+  top: 12px;
+  left: 12px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--bg);
+  text-decoration: none;
+  transform: translateY(-200%);
+
+  &:focus { transform: translateY(0); }
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -.032em;
+  line-height: 1.08;
+}
+
+p { margin: 0; }
+
+// The bento under the hero divides .wrap into six columns. Sizing anything
+// else in those same columns puts its right edge on a gridline the tiles
+// reuse, so the space beside it reads as a reserved column rather than as
+// room left over. Percentages resolve against .wrap's content box, which is
+// the same box the grid divides, so the edges land exactly.
+@function bento-span($n, $cols: 6) {
+  @return calc(
+    (100% - #{$cols - 1} * var(--gap)) / #{$cols} * #{$n} + #{$n - 1} * var(--gap)
+  );
+}
+
+.wrap {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+// Japanese sits better in Zen Kaku Gothic New than in the Latin face's fallback.
+.jp { font-family: "Zen Kaku Gothic New", var(--sans); }
+
+// Shared controls
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+
+  // A flat gap made the button and the links read as three peers. The extra
+  // space goes on the button's right rather than the link's left so that when
+  // the row wraps on narrow screens the button is simply last on its line --
+  // a left margin would indent the wrapped links and look like a mistake.
+  .btn { margin-right: 16px; }
+}
+
+.btn {
+  display: inline-block;
+  background: var(--ink);
+  color: var(--bg);
+  text-decoration: none;
+  font-size: 15.5px;
+  font-weight: 500;
+  padding: 13px 24px;
+  border-radius: 100px;
+  transition: background .15s, transform .15s;
+
+  // Lifts rather than changes hue -- the contact block does the same thing in
+  // the other direction, cream to white. A red fill this size stopped reading
+  // as the primary action and started reading as the accent.
+  &:hover {
+    background: #38352F;
+    transform: translateY(-1px);
+  }
+}
+
+.txtlink {
+  font-size: 15.5px;
+  color: var(--gray);
+  text-decoration: none;
+  // Not var(--line): that token is for decorative hairlines between rows,
+  // which nothing depends on seeing. This rule is what marks the link, and at
+  // #E4E1DA it sat at 1.19:1 on the page cream. #8E8A7E clears 3:1 while
+  // staying quieter than the text above it.
+  border-bottom: 1.5px solid #8E8A7E;
+  padding-bottom: 2px;
+  transition: .15s;
+
+  &:hover {
+    color: var(--ink);
+    border-bottom-color: var(--red);
+  }
+}
+
+// Section heads
+.head {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 26px;
+  flex-wrap: wrap;
+
+  h2 { font-size: clamp(24px, 2.8vw, 32px); }
+  span { color: var(--gray); font-size: 15.5px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+  html { scroll-behavior: auto; }
+}

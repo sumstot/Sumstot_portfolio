@@ -109,6 +109,7 @@ GEM
     rack (3.1.16)
     rackup (2.2.1)
       rack (>= 3)
+    rake (13.4.2)
     rb-fsevent (0.11.2)
     rb-inotify (0.11.1)
       ffi (~> 1.0)
@@ -146,6 +147,8 @@ DEPENDENCIES
   i18n
   middleman
   middleman-autoprefixer
+  rake
+  rexml
 
 RUBY VERSION
    ruby 3.4.5p51

@@ -1,0 +1,17 @@
+<div class="feed-wrap">
+  <div class="feed">
+    <% (data.reviews["reviews"] || []).first(5).each do |review| %>
+      <%= partial "partials/review_card", locals: { review: review } %>
+    <% end %>
+  </div>
+
+  <%#
+    The card javascripts/live.js clones when the API returns newer reviews than
+    the build baked in. A <template> is inert — nothing inside it renders and
+    the empty image never loads — so this costs a few hundred bytes and buys a
+    single definition of the card markup.
+  %>
+  <template id="review-card-template">
+    <%= partial "partials/review_card", locals: { review: blank_review, prototype: true } %>
+  </template>
+</div>

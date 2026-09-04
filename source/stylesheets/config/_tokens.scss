@@ -1,0 +1,25 @@
+// Red is reserved for two jobs: data that earned it -- a score of 4.5 or
+// better -- and links that leave the page. Structure never gets it. The bullet
+// markers and the button hover used to, which made the accent louder than the
+// text it sat next to and left it meaning three different things at once.
+// Interaction states (txtlink hover, focus ring) borrow it; nothing else may.
+//
+// #BE3319 rather than a brighter vermilion: at 15.5px it has to clear 4.5:1 on
+// both the card white and the page cream, and #D63B22 only managed 4.24 on the
+// cream.
+
+:root {
+  --bg:   #F5F4F1;
+  --card: #FFFFFF;
+  --ink:  #1A1917;
+  --gray: #6B6862;
+  --line: #E4E1DA;
+  --red:  #BE3319;
+  --dark: #171613;
+
+  --body: #44423D;
+
+  --sans: "Schibsted Grotesk", "Zen Kaku Gothic New", system-ui, -apple-system, sans-serif;
+  --wrap: 1160px;
+  --gap:  16px;
+}

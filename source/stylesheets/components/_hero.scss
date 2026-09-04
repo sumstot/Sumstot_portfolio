@@ -1,0 +1,34 @@
+.hero {
+  padding: 84px 0 76px;
+
+  h1 {
+    font-size: clamp(40px, 6.4vw, 78px);
+    max-width: bento-span(4);
+    // Widening the measure did not fix the rag -- it broke the same way with
+    // more room. The rag is a wrapping problem, so solve it as one.
+    text-wrap: balance;
+    margin-bottom: 30px;
+
+    // The second sentence drops back in weight of attention, not font weight.
+    em { font-style: normal; color: var(--gray); }
+  }
+
+  .lede {
+    font-size: clamp(17px, 1.7vw, 20px);
+    color: var(--gray);
+    // Four columns, same as the headline: the hero resolves to one right edge
+    // rather than a stagger, and that edge is the bento's only internal
+    // gridline. Wide for a reading measure, but the lede is four lines.
+    max-width: bento-span(4);
+    // Keeps "ramen." from ending the paragraph alone, and evens the rag.
+    // The Kengaku Cloud product name is held together by a non-breaking
+    // space in the copy rather than by white-space: nowrap here, so that
+    // pretty optimises the paragraph with the name already an atom instead
+    // of splitting it and then being argued with. nowrap also spikes line
+    // one well past the others, which is a worse rag than the split was.
+    text-wrap: pretty;
+    margin-bottom: 34px;
+
+    strong { color: var(--ink); font-weight: 500; }
+  }
+}

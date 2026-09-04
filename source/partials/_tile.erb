@@ -1,0 +1,108 @@
+<%
+  id     = project["id"]
+  type   = project["type"]
+  span   = tile_span_class(project["span"], project["row_span"])
+  scope  = "projects.#{id}"
+  title  = t("#{scope}.title", default: "")
+  url    = project["url"]
+
+  # The subtitle used to be a Japanese string from data/projects.yml joined
+  # onto the English one, so the English page carried a line its reader could
+  # not read. They are translations now -- each page gets one, in its own
+  # language. The JP face has to be asked for by class; nothing keys off
+  # <html lang>.
+  sub    = t("#{scope}.subtitle", default: nil)
+  sub_jp = I18n.locale == :ja ? " jp" : ""
+%>
+<% if type == "project" %>
+  <%= tile_open(span, url) %>
+    <% if project["screenshot"] %>
+      <div class="shot">
+        <%= image_tag project["screenshot"], alt: t("#{scope}.screenshot_alt", default: "") %>
+      </div>
+    <% end %>
+    <%= tile_heading(title, url) %>
+    <div class="sub<%= sub_jp %>"><%= sub %></div>
+    <p><%= t("#{scope}.body") %></p>
+    <%# I18n reads an Array default as a list of fallback keys, so ask for nil. %>
+    <% built = Array(t("#{scope}.built", default: nil)) %>
+    <% if built.any? %>
+      <ul class="built">
+        <% built.each do |item| %>
+          <li><%= item %></li>
+        <% end %>
+      </ul>
+    <% end %>
+    <% if project["stack"] %>
+      <div class="stackline"><%= tag_japanese(project["stack"]) %></div>
+    <% end %>
+  <%= tile_close(url) %>
+
+<% elsif type == "link" %>
+  <a class="tile <%= span %>" href="<%= url %>" target="_blank" rel="noopener">
+    <h3><%= title %></h3>
+    <div class="sub<%= sub_jp %>"><%= sub %></div>
+    <p><%= t("#{scope}.body") %></p>
+    <div class="go"><%= bare_url(url) %></div>
+  </a>
+
+<% elsif type == "portrait" %>
+  <div class="tile portrait <%= span %>">
+    <div class="fallback" aria-hidden="true">SU</div>
+    <%= image_tag project["image"], alt: t("#{scope}.alt") %>
+    <div class="cap"><%= t("#{scope}.caption") %></div>
+  </div>
+
+<% elsif type == "now" %>
+  <div class="tile <%= span %>">
+    <h3><%= title %></h3>
+    <div class="sub<%= sub_jp %>"><%= sub %></div>
+    <%# The label rides on the list so live.js can build the row from nothing
+        when the build had no book to show. %>
+    <ul class="now" data-reading-label="<%= t("#{scope}.reading_label") %>" data-reading-note="<%= t("#{scope}.reading_note") %>">
+      <% t("#{scope}.items").each do |item| %>
+        <li><b><%= item[:label] %></b><%= item[:value] %></li>
+      <% end %>
+      <% if (book = current_book) %>
+        <li data-reading>
+          <b><%= t("#{scope}.reading_label") %></b>
+          <% if book["link"] %><a class="txtlink" href="<%= book["link"] %>" target="_blank" rel="noopener"><%= book["title"] %></a><% else %><%= book["title"] %><% end %><%= " — #{book['author']}" if book["author"] %>
+          <span class="now-src"><%= t("#{scope}.reading_note") %></span>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+<% elsif type == "ramen" %>
+  <div class="tile <%= span %>">
+    <div class="rr-top">
+      <div>
+        <h3><%= title %></h3>
+        <div class="sub<%= sub_jp %>"><%= sub %></div>
+        <p><%= t("#{scope}.body") %></p>
+        <a class="txtlink" href="<%= url %>" target="_blank" rel="noopener"><%= bare_url(url) %></a>
+      </div>
+      <div class="rr-nums">
+        <div>
+          <strong data-review-count><%= reviews_count %></strong>
+          <span><%= t("#{scope}.stats.reviews") %></span>
+        </div>
+        <div>
+          <strong><%= data.site.ramen_ranger.since %></strong>
+          <span><%= t("#{scope}.stats.since") %></span>
+        </div>
+        <div>
+          <strong>Rails 8</strong>
+          <span><%= t("#{scope}.stats.stack") %></span>
+        </div>
+      </div>
+    </div>
+
+    <%= partial "partials/review_feed" %>
+
+    <p class="feed-note">
+      <span><%= t("#{scope}.feed_note") %></span>
+      <a href="<%= data.site.ramen_ranger.reviews_url %>" target="_blank" rel="noopener"><%= t("#{scope}.feed_link") %></a>
+    </p>
+  </div>
+<% end %>

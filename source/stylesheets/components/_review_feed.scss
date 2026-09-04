@@ -1,0 +1,136 @@
+// The feed lives inside the Ramen Ranger tile rather than in a section of its
+// own — the live data reads as evidence for the tile, not as decoration.
+.rr-top {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 34px;
+
+  > div:first-child {
+    flex: 1 1 420px;
+    min-width: 0;
+    max-width: 52ch;
+  }
+}
+
+.rr-nums {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px 40px;
+  align-items: flex-start;
+
+  strong {
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: -.04em;
+    line-height: 1;
+  }
+
+  div span {
+    display: block;
+    font-size: 13.5px;
+    color: var(--gray);
+    margin-top: 2px;
+    max-width: 16ch;
+  }
+}
+
+// The hairline sits on the wrapper so it stays at the tile's content width
+// while the row itself hangs 20px past it on both sides. That lets every card
+// carry the same left and right padding — otherwise the first card is a gutter
+// wider than the others and `aspect-ratio` makes its thumbnail taller too.
+.feed-wrap {
+  min-width: 0;
+  border-top: 1px solid var(--line);
+}
+
+.feed {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  min-width: 0;
+  margin: 0 -20px;
+}
+
+.rev {
+  padding: 22px 20px 20px;
+  text-decoration: none;
+  color: inherit;
+  border-right: 1px solid var(--line);
+  transition: background .15s;
+
+  &:last-child { border-right: 0; }
+  &:hover { background: #FAF9F6; }
+
+  .thumb {
+    position: relative;
+    // Matches the crop theramenranger.com shoots and stores at.
+    aspect-ratio: 4 / 5;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #EAE7E0;
+    margin-bottom: 14px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .35s ease;
+    }
+  }
+
+  &:hover .thumb img { transform: scale(1.04); }
+
+  .score {
+    font-size: 40px;
+    font-weight: 600;
+    letter-spacing: -.045em;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+
+  .shop {
+    font-weight: 500;
+    font-size: 15.5px;
+    line-height: 1.25;
+    margin-bottom: 2px;
+  }
+
+  .shopjp {
+    font-size: 13px;
+    color: var(--gray);
+    margin-bottom: 12px;
+  }
+
+  .dish {
+    font-size: 13.5px;
+    color: #55524C;
+    line-height: 1.45;
+    // Soup names are stored lowercase; the "×" between them reads as a word
+    // break, so each term capitalises: "tonkotsu × gyokai" -> "Tonkotsu × Gyokai".
+    text-transform: capitalize;
+  }
+
+  .when {
+    font-size: 13px;
+    color: var(--gray);
+    margin-top: 12px;
+  }
+}
+
+// The one piece of data that earns red. live.js applies the same 4.5 cutoff.
+.hi { color: var(--red); }
+
+.feed-note {
+  font-size: 14.5px;
+  color: var(--gray);
+  margin-top: 20px;
+
+  a {
+    color: var(--red);
+    text-decoration: none;
+    font-weight: 500;
+  }
+}

@@ -1,14 +1,13 @@
-// Graphical variables
-@import "config/fonts";
-@import "config/colors";
-@import "config/bootstrap_variables";
+// Tokens and base
+@import "config/tokens";
+@import "config/base";
 
-// External libraries
-// imported in the head
-
-// Your CSS partials
-@import "components/index";
-@import "pages/index";
-@import "components/stacks";
-@import "components/projects";
-@import 'components/chatbot';
+// Components
+@import "components/nav";
+@import "components/hero";
+@import "components/bento";
+@import "components/tile";
+@import "components/review_feed";
+@import "components/stack";
+@import "components/contact";
+@import "components/responsive";

@@ -1,0 +1,50 @@
+.contact {
+  background: var(--dark);
+  color: #F2F0EC;
+  margin-top: 84px;
+  padding: 88px 0 40px;
+
+  h2 {
+    font-size: clamp(30px, 4.6vw, 54px);
+    max-width: 16ch;
+    margin-bottom: 22px;
+  }
+
+  p {
+    color: #9C978D;
+    max-width: 50ch;
+    margin-bottom: 34px;
+    font-size: 17px;
+  }
+
+  // Buttons always invert against their background — dark on the light
+  // sections, cream here. A vermilion fill this large stops reading as an
+  // accent and starts reading as orange.
+  .btn {
+    background: #F2F0EC;
+    color: var(--dark);
+
+    &:hover { background: #fff; }
+  }
+
+  // #38352F was 1.48:1 against the dark ground -- a smudge rather than a rule.
+  // --gray reaches 3.26:1 here and still sits below the link text's 6.23.
+  .txtlink {
+    color: #9C978D;
+    border-bottom-color: var(--gray);
+
+    &:hover { color: #fff; }
+  }
+}
+
+.foot {
+  margin-top: 70px;
+  padding-top: 24px;
+  border-top: 1px solid #2B2823;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-size: 14.5px;
+  color: #847F76;
+}
