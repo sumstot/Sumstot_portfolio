@@ -139,13 +139,13 @@ helpers do
     url.to_s.sub(%r{\Ahttps?://}, "").chomp("/")
   end
 
-  # The review cards are only a few hundred pixels wide, so ask Netlify's
-  # edge image service for a bounded derivative instead of the full photo.
-  def review_image_url(url, width:, height: 200)
-    return "" if url.to_s.empty?
-    return url unless build?
-
-    "/.netlify/images?url=#{ERB::Util.url_encode(url)}&w=#{width}&h=#{height}&fit=cover&q=72"
+  # The API serves a 600x800 webp derivative of each photo (~65KB), which is
+  # already the right crop and more than enough for a card that renders at
+  # 240-320 CSS px. It is loaded straight from the origin: routing it through
+  # Netlify's edge image service instead cost a second hop that intermittently
+  # answered 403, which is what made cards come up blank until a reload.
+  def review_image_url(url)
+    url.to_s
   end
 
   # Prefill the subject so a mail client opens with something already typed.

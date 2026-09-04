@@ -85,6 +85,11 @@ module ReviewFetcher
 
     restaurant = item["restaurant"] || {}
     soup = Array(item["soup"]).map { |s| s.to_s.tr("_", " ") }
+    # The 600x800 webp derivative, falling back to the full photo on the older
+    # rows the API has no thumbnail for. The full one is ~6MB, so it is a last
+    # resort rather than the default.
+    image = item["thumbnail_url"].to_s
+    image = item["primary_image_url"].to_s if image.empty?
 
     {
       "id" => item["id"],
@@ -94,7 +99,7 @@ module ReviewFetcher
       "area" => [restaurant["city"], restaurant["prefecture"]].compact.uniq.reject(&:empty?).join(", "),
       "soup" => soup,
       "visited_on" => item["date_visited"].to_s,
-      "image_url" => item["primary_image_url"].to_s,
+      "image_url" => image,
       "url" => "#{SITE_URL}/ramen_reviews/#{item['id']}"
     }
   rescue StandardError
