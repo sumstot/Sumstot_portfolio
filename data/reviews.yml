@@ -1,5 +1,5 @@
 ---
-fetched_at: '2026-08-30T05:51:17Z'
+fetched_at: '2026-09-04T02:13:46Z'
 review_count: 264
 reviews:
 - id: 264
@@ -43,13 +43,3 @@ reviews:
   visited_on: '2026-04-30'
   image_url: https://theramenranger.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6NDU5MSwicHVyIjoiYmxvYl9pZCJ9fQ==--2495731734237e089ec904023d4d75a68f009bbe/IMG_0873.jpeg
   url: https://theramenranger.com/ramen_reviews/261
-- id: 260
-  score: 4.7
-  name: Shima Ribon
-  name_ja: シマリボン
-  area: Nabari, Mie
-  soup:
-  - shoyu
-  visited_on: '2026-04-30'
-  image_url: https://theramenranger.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6NDQyMSwicHVyIjoiYmxvYl9pZCJ9fQ==--24693e902e11bab9ffa22ec0cda735a878d61081/IMG_0864.jpeg
-  url: https://theramenranger.com/ramen_reviews/260
