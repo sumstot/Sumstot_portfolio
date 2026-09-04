@@ -1,5 +1,0 @@
-[images]
-  remote_images = [
-    'https://theramenranger\.com/.*',
-    'https://cdn\.theramenranger\.com/.*'
-  ]

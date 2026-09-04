@@ -24,11 +24,6 @@
   var MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
                 "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-  function reviewImageUrl(url, width, height) {
-    return "/.netlify/images?url=" + encodeURIComponent(url) +
-      "&w=" + width + "&h=" + height + "&fit=cover&q=72";
-  }
-
   function getJSON(url) {
     var controller = new AbortController();
     var timer = setTimeout(function () { controller.abort(); }, TIMEOUT);
@@ -91,24 +86,10 @@
     if (thumb) {
       if (review.imageUrl) {
         var image = thumb.querySelector("img");
-        image.src = reviewImageUrl(review.imageUrl, 320, 400);
-        image.srcset = [
-          reviewImageUrl(review.imageUrl, 240, 300) + " 240w",
-          reviewImageUrl(review.imageUrl, 320, 400) + " 320w",
-          reviewImageUrl(review.imageUrl, 480, 600) + " 480w"
-        ].join(", ");
+        image.src = review.imageUrl;
         image.sizes = "(max-width: 640px) 62vw, 240px";
         image.width = 320;
         image.height = 400;
-        // Mirrors the onerror in _review_card.erb. The cloned template carries
-        // the blank prototype's fallback, which points nowhere, so this card's
-        // own origin URL has to be bound here.
-        image.onerror = function () {
-          image.onerror = null;
-          image.removeAttribute("srcset");
-          image.removeAttribute("sizes");
-          image.src = review.imageUrl;
-        };
       } else {
         thumb.remove();
       }

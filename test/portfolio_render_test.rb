@@ -53,18 +53,23 @@ class PortfolioRenderTest < Minitest::Test
     end
   end
 
-  def test_review_images_use_bounded_netlify_transformations
+  # Cards load the API's original photo straight from the origin. Using the
+  # API's 3:4 thumbnail inside the existing 4:5 frame crops it a second time,
+  # making the image appear more zoomed-in than it did on main.
+  def test_review_images_load_the_original_api_image_without_changing_layout
     pages.each_value do |page|
+      # The <template> prototype carries no review, so its src is empty.
       images = page.scan(/<img\s+([^>]*class="review-thumb"[^>]*)>/).flatten
-        .select { |attributes| attributes.include?("/.netlify/images?") }
+        .reject { |attributes| attributes.include?('src=""') }
       refute_empty images
 
       images.each do |attributes|
-        assert_match %r{src="/\.netlify/images\?[^\"]*w=320}, attributes
-        assert_match %r{srcset="[^\"]*w=480}, attributes
+        assert_match %r{src="https://theramenranger\.com/rails/active_storage/blobs/}, attributes
+        refute_includes attributes, "/.netlify/images"
         assert_includes attributes, 'sizes="(max-width: 640px) 62vw, 240px"'
         assert_includes attributes, 'width="320"'
         assert_includes attributes, 'height="400"'
+        refute_includes attributes, "srcset"
       end
     end
   end

@@ -86,7 +86,6 @@ module ReviewFetcher
 
     restaurant = item["restaurant"] || {}
     soup = Array(item["soup"]).map { |s| s.to_s.tr("_", " ") }
-
     {
       "id" => item["id"],
       "score" => item["score"].to_f,

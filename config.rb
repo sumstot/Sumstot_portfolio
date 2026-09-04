@@ -139,25 +139,9 @@ helpers do
     url.to_s.sub(%r{\Ahttps?://}, "").chomp("/")
   end
 
-  # The review cards are only a few hundred pixels wide, so ask Netlify's
-  # edge image service for a bounded derivative instead of the full photo.
-  #
-  # This used to hand back the origin URL outside a build, which meant the
-  # production image path was never exercised locally -- the one path that can
-  # actually fail, since it depends on Netlify's edge reaching theramenranger
-  # through Cloudflare. Dev and production now build the same URL, and
-  # `middleman server` answers it via NetlifyImagesShim below, so the photos
-  # still render locally. Anything that goes wrong at the edge falls back to
-  # `review_image_fallback`, which is the raw origin URL.
-  def review_image_url(url, width:, height: 200)
-    return "" if url.to_s.empty?
-
-    "/.netlify/images?url=#{ERB::Util.url_encode(url)}&w=#{width}&h=#{height}&fit=cover&q=72"
-  end
-
-  # The unoptimized original, used as the <img> onerror fallback. A card with a
-  # heavy photo beats a card with a broken one.
-  def review_image_fallback(url)
+  # Load review photos straight from the API origin. Routing them through
+  # Netlify's image service intermittently returned 403 and left cards blank.
+  def review_image_url(url)
     url.to_s
   end
 
@@ -226,35 +210,6 @@ helpers do
       "#{months[month - 1]} #{day}, #{year}"
     end
   end
-end
-
-# `middleman server` has no Netlify edge behind it, so a card asking for
-# /.netlify/images would 404 locally -- exactly the dev/production split this
-# change exists to remove. Redirect the request to the origin photo instead.
-# The URL the templates emit stays identical to production; only the local
-# server's answer to it differs.
-class NetlifyImagesShim
-  PATH = "/.netlify/images".freeze
-
-  def initialize(app)
-    @app = app
-  end
-
-  def call(env)
-    return @app.call(env) unless env["PATH_INFO"] == PATH
-
-    # ::Rack, not Rack -- this class is instantiated from inside the Middleman
-    # namespace, where a bare `Rack` resolves to Middleman::Rack.
-    source = ::Rack::Utils.parse_query(env["QUERY_STRING"])["url"].to_s
-    # Rack 3 rejects header names with uppercase characters.
-    return [400, { "content-type" => "text/plain" }, ["missing url"]] if source.empty?
-
-    [302, { "location" => source, "content-type" => "text/plain" }, []]
-  end
-end
-
-configure :development do
-  use NetlifyImagesShim
 end
 
 configure :build do
