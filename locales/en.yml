@@ -46,10 +46,10 @@ en:
           separate records, separate reviewers
         - Stripe checkout with an upfront fee plus commission split
         - Generated pension forms — coordinate-mapped PDF overlays
-        - DocuSeal e-signature, staff review queue, full audit log
+        - E-signatures, staff review queues, and end-to-end audit history
         - >-
-          SQLite + Litestream on a server I run in Tokyo — data residency,
-          backups verified weekly
+          Self-managed infrastructure in Japan — data residency, automated
+          encrypted backups, and regularly tested recovery
 
     portrait:
       alt: Soren Umstot
