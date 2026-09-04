@@ -73,9 +73,7 @@
       area: area,
       soup: (item.soup || []).map(function (s) { return String(s).replace(/_/g, " "); }),
       visitedOn: item.date_visited || "",
-      // Mirrors review_fetcher.rb: the webp derivative, full photo only when
-      // the row has none.
-      imageUrl: item.thumbnail_url || item.primary_image_url || "",
+      imageUrl: item.primary_image_url || "",
       url: REVIEW_URL_BASE + item.id
     };
   }
@@ -89,8 +87,9 @@
       if (review.imageUrl) {
         var image = thumb.querySelector("img");
         image.src = review.imageUrl;
-        image.width = 600;
-        image.height = 800;
+        image.sizes = "(max-width: 640px) 62vw, 240px";
+        image.width = 320;
+        image.height = 400;
       } else {
         thumb.remove();
       }

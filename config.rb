@@ -139,18 +139,9 @@ helpers do
     url.to_s.sub(%r{\Ahttps?://}, "").chomp("/")
   end
 
-  # The API serves a 600x800 webp derivative of each photo (~65KB), which is
-  # already the right crop and more than enough for a card that renders at
-  # 240-320 CSS px. It is loaded straight from the origin: routing it through
-  # Netlify's edge image service instead cost a second hop that intermittently
-  # answered 403, which is what made cards come up blank until a reload.
+  # Load review photos straight from the API origin. Routing them through
+  # Netlify's image service intermittently returned 403 and left cards blank.
   def review_image_url(url)
-    url.to_s
-  end
-
-  # The unoptimized original, used as the <img> onerror fallback. A card with a
-  # heavy photo beats a card with a broken one.
-  def review_image_fallback(url)
     url.to_s
   end
 
@@ -219,35 +210,6 @@ helpers do
       "#{months[month - 1]} #{day}, #{year}"
     end
   end
-end
-
-# `middleman server` has no Netlify edge behind it, so a card asking for
-# /.netlify/images would 404 locally -- exactly the dev/production split this
-# change exists to remove. Redirect the request to the origin photo instead.
-# The URL the templates emit stays identical to production; only the local
-# server's answer to it differs.
-class NetlifyImagesShim
-  PATH = "/.netlify/images".freeze
-
-  def initialize(app)
-    @app = app
-  end
-
-  def call(env)
-    return @app.call(env) unless env["PATH_INFO"] == PATH
-
-    # ::Rack, not Rack -- this class is instantiated from inside the Middleman
-    # namespace, where a bare `Rack` resolves to Middleman::Rack.
-    source = ::Rack::Utils.parse_query(env["QUERY_STRING"])["url"].to_s
-    # Rack 3 rejects header names with uppercase characters.
-    return [400, { "content-type" => "text/plain" }, ["missing url"]] if source.empty?
-
-    [302, { "location" => source, "content-type" => "text/plain" }, []]
-  end
-end
-
-configure :development do
-  use NetlifyImagesShim
 end
 
 configure :build do

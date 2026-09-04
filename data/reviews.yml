@@ -1,5 +1,5 @@
 ---
-fetched_at: '2026-09-04T03:18:47Z'
+fetched_at: '2026-09-04T03:37:51Z'
 review_count: 264
 reviews:
 - id: 264
@@ -10,7 +10,7 @@ reviews:
   soup:
   - miso
   visited_on: '2026-05-17'
-  image_url: https://theramenranger.com/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsiZGF0YSI6NDc5MSwicHVyIjoiYmxvYl9pZCJ9fQ==--52d3da9eaf188dd43ca104aa5fd178a5acb1f2f8/eyJfcmFpbHMiOnsiZGF0YSI6eyJmb3JtYXQiOiJ3ZWJwIiwicmVzaXplX3RvX2ZpbGwiOls2MDAsODAwXSwic2F2ZXIiOnsicXVhbGl0eSI6NzUsInN0cmlwIjp0cnVlfX0sInB1ciI6InZhcmlhdGlvbiJ9fQ==--8bdfe9f58376b26d5f3927213175086f8108739b/IMG_1119.jpeg
+  image_url: https://theramenranger.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6NDc5MSwicHVyIjoiYmxvYl9pZCJ9fQ==--52d3da9eaf188dd43ca104aa5fd178a5acb1f2f8/IMG_1119.jpeg
   url: https://theramenranger.com/ramen_reviews/264
 - id: 263
   score: 3.7
@@ -21,7 +21,7 @@ reviews:
   - tantanmen
   - mazesoba
   visited_on: '2026-05-15'
-  image_url: https://theramenranger.com/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsiZGF0YSI6NDc0OSwicHVyIjoiYmxvYl9pZCJ9fQ==--8f29cb60e31fdb291db0fc9362bbaffaaf0ce075/eyJfcmFpbHMiOnsiZGF0YSI6eyJmb3JtYXQiOiJ3ZWJwIiwicmVzaXplX3RvX2ZpbGwiOls2MDAsODAwXSwic2F2ZXIiOnsicXVhbGl0eSI6NzUsInN0cmlwIjp0cnVlfX0sInB1ciI6InZhcmlhdGlvbiJ9fQ==--8bdfe9f58376b26d5f3927213175086f8108739b/IMG_1085.jpeg
+  image_url: https://theramenranger.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6NDc0OSwicHVyIjoiYmxvYl9pZCJ9fQ==--8f29cb60e31fdb291db0fc9362bbaffaaf0ce075/IMG_1085.jpeg
   url: https://theramenranger.com/ramen_reviews/263
 - id: 262
   score: 4.2
@@ -31,7 +31,7 @@ reviews:
   soup:
   - iekei
   visited_on: '2026-05-13'
-  image_url: https://theramenranger.com/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsiZGF0YSI6NDY2MiwicHVyIjoiYmxvYl9pZCJ9fQ==--164c51addcc8404162a2d376d9b8d2479649b84e/eyJfcmFpbHMiOnsiZGF0YSI6eyJmb3JtYXQiOiJ3ZWJwIiwicmVzaXplX3RvX2ZpbGwiOls2MDAsODAwXSwic2F2ZXIiOnsicXVhbGl0eSI6NzUsInN0cmlwIjp0cnVlfX0sInB1ciI6InZhcmlhdGlvbiJ9fQ==--8bdfe9f58376b26d5f3927213175086f8108739b/IMG_1059.JPG
+  image_url: https://theramenranger.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6NDY2MiwicHVyIjoiYmxvYl9pZCJ9fQ==--164c51addcc8404162a2d376d9b8d2479649b84e/IMG_1059.JPG
   url: https://theramenranger.com/ramen_reviews/262
 - id: 261
   score: 4.3
@@ -41,15 +41,5 @@ reviews:
   soup:
   - tonkotsu
   visited_on: '2026-04-30'
-  image_url: https://theramenranger.com/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsiZGF0YSI6NDU5MSwicHVyIjoiYmxvYl9pZCJ9fQ==--2495731734237e089ec904023d4d75a68f009bbe/eyJfcmFpbHMiOnsiZGF0YSI6eyJmb3JtYXQiOiJ3ZWJwIiwicmVzaXplX3RvX2ZpbGwiOls2MDAsODAwXSwic2F2ZXIiOnsicXVhbGl0eSI6NzUsInN0cmlwIjp0cnVlfX0sInB1ciI6InZhcmlhdGlvbiJ9fQ==--8bdfe9f58376b26d5f3927213175086f8108739b/IMG_0873.jpeg
+  image_url: https://theramenranger.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6NDU5MSwicHVyIjoiYmxvYl9pZCJ9fQ==--2495731734237e089ec904023d4d75a68f009bbe/IMG_0873.jpeg
   url: https://theramenranger.com/ramen_reviews/261
-- id: 260
-  score: 4.7
-  name: Shima Ribon
-  name_ja: シマリボン
-  area: Nabari, Mie
-  soup:
-  - shoyu
-  visited_on: '2026-04-30'
-  image_url: https://theramenranger.com/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsiZGF0YSI6NDQyMSwicHVyIjoiYmxvYl9pZCJ9fQ==--24693e902e11bab9ffa22ec0cda735a878d61081/eyJfcmFpbHMiOnsiZGF0YSI6eyJmb3JtYXQiOiJ3ZWJwIiwicmVzaXplX3RvX2ZpbGwiOls2MDAsODAwXSwic2F2ZXIiOnsicXVhbGl0eSI6NzUsInN0cmlwIjp0cnVlfX0sInB1ciI6InZhcmlhdGlvbiJ9fQ==--8bdfe9f58376b26d5f3927213175086f8108739b/IMG_0864.jpeg
-  url: https://theramenranger.com/ramen_reviews/260
