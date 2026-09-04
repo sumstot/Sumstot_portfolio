@@ -80,7 +80,7 @@ function parse(xml) {
       return prune({
         title,
         author: tag(item, "author_name"),
-        link: tag(item, "link"),
+        link: bookUrl(tag(item, "book_id")),
         cover: tag(item, "book_large_image_url") ||
                tag(item, "book_medium_image_url") ||
                tag(item, "book_small_image_url"),
@@ -88,6 +88,12 @@ function parse(xml) {
       });
     })
     .filter(Boolean);
+}
+
+// The feed's <link> is the owner's private review page. The book ID points to
+// the public page that anonymous Goodreads visitors can open.
+function bookUrl(id) {
+  return id ? `https://www.goodreads.com/book/show/${id}` : null;
 }
 
 function tag(item, name) {
