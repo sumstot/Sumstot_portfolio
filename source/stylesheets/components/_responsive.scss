@@ -6,7 +6,7 @@
   .feed { grid-template-columns: repeat(2, 1fr); }
   .rev { border-bottom: 1px solid var(--line); border-right: 1px solid var(--line); }
   .rev:nth-child(2n) { border-right: 0; }
-  .rev:nth-last-child(-n+1) { border-bottom: 0; }
+  .rev:nth-last-child(-n+2) { border-bottom: 0; }
 
   .cols { grid-template-columns: repeat(2, 1fr); }
 
@@ -59,7 +59,7 @@
 
   .hero { padding: 44px 0 52px; }
 
-  // Five stacked cards is a long scroll on a phone, so the feed swipes
+  // Four stacked cards is a long scroll on a phone, so the feed swipes
   // sideways instead. Card widths are set in vw so the next one peeks in and
   // the row reads as scrollable without a scrollbar or an affordance label.
   .feed {
