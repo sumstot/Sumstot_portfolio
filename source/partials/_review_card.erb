@@ -15,7 +15,12 @@
            src="<%= review_image_url(review["image_url"], width: 320, height: 400) %>"
            srcset="<%= review_image_url(review["image_url"], width: 240, height: 300) %> 240w, <%= review_image_url(review["image_url"], width: 320, height: 400) %> 320w, <%= review_image_url(review["image_url"], width: 480, height: 600) %> 480w"
            sizes="(max-width: 640px) 62vw, 240px"
-           width="320" height="400" alt="" loading="lazy" decoding="async">
+           width="320" height="400" alt="" loading="lazy" decoding="async"
+           <%# If the edge cannot produce a derivative -- the origin moved the
+               blob, or Cloudflare refused that Netlify region -- drop to the
+               original photo rather than showing a broken image. Clearing
+               onerror first stops a loop if the origin is down too. %>
+           onerror="this.onerror=null;this.removeAttribute('srcset');this.removeAttribute('sizes');this.src='<%= review_image_fallback(review["image_url"]) %>'">
     </div>
   <% end %>
   <div class="score<%= " hi" if review["score"].to_f >= 4.5 %>">

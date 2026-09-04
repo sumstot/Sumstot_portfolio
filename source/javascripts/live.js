@@ -97,6 +97,15 @@
         image.sizes = "(max-width: 640px) 62vw, 240px";
         image.width = 320;
         image.height = 400;
+        // Mirrors the onerror in _review_card.erb. The cloned template carries
+        // the blank prototype's fallback, which points nowhere, so this card's
+        // own origin URL has to be bound here.
+        image.onerror = function () {
+          image.onerror = null;
+          image.removeAttribute("srcset");
+          image.removeAttribute("sizes");
+          image.src = review.imageUrl;
+        };
       } else {
         thumb.remove();
       }
