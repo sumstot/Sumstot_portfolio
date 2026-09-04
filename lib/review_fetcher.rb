@@ -15,7 +15,8 @@ require "time"
 module ReviewFetcher
   API_URL   = "https://theramenranger.com/api/v1/ramen_reviews"
   SITE_URL  = "https://theramenranger.com"
-  LIMIT     = 5
+  # Even, so the two-column layout at the 1000px breakpoint has no orphan row.
+  LIMIT     = 4
   TIMEOUT   = 8
   ROOT      = File.expand_path("..", __dir__)
   DATA_PATH = File.join(ROOT, "data", "reviews.yml")

@@ -1,6 +1,6 @@
 <div class="feed-wrap">
   <div class="feed">
-    <% (data.reviews["reviews"] || []).first(5).each do |review| %>
+    <% (data.reviews["reviews"] || []).first(4).each do |review| %>
       <%= partial "partials/review_card", locals: { review: review } %>
     <% end %>
   </div>

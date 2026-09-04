@@ -11,10 +11,13 @@
 (function () {
   "use strict";
 
-  var REVIEWS_URL = "https://theramenranger.com/api/v1/ramen_reviews?limit=5";
+  var REVIEWS_URL = "https://theramenranger.com/api/v1/ramen_reviews?limit=4";
   var READING_URL = "/api/reading"; // Netlify function; holds the feed key
   var REVIEW_URL_BASE = "https://theramenranger.com/ramen_reviews/";
-  var LIMIT = 5;
+  // Four, not five: the count has to be even or the two-column layout at the
+  // 1000px breakpoint leaves a dangling card, and four across leaves each
+  // thumbnail wide enough to carry the card.
+  var LIMIT = 4;
   var TIMEOUT = 5000;
 
   var JA = document.documentElement.lang === "ja";
