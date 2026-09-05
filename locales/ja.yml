@@ -62,7 +62,7 @@ ja:
         reviews: レビュー
         since: 記録開始
         stack: Turbo・Kamal・Hetzner
-      feed_note: 自作APIの最新5件を表示し、取得できない場合はビルド時のデータを使います。
+      feed_note: 自作APIの最新4件を表示し、取得できない場合はビルド時のデータを使います。
       feed_link: レビュー一覧を見る
 
     kengaku:
