@@ -8,14 +8,14 @@
   // move to the front -- ahead of the Work heading too, which belongs to the
   // projects, not to the photo. The heading lives outside the bento, so the
   // bento dissolves and its tiles become siblings the heading can sit between.
-  #work .wrap {
+  .work .wrap {
     display: flex;
     flex-direction: column;
     gap: var(--gap);
   }
 
-  #work .bento { display: contents; }
-  #work .head { margin: 34px 0 10px; }
+  .work .bento { display: contents; }
+  .work .head { margin: 34px 0 10px; }
 
   .portrait, .about { order: -1; }
 
