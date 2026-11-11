@@ -195,7 +195,7 @@
       var label = document.createElement("b");
       label.textContent = list.getAttribute("data-reading-label");
 
-      // The title links to its Goodreads page when the feed carried one.
+      // The title links to its Goodreads page when the source carried one.
       // .txtlink matches the built markup and keeps the underline the bare
       // <a> reset drops. textContent / explicit nodes throughout: the title
       // and author are third-party strings.

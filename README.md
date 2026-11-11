@@ -53,10 +53,11 @@ The two sources reach the browser differently:
   it. No key is involved, which is the point — a key in frontend JavaScript
   would not be a secret.
 - **Goodreads** cannot be called directly: `goodreads.com` sends no CORS header
-  and is not ours to change, and the feed URL carries a `key` parameter that
-  would be public in page source. `netlify/functions/reading.mjs` fetches and
-  parses it server side and serves JSON from `/api/reading`, same-origin and
-  cached for 15 minutes.
+  and is not ours to change. There is no API (retired 2020) and no RSS
+  (retired 2026-10-28), and shelf pages need a login, so the source is the
+  public currently-reading shelf widget (`/review/custom_widget/<user id>`).
+  `netlify/functions/reading.mjs` fetches and parses it server side and serves
+  JSON from `/api/reading`, same-origin and cached for 15 minutes.
 
 Environment variables, set locally in `.env` (copy `.env.example`; gitignored)
 and on Netlify under Site settings → Environment variables:
@@ -64,7 +65,6 @@ and on Netlify under Site settings → Environment variables:
 - `RAMEN_RANGER_API_KEY` — build-time only, sent as `Authorization: Bearer`.
   The endpoint the browser uses needs no key; this one still authenticates the
   build's fetch.
-- `GOODREADS_RSS_URL` — read at build time and by the Netlify function.
 
 Commands:
 

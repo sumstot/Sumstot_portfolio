@@ -2,32 +2,34 @@ require "net/http"
 require "uri"
 require "yaml"
 require "time"
-require "rexml/document"
+require "cgi"
 
-# Pulls the current book from a Goodreads shelf RSS feed and writes it to
+# Pulls the current book from Goodreads' public shelf widget and writes it to
 # data/reading.yml.
 #
-# Goodreads retired its API in December 2020; the per-shelf RSS feeds are what
-# survived. They are undocumented and unversioned, so treat them as something
-# that can disappear without notice — a failed fetch leaves the committed
-# data/reading.yml alone, and the tile falls back to the static list.
+# Goodreads retired its API in December 2020 and the per-shelf RSS feeds on
+# 2026-10-28 (every /review/list_rss/ URL now 404s); the shelf pages themselves
+# redirect signed-out visitors to a login. The embeddable widget is what is
+# left. It is a script that document.write()s an HTML snippet, undocumented
+# and unversioned, so treat it as something that can disappear without notice
+# — a failed fetch leaves the committed data/reading.yml alone, and the tile
+# falls back to the static list.
 #
-# Set GOODREADS_RSS_URL to the feed linked at the bottom of the shelf page
-# (it usually carries a `key` parameter; copy it verbatim).
+# The widget is public and needs no key, so the user ID lives here rather than
+# in the environment.
 module ReadingFetcher
-  ENV_KEY   = "GOODREADS_RSS_URL"
-  TIMEOUT   = 8
-  ROOT      = File.expand_path("..", __dir__)
-  DATA_PATH = File.join(ROOT, "data", "reading.yml")
+  USER_ID    = "92203084"
+  WIDGET_URL = "https://www.goodreads.com/review/custom_widget/#{USER_ID}" \
+               "?shelf=currently-reading&num_books=5&widget_id=".freeze
+  TIMEOUT    = 8
+  ROOT       = File.expand_path("..", __dir__)
+  DATA_PATH  = File.join(ROOT, "data", "reading.yml")
 
   module_function
 
-  # Returns :updated, :unchanged, :skipped, or :failed. Never raises.
+  # Returns :updated, :unchanged, or :failed. Never raises.
   def refresh
-    url = ENV[ENV_KEY].to_s.strip
-    return :skipped if url.empty?
-
-    body = fetch(url)
+    body = fetch(widget_url)
     return :failed if body.nil?
 
     books = parse(body)
@@ -47,6 +49,13 @@ module ReadingFetcher
     end
   end
 
+  # Goodreads caches each widget by user and widget_id and serves the first
+  # render for that pair, whatever the other parameters say. A fixed id would
+  # pin the shelf as it was on the first fetch, so every request gets a new one.
+  def widget_url
+    "#{WIDGET_URL}#{Time.now.to_i}"
+  end
+
   def fetch(url, redirects = 3)
     uri = URI(url)
     response = Net::HTTP.start(
@@ -59,7 +68,7 @@ module ReadingFetcher
     end
 
     unless response.is_a?(Net::HTTPSuccess)
-      warn "[reading] #{response.code} from Goodreads — check #{ENV_KEY}"
+      warn "[reading] #{response.code} from the Goodreads widget"
       return nil
     end
 
@@ -69,22 +78,21 @@ module ReadingFetcher
     nil
   end
 
-  # Goodreads puts its own unnamespaced elements inside each <item>, and wraps
-  # the cover markup in <description>. Only the fields we render are kept.
+  # The HTML sits inside a single-quoted JavaScript string, so it arrives with
+  # \" \' \/ and \n escapes. Each book is a gr_custom_each_container div; only
+  # the fields we render are kept.
   def parse(body)
-    doc = REXML::Document.new(body)
-    doc.elements.to_a("//item").filter_map do |item|
-      title = text(item, "title")
-      next if title.to_s.empty?
+    html = body.to_s.gsub(/\\n/, "\n").gsub(/\\(["'\/])/, '\1')
+    html.split(/<div class="gr_custom_each_container/).drop(1).filter_map do |item|
+      title = anchor_text(item, "gr_custom_title")
+      next if title.nil?
 
+      cover = item[/<img [^>]*src="([^"]+)"/, 1]
       {
         "title" => title,
-        "author" => text(item, "author_name"),
-        "link" => book_url(text(item, "book_id")),
-        "cover" => text(item, "book_large_image_url") ||
-                   text(item, "book_medium_image_url") ||
-                   text(item, "book_small_image_url"),
-        "started_on" => date(text(item, "user_date_added"))
+        "author" => anchor_text(item, "gr_custom_author"),
+        "link" => book_url(cover),
+        "cover" => full_size(cover)
       }.compact
     end
   rescue StandardError => e
@@ -92,26 +100,26 @@ module ReadingFetcher
     []
   end
 
-  # The feed's <link> is the private review page (/review/show/…), which 404s
-  # for anyone not logged in as me. <book_id> gives the public book page.
-  def book_url(id)
-    id && "https://www.goodreads.com/book/show/#{id}"
-  end
-
-  def text(item, name)
-    node = item.elements[name]
-    return nil unless node
-
-    value = node.text.to_s.strip
+  # Text of the first link inside the div whose class starts with `name`.
+  # Goodreads pads author names with runs of spaces ("Xiao     Hai").
+  def anchor_text(item, name)
+    raw = item[/<div class="#{name}[^"]*">.*?<a [^>]*>(.*?)<\/a>/m, 1]
+    value = CGI.unescapeHTML(raw.to_s).gsub(/\s+/, " ").strip
     value.empty? ? nil : value
   end
 
-  def date(value)
-    return nil unless value
+  # The widget links to the private review page (/review/show/…), which 404s
+  # for anyone not logged in as me. The book ID is the cover file's name
+  # (…/books/1787643091l/257458411._SY75_.jpg), and gives the public page.
+  # Books without a cover get the nophoto image, and so no link.
+  def book_url(cover)
+    id = cover.to_s[%r{/books/\d+\w/(\d+)}, 1]
+    id && "https://www.goodreads.com/book/show/#{id}"
+  end
 
-    Time.parse(value).strftime("%Y-%m-%d")
-  rescue StandardError
-    nil
+  # Drop the ._SY75_ thumbnail suffix to get the full-size image.
+  def full_size(cover)
+    cover&.sub(/\._S[XY]\d+_(?=\.\w+\z)/, "")
   end
 
   def existing

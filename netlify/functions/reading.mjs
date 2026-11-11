@@ -1,32 +1,39 @@
-// Serves the current book from the Goodreads shelf RSS feed as JSON.
+// Serves the current book from Goodreads' public shelf widget as JSON.
 //
-// The page cannot read that feed itself. goodreads.com sends no
+// The page cannot read the widget itself: goodreads.com sends no
 // Access-Control-Allow-Origin header, and unlike the Ramen Ranger API it is
 // not ours to change, so the browser refuses the response no matter how the
-// request is made. The feed URL also carries a `key` parameter that would
-// become public the moment it appeared in page source. Both problems go away
-// by fetching it here: the key stays in the environment, and the response is
-// same-origin, so no CORS is involved at all.
+// request is made. Fetching it here makes the response same-origin, so no
+// CORS is involved at all. (The widget is a script that document.write()s its
+// HTML, so it could be embedded directly, but that would replace the site's
+// own markup with Goodreads'.)
+//
+// Goodreads retired the shelf RSS feeds this used to read on 2026-10-28, and
+// shelf pages now redirect signed-out visitors to a login; the widget is the
+// public source left.
 //
 // Shape matches data/reading.yml, which lib/reading_fetcher.rb writes at build
 // time, so the client treats the two interchangeably.
-const RSS_URL = "GOODREADS_RSS_URL";
+const USER_ID = "92203084";
+const WIDGET_URL =
+  `https://www.goodreads.com/review/custom_widget/${USER_ID}` +
+  "?shelf=currently-reading&num_books=5&widget_id=";
 const TIMEOUT = 8000;
 const CACHE_SECONDS = 900;
 
 export default async () => {
-  const url = (process.env[RSS_URL] || "").trim();
-  if (!url) return fail(`${RSS_URL} is not set`, 503);
-
-  let xml;
+  let body;
   try {
-    xml = await fetchFeed(url);
+    // Goodreads caches each widget by user and widget_id and serves the first
+    // render for that pair, whatever the other parameters say. A fixed id would
+    // pin the shelf as it was on the first fetch, so every request gets a new one.
+    body = await fetchWidget(WIDGET_URL + Date.now());
   } catch (error) {
     return fail(`fetch failed: ${error.message}`, 502);
   }
 
-  const books = parse(xml);
-  if (!books.length) return fail("no items in the feed", 502);
+  const books = parse(body);
+  if (!books.length) return fail("no books in the widget", 502);
 
   return new Response(
     JSON.stringify({ fetched_at: new Date().toISOString(), books }),
@@ -53,7 +60,7 @@ const fail = (message, status) =>
     }
   });
 
-async function fetchFeed(url) {
+async function fetchWidget(url) {
   const response = await fetch(url, {
     signal: AbortSignal.timeout(TIMEOUT),
     headers: { "user-agent": "sorenumstot.com" },
@@ -64,42 +71,56 @@ async function fetchFeed(url) {
   return response.text();
 }
 
-// Goodreads puts its own unnamespaced elements inside each <item> and wraps
-// most values in CDATA. Mirrors ReadingFetcher.parse; only the rendered fields
-// are kept. Regex rather than an XML parser: Node ships none, the shape is
-// fixed, and a dependency here would need bundling into the function.
-function parse(xml) {
-  return String(xml)
-    .split("<item>")
+// The HTML sits inside a single-quoted JavaScript string, so it arrives with
+// \" \' \/ and \n escapes. Each book is a gr_custom_each_container div.
+// Mirrors ReadingFetcher.parse; only the rendered fields are kept. Regex
+// rather than an HTML parser: Node ships none, the shape is fixed, and a
+// dependency here would need bundling into the function.
+function parse(body) {
+  const html = String(body)
+    .replace(/\\n/g, "\n")
+    .replace(/\\(["'\/])/g, "$1");
+
+  return html
+    .split('<div class="gr_custom_each_container')
     .slice(1)
-    .map((chunk) => chunk.split("</item>")[0])
     .map((item) => {
-      const title = tag(item, "title");
+      const title = anchorText(item, "gr_custom_title");
       if (!title) return null;
 
+      const cover = (item.match(/<img [^>]*src="([^"]+)"/) || [])[1];
       return prune({
         title,
-        author: tag(item, "author_name"),
-        link: tag(item, "link"),
-        cover: tag(item, "book_large_image_url") ||
-               tag(item, "book_medium_image_url") ||
-               tag(item, "book_small_image_url"),
-        started_on: date(tag(item, "user_date_added"))
+        author: anchorText(item, "gr_custom_author"),
+        link: bookUrl(cover),
+        cover: fullSize(cover)
       });
     })
     .filter(Boolean);
 }
 
-function tag(item, name) {
-  const match = item.match(new RegExp(`<${name}>([\\s\\S]*?)</${name}>`));
+// Text of the first link inside the div whose class starts with `name`.
+// Goodreads pads author names with runs of spaces ("Xiao     Hai").
+function anchorText(item, name) {
+  const match = item.match(
+    new RegExp(`<div class="${name}[^"]*">[\\s\\S]*?<a [^>]*>([\\s\\S]*?)</a>`)
+  );
   if (!match) return null;
 
-  let value = match[1].trim();
-  const cdata = value.match(/^<!\[CDATA\[([\s\S]*?)\]\]>$/);
-  if (cdata) value = cdata[1].trim();
-
-  return decode(value) || null;
+  return decode(match[1]).replace(/\s+/g, " ").trim() || null;
 }
+
+// The widget links to the private review page (/review/show/…), which 404s
+// for anyone not logged in as me. The book ID is the cover file's name
+// (…/books/1787643091l/257458411._SY75_.jpg), and gives the public page.
+// Books without a cover get the nophoto image, and so no link.
+function bookUrl(cover) {
+  const id = (String(cover || "").match(/\/books\/\d+\w\/(\d+)/) || [])[1];
+  return id ? `https://www.goodreads.com/book/show/${id}` : null;
+}
+
+// Drop the ._SY75_ thumbnail suffix to get the full-size image.
+const fullSize = (cover) => cover && cover.replace(/\._S[XY]\d+_(?=\.\w+$)/, "");
 
 function decode(value) {
   return value
@@ -109,13 +130,6 @@ function decode(value) {
     .replace(/&#0?39;|&apos;/g, "'")
     .replace(/&#(\d+);/g, (_, code) => String.fromCharCode(Number(code)))
     .replace(/&amp;/g, "&"); // last, so &amp;lt; does not become <
-}
-
-function date(value) {
-  if (!value) return null;
-
-  const parsed = new Date(value);
-  return Number.isNaN(parsed.getTime()) ? null : parsed.toISOString().slice(0, 10);
 }
 
 const prune = (object) =>
