@@ -31,6 +31,6 @@
     <div class="dish"><%= Array(review["soup"]).join(" × ") %></div>
   <% end %>
   <div class="when">
-    <%= review["area"] %><%= " · " if review["area"].to_s != "" %><%= review_date(review["visited_on"]) %>
+    <%= review["area"] %><%= " · " if review["area"].to_s != "" %><%= review_date(review["posted_on"]) %>
   </div>
 </a>

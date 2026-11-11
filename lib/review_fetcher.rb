@@ -93,12 +93,21 @@ module ReviewFetcher
       "name_ja" => restaurant["jpn_name"].to_s,
       "area" => [restaurant["city"], restaurant["prefecture"]].compact.uniq.reject(&:empty?).join(", "),
       "soup" => soup,
-      "visited_on" => item["date_visited"].to_s,
+      "posted_on" => posted_on(item),
       "image_url" => item["primary_image_url"].to_s,
       "url" => "#{SITE_URL}/ramen_reviews/#{item['id']}"
     }
   rescue StandardError
     nil
+  end
+
+  # The day the review went up, as a Japan date: created_at is UTC, and a
+  # review posted at 08:00 JST would otherwise show the day before. The visit
+  # date can trail the post by months, so it is only the fallback.
+  def posted_on(item)
+    Time.parse(item["created_at"].to_s).getlocal("+09:00").strftime("%Y-%m-%d")
+  rescue ArgumentError
+    item["date_visited"].to_s
   end
 
   def existing
@@ -107,6 +116,15 @@ module ReviewFetcher
     YAML.safe_load_file(DATA_PATH, permitted_classes: [Time])
   rescue StandardError
     nil
+  end
+
+  # The day the review went up, as a Japan date: created_at is UTC, and a
+  # review posted at 08:00 JST would otherwise show the day before. The visit
+  # date can trail the post by months, so it is only the fallback.
+  def posted_on(item)
+    Time.parse(item["created_at"].to_s).getlocal("+09:00").strftime("%Y-%m-%d")
+  rescue ArgumentError
+    item["date_visited"].to_s
   end
 
   def existing_count

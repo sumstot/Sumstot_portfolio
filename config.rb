@@ -193,7 +193,7 @@ helpers do
   def blank_review
     {
       "id" => "", "score" => 0.0, "name" => "", "name_ja" => "", "area" => "",
-      "soup" => [], "visited_on" => "", "image_url" => "", "url" => "#"
+      "soup" => [], "posted_on" => "", "image_url" => "", "url" => "#"
     }
   end
 
