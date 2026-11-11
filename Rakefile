@@ -16,12 +16,11 @@ namespace :reviews do
 end
 
 namespace :reading do
-  desc "Refresh data/reading.yml from the Goodreads shelf RSS feed"
+  desc "Refresh data/reading.yml from the Goodreads shelf widget"
   task :fetch do
     case ReadingFetcher.refresh
     when :updated   then puts "[reading] data/reading.yml updated"
     when :unchanged then puts "[reading] already current"
-    when :skipped   then puts "[reading] GOODREADS_RSS_URL not set — skipped"
     else                 puts "[reading] fetch failed — keeping committed data"
     end
   end
