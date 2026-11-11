@@ -24,9 +24,11 @@
   </div>
 </header>
 
-<section id="work">
+<section class="work">
   <div class="wrap">
-    <div class="head">
+    <%# The anchor rides on the heading, not the section: on stacked layouts the
+        intro tiles move above it, and #work should still land on the projects. %>
+    <div class="head" id="work">
       <h2><%= t("work.heading") %></h2>
       <span><%= t("work.note") %></span>
     </div>

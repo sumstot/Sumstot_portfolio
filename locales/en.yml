@@ -80,7 +80,7 @@ en:
         reviews: reviews
         since: hunting since
         stack: Turbo, Kamal, Hetzner
-      feed_note: Latest five from my API, with a build-time fallback.
+      feed_note: Latest four from my API, with a build-time fallback.
       feed_link: Browse the reviews
 
     kengaku:

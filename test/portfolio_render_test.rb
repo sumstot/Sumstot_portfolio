@@ -69,6 +69,9 @@ class PortfolioRenderTest < Minitest::Test
         assert_includes attributes, 'sizes="(max-width: 640px) 62vw, 240px"'
         assert_includes attributes, 'width="320"'
         assert_includes attributes, 'height="400"'
+        assert_includes attributes, 'loading="eager"'
+        assert_includes attributes, 'fetchpriority="low"'
+        assert_includes attributes, 'decoding="async"'
         refute_includes attributes, "srcset"
       end
     end
