@@ -55,6 +55,16 @@
     return MONTHS[month - 1] + " " + day + ", " + year;
   }
 
+  // Mirrors ReviewFetcher.posted_on: the Japan date of created_at, which is
+  // UTC, falling back to the visit date. Shifting by nine hours and reading the
+  // UTC fields gives the JST date whatever the visitor's own time zone.
+  function postedOn(item) {
+    var created = new Date(item.created_at || "");
+    if (isNaN(created.getTime())) return item.date_visited || "";
+
+    return new Date(created.getTime() + 9 * 3600 * 1000).toISOString().slice(0, 10);
+  }
+
   // Mirrors ReviewFetcher.normalize in lib/review_fetcher.rb.
   function normalizeReview(item) {
     if (!item || !item.id) return null;
@@ -72,7 +82,7 @@
       nameJa: restaurant.jpn_name || "",
       area: area,
       soup: (item.soup || []).map(function (s) { return String(s).replace(/_/g, " "); }),
-      visitedOn: item.date_visited || "",
+      postedOn: postedOn(item),
       imageUrl: item.primary_image_url || "",
       url: REVIEW_URL_BASE + item.id
     };
@@ -112,7 +122,7 @@
       }
     }
 
-    var date = formatDate(review.visitedOn);
+    var date = formatDate(review.postedOn);
     node.querySelector(".when").textContent =
       review.area && date ? review.area + " · " + date : review.area || date;
   }
